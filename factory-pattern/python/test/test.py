@@ -11,22 +11,22 @@ from src.VehicleFactory import VehicleFactory
 from src.VehicleFactory import VehicleType
 
 def test():
-  vehicleFactory = VehicleFactory()
+  vehicle_factory = VehicleFactory()
 
   # 获取Bus对象，并调用它的 run 方法
-  bus = vehicleFactory.get_vehicle(VehicleType.BUS)
+  bus = vehicle_factory.get_vehicle(VehicleType.BUS)
   bus.run()
 
   # 获取Car对象，并调用它的 run 方法
-  car = vehicleFactory.get_vehicle(VehicleType.CAR)
+  car = vehicle_factory.get_vehicle(VehicleType.CAR)
   car.run()
 
   # 获取Motorcycle对象，并调用它的 run 方法
-  motorcycle = vehicleFactory.get_vehicle(VehicleType.MOTORCYCLE)
+  motorcycle = vehicle_factory.get_vehicle(VehicleType.MOTORCYCLE)
   motorcycle.run()
 
   # 获取Motorcycle对象，并调用它的 run 方法
-  van = vehicleFactory.get_vehicle(VehicleType.VAN)
+  van = vehicle_factory.get_vehicle(VehicleType.VAN)
   van.run()
 
 if __name__=='__main__':
