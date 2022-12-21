@@ -2,10 +2,10 @@
 """
 @author: jarry
 """
-from Bus import Bus
-from Car import Car
-from Motorcycle import Motorcycle
-from Van import Van
+from src.Bus import Bus
+from src.Car import Car
+from src.Motorcycle import Motorcycle
+from src.Van import Van
 
 from enum import Enum
 

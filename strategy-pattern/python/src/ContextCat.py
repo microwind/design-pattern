@@ -2,8 +2,8 @@
 """
 @author: jarry
 """
-from Context import Context
-from StrategyC import StrategyC
+from src.Context import Context
+from src.StrategyC import StrategyC
 class ContextCat(Context):
   def __init__(self,):
     print('ContextCat::setStrategy(StrategyC).')

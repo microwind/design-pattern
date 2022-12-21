@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 *.pyc
+.idea
 
 # Log file
 *.log

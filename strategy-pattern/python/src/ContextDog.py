@@ -2,8 +2,8 @@
 """
 @author: jarry
 """
-from Context import Context
-from StrategyB import StrategyB
+from src.Context import Context
+from src.StrategyB import StrategyB
 class ContextDog(Context):
   def __init__(self,):
     print('ContextDog::setStrategy(StrategyB).')
