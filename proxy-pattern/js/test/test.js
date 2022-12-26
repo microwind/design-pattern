@@ -1,16 +1,14 @@
-import { Singleton } from '../src/Singleton.js'
-import { SingleObject } from '../src/SingleObject.js'
+import { ProxyImage } from '../src/ProxyImage.js'
 
 export function test() {
-  const singleton1 = Singleton.getInstance('singleton1')
-  singleton1.run()
-  const singleton2 = Singleton.getInstance('singleton2')
-  singleton2.run()
+  // 声明代理类来执行真实类的能力
+  const image = new ProxyImage('001.jpg')
 
-  const singleObject1 = SingleObject.getInstance('single1')
-  singleObject1.run()
-  const singleObject2 = SingleObject.getInstance('single2')
-  singleObject2.run()
+  // 代理类执行真实类的能力
+  image.display()
+
+  // 再调用一次，不会重复实例化
+  image.display()
 }
 
 // 执行测试
@@ -21,8 +19,9 @@ export function test() {
 /**
 jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
-Singleton::run() singleton1
-Singleton::run() singleton1
-SingleObject::() single1
-SingleObject::() single1
+ProxyImage::display() 001.jpg
+RealImage::loadFromDisk()  001.jpg
+RealImage::display() 001.jpg
+ProxyImage::display() 001.jpg
+RealImage::display() 001.jpg
 */

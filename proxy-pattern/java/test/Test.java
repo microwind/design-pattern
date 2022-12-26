@@ -6,21 +6,14 @@ public class Test {
 
   public static void start() {
 
-    // Mp4播放
-    PlayerAdapter playerAdapter1 = new PlayerAdapter("video", "mp4", "d:/video.mp4");
-    playerAdapter1.play();
+    // 声明代理类来执行真实类的能力
+    Image image = new ProxyImage("001.jpg");
 
-    // hls播放
-    PlayerAdapter playerAdapter2 = new PlayerAdapter("video", "hls", "http://video.m3u8");
-    playerAdapter2.play();
+    // 代理类执行真实类的能力
+    image.display();
 
-    // mp3播放
-    PlayerAdapter playerAdapter3 = new PlayerAdapter("audio", "mp3", "d:/video.mp4");
-    playerAdapter3.play();
-
-    // mp4音频播放
-    PlayerAdapter playerAdapter4 = new PlayerAdapter("audio", "mp4", "d:/video.mp4");
-    playerAdapter4.play();
+    // 再调用一次，不会重复实例化
+    image.display();
   }
 
   public static void main(String[] args) {
@@ -40,8 +33,9 @@ public class Test {
  * jarry@jarrys-MacBook-Pro java % javac test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:
- * SingleObject::run()
- * SingletonLazy::run()
- * SingletonSafe::run()
- * SingletonInner::run()
+ * ProxyImage::display() 001.jpg
+ * RealImage::loadFromDisk() 001.jpg
+ * RealImage::display() 001.jpg
+ * ProxyImage::display() 001.jpg
+ * RealImage::display() 001.jpg
  */

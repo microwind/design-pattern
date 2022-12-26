@@ -4,44 +4,28 @@
 """
 import sys
 import os
+
 os_path = os.getcwd()
 sys.path.append(os_path)
 
-from src.Singleton import Singleton
-from src.SingletonSimple import SingletonSimple
-# 线程安全
-# from src.SingletonSafe import SingletonSafe
+from src.ProxyImage import ProxyImage
+
 
 def test():
-  singleton1 = Singleton.get_instance('singleton1')
-  singleton1.run()
+    # 声明代理类来执行真实类的能力
+    image = ProxyImage('001.jpg')
 
-  singleton2 = Singleton.get_instance('singleton2')
-  singleton2.run()
+    # 代理类执行真实类的能力
+    image.display()
 
-  # *********************** 分割线 ******************************************/
+    # 再调用一次，不会重复实例化
+    image.display()
 
-  singleton1 = SingletonSimple.get_instance('SingletonSimple1')
-  singleton1.run()
 
-  singleton2 = SingletonSimple.get_instance('SingletonSimple2')
-  singleton2.run()
-
-  # *********************** 分割线 ******************************************/
-  # 适用python3
-  '''
-  singleton1 = SingletonSafe('SingletonSimple1')
-  singleton1.run()
-
-  singleton2 = SingletonSafe('SingletonSimple2')
-  singleton2.run()
-  '''
-
-if __name__=='__main__':
-  print(__file__)
-  print("test start:")
-  test()
-
+if __name__ == '__main__':
+    print(__file__)
+    print("test start:")
+    test()
 '''
 jarry@jarrys-MacBook-Pro python % python -V
 Python 2.7.16
@@ -60,10 +44,9 @@ Python 3.8.10
 jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test/test.py
 test start:
-Singleton::run() singleton1
-Singleton::run() singleton1
-SingletonSimple::run() SingletonSimple1
-SingletonSimple::run() SingletonSimple1
-SingletonSafe::run() SingletonSimple1
-SingletonSafe::run() SingletonSimple1
+ProxyImage::display() 001.jpg
+RealImage::load_from_disk()  001.jpg
+RealImage::display() 001.jpg
+ProxyImage::display() 001.jpg
+RealImage::display() 001.jpg
 '''
