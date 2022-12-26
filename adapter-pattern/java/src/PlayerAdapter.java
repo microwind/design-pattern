@@ -1,10 +1,11 @@
 package src;
 
-// 适配器类，可以播放各种音频和视频，外部调用方式一样
-public class PlayerAdapter {
+// 适配器类，可以播放各种音频和视频，外部调用方式一样。适配器也可以实现基础播放接口
+public class PlayerAdapter implements VideoPlayer {
 
   private String mediaType;
   private String fileType;
+  private String filePath;
   private VideoPlayer mp4Player;
   private VideoPlayer hlsPlayer;
   private AudioPlayer audioPlayer;
@@ -77,6 +78,14 @@ public class PlayerAdapter {
         hlsPlayer.play();
       }
     }
+  }
+
+  public void setFileType(String fileType) {
+    this.fileType = fileType;
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
   }
 
 }
