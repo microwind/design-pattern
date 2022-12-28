@@ -14,3 +14,5 @@
 2. 使用new运算符调用原型版本的构造函数。
 3. 将子类构造函数的直接调用，替换为对原型工厂方法的调用。
 
+# UML
+<img src="../docs/uml/prototype-pattern.png">

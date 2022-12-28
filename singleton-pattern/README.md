@@ -11,3 +11,5 @@
 1. 创建单例类，注意线程安全
 2. 返回全局唯一实例
 
+# UML
+<img src="../docs/uml/singleton-pattern.png">
