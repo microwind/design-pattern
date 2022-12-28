@@ -3,12 +3,14 @@
 @author: jarry
 """
 
-from src.VideoPlayer import VideoPlayer
+from src.MediaPlayer import MediaPlayer
 from src.Mp4Player import Mp4Player
 from src.HlsPlayer import HlsPlayer
 from src.AudioPlayer import AudioPlayer
 
 
+# 适配器是否继承基类可选。
+# class PlayerAdapter(MediaPlayer):
 class PlayerAdapter():
 
     def __init__(self, media_type, file_type, file_path):

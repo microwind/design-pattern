@@ -3,12 +3,12 @@
 @author: jarry
 """
 
-from src.VideoPlayer import VideoPlayer
+from src.MediaPlayer import MediaPlayer
 
-class HlsPlayer(VideoPlayer):
+class HlsPlayer(MediaPlayer):
 
     def __init__(self, file_type, file_path):
-        VideoPlayer.__init__(self, file_type, file_path)
+        MediaPlayer.__init__(self, file_type, file_path)
 
     def play(self, ):
         print(

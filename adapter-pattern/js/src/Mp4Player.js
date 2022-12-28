@@ -1,5 +1,5 @@
-import { VideoPlayer } from './VideoPlayer.js'
-export class Mp4Player extends VideoPlayer {
+import { MediaPlayer } from './MediaPlayer.js'
+export class Mp4Player extends MediaPlayer {
   // constructor(fileType, filePath) {
   //   super(fileType, filePath)
   // }

@@ -1,7 +1,7 @@
 package src;
 
-// AudioPlayer支持多种音频格式播放，相对简单，在同一个类实现
-public class AudioPlayer implements VideoPlayer {
+// AudioPlayer支持多种音频格式播放，相对简单，不区分格式
+public class AudioPlayer implements MediaPlayer {
   private String fileType;
   private String filePath;
 

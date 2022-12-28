@@ -1,7 +1,7 @@
 package src;
 
 // HlsPlayer播放器实现了视频接口
-public class Mp4Player implements VideoPlayer {
+public class Mp4Player implements MediaPlayer {
   private String fileType;
   private String filePath;
 

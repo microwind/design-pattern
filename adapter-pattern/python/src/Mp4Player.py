@@ -3,10 +3,10 @@
 @author: jarry
 """
 
-from src.VideoPlayer import VideoPlayer
+from src.MediaPlayer import MediaPlayer
 
 
-class Mp4Player(VideoPlayer):
+class Mp4Player(MediaPlayer):
 
     def play(self, ):
         print(

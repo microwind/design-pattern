@@ -1,11 +1,13 @@
-import { VideoPlayer } from './VideoPlayer.js'
+import { MediaPlayer } from './MediaPlayer.js'
 import { HlsPlayer } from './HlsPlayer.js'
 import { Mp4Player } from './Mp4Player.js'
 import { AudioPlayer } from './AudioPlayer.js'
 
-// 适配器类，可以播放各种音频和视频，外部调用方式一样
+// 适配器类，可以播放各种音频和视频，外部调用方式一样。适配器继承基类可选。
+// export class PlayerAdapter extends MediaPlayer {
 export class PlayerAdapter {
   constructor(mediaType, fileType, filePath) {
+    // super(fileType, filePath)
     this.mediaType = mediaType
     this.fileType = fileType
     this.mp4Player = null
