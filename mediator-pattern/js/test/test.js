@@ -1,23 +1,22 @@
-import { Circle } from '../src/Circle.js'
-import { DrawStyleA } from '../src/DrawStyleA.js'
-import { DrawStyleB } from '../src/DrawStyleB.js'
+import { GeneralRoom } from '../src/GeneralRoom.js'
+import { CommonUser } from '../src/CommonUser.js'
+import { MemberUser } from '../src/MemberUser.js'
 
 export function test() {
-  // 声明具体对象，并指定具体工具
-  const circle = new Circle(new DrawStyleA())
-  // 调用对象的方法，里面执行了工具类的方法
-  circle.draw(10, 20, 50)
-  //还可以调用父类里的方法
-  circle.drawDone()
+  // 声明一个聊天室
+  const generalRoom = new GeneralRoom()
+  // 给聊天室添加点不同的人
+  const user1 = new CommonUser('user1')
+  generalRoom.register(user1)
+  const user2 = new CommonUser('user2')
+  generalRoom.register(user2)
+  const user3 = new MemberUser('user3')
+  generalRoom.register(user3)
 
-  // /*********************** 分割线 ******************************************/
-
-  // 声明具体对象，并指定另外的工具
-  const circle2 = new Circle(new DrawStyleB())
-  // 调用对象的方法，里面执行了工具类的方法
-  circle2.draw(11, 22, 33)
-  // 还可以调用父类里的方法
-  circle2.drawDone()
+  // user1 发送给全体
+  user1.send("hi, I'm " + user1.getName() + '.')
+  // user2 发送给 user3
+  user2.sendTo(user3.getName(), 'haha.')
 }
 
 // 执行测试
@@ -31,11 +30,12 @@ jarry@jarrys-MacBook-Pro js % npm run test
 // or node execution
 jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
-test start:
-Circle::draw() [x=10 y=20 radius=50]
-DrawStyleA:drawStyle()
-RefinedShape::drawDone(), 执行的drawTool是: DrawStyleA
-Circle::draw() [x=11 y=22 radius=33]
-DrawStyeB:drawStyle()
-RefinedShape::drawDone(), 执行的drawTool是: DrawStyleB
+CommonUser:send() [user: user1 message: hi, I'm user1. ]
+>>GeneralRoom:send() [from: user1 message: hi, I'm user1. ]
+CommonUser:recieve() [user: user1 message: hi, I'm user1. from: user1]
+CommonUser:recieve() [user: user2 message: hi, I'm user1. from: user1]
+MemberUser:recieve() [user: user3 message: hi, I'm user1. from: user1]
+CommonUser:sendTo() [user: user2 message: haha. to: user3]
+>>GeneralRoom:sendTo() [from: user2 message: haha. to:user3]
+MemberUser:recieve() [user: user3 message: haha. from: user2]
 */

@@ -8,8 +8,7 @@ public class GeneralRoom implements RoomMediator {
 
    @Override
    public void register(AbstractUser user) {
-      // System.out.println("GeneralRoom:register() " + "[add user:" + user.getName() + "]");
-      // 维护用户列表，用户注册登记
+      // 用户注册登记，追加用户列表
       user.setRoomMediator(this);
       users.add(user);
    }
@@ -17,7 +16,7 @@ public class GeneralRoom implements RoomMediator {
    // 作为中介者通知给某个用户
    @Override
    public void sendTo(String from, String to, String message) {
-      System.out.println("GeneralRoom:send() [user:" + from + " send messsage: " + message + " to: " + to + " ]");
+      System.out.println(">>GeneralRoom:sendTo() [from: " + from + " message: " + message + " to: " + to + " ]");
       for (AbstractUser user : users) {
          // 定向发送
          if (user.getName().equals(to)) {
@@ -29,7 +28,7 @@ public class GeneralRoom implements RoomMediator {
    // 作为中介者通知给全体用户
    @Override
    public void send(String from, String message) {
-      System.out.println("GeneralRoom:send() [ user:" + from + " send messsage: " + message + "]");
+      System.out.println(">>GeneralRoom:send() [from: " + from + " message: " + message + "]");
       for (AbstractUser user : users) {
          user.recieve(from, message);
       }

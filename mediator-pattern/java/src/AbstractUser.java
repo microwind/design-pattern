@@ -3,7 +3,7 @@ package src;
 // 定义抽象形状类，关联图形操作接口
 public abstract class AbstractUser {
 
-   public String name;
+   private String name;
    public RoomMediator roomMediator;
 
    public AbstractUser(String name) {
@@ -19,10 +19,6 @@ public abstract class AbstractUser {
    public abstract void sendTo(String to, String message);
 
    public abstract void recieve(String from, String message);
-
-   public void setName(String name) {
-      this.name = name;
-   }
 
    public String getName() {
       return this.name;
