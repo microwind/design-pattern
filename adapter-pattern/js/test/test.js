@@ -28,6 +28,9 @@ export function test() {
   test()
 })()
 /**
+// npm run
+jarry@jarrys-MacBook-Pro js % npm run test
+// or node execution
 jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
 Mp4Player fileType:mp4 | filePath:d:/video.mp4
