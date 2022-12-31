@@ -13,4 +13,4 @@
 3. 定义树叶构件（Leaf）角色：是组合中的叶子节点对象，它没有子节点，用于继承或实现抽象构件。
 
 # UML
-<img src="../docs/uml/composite-pattern.png">
+<img src="../docs/uml/decorator-pattern.png">
