@@ -84,8 +84,15 @@ public class PlayerAdapter implements MediaPlayer {
     this.fileType = fileType;
   }
 
+  public String getFileType() {
+    return fileType;
+  }
+
   public void setFilePath(String filePath) {
     this.filePath = filePath;
   }
 
+  public String getFilePath() {
+    return filePath;
+  }
 }
