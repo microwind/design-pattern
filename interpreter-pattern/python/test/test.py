@@ -9,35 +9,22 @@ import os
 os_path = os.getcwd()
 sys.path.append(os_path)
 
-from src.StockReceiver import StockReceiver
-from src.BuyCommand import BuyCommand
-from src.SellCommand import SellCommand
-from src.CommandInvoker import CommandInvoker
+from src.Application import Application
+
 
 def test():
     '''
     * 命令模式是客户端通过一个命令执行者invoker，去执行某个命令command
     * 而命令则调用了业务类receiver的具体动作，从而完成真正的执行
     '''
+    result1 = Application.add_two(1, 2)
+    print('result1: ', result1)
 
-    # 先声明一个被操作对象，也就是接收者
-    stock1 = StockReceiver('Apple', 200)
+    result2 = Application.add_more(1, 2, 3, 4, 5)
+    print('result2: ', result2)
 
-    # 再声明具体的命令
-    buy_command = BuyCommand(stock1)
-    sell_command = SellCommand(stock1)
-
-    # 最后声明调用者，由调用者来执行具体命令
-    invoker = CommandInvoker()
-    invoker.take_order(buy_command)
-    invoker.take_order(sell_command)
-    invoker.execute_orders()
-
-    # 再执行一只股票
-    stock2 = StockReceiver('Google', 100)
-    sell_command2 = BuyCommand(stock2)
-    invoker.take_order(sell_command2)
-    invoker.execute_orders()
+    result3 = Application.add_and_subtract(3, 4, 5)
+    print('result3: ', result3)
 
 
 if __name__ == '__main__':
@@ -45,20 +32,22 @@ if __name__ == '__main__':
     print("test start:")
     test()
 '''
-jarry@jarrys-MacBook-Pro python % python -V
-Python 3.11.1
+jarry@jarrys-MacBook-Pro python % python3 -V
+Python 3.8.10
 
-jarry@jarrys-MacBook-Pro python % python test/test.py
+# python2默认不支持metaclass=ABCMeta，如果采用python2则去掉抽象方法即可
+
+jarry@jarrys-MacBook-Pro python % python3 test/test.py
+test/test.py
 test start:
-CommandInvoker::takeOrder() BuyCommand
-CommandInvoker::takeOrder() SellCommand
-CommandInvoker::executeOrders()
-BuyCommand::execute()
-StockReceiver::buy() [name=Apple num=200]
-SellCommand::execute()
-StockReceiver::sell() [name=Apple num=200]
-CommandInvoker::takeOrder() BuyCommand
-CommandInvoker::executeOrders()
-BuyCommand::execute()
-StockReceiver::buy() [name=Google num=100]
+AddExpression::interpret() [context = Context]
+result1:  3
+AddExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+result2:  15
+SubtractExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+result3:  2
 '''

@@ -1,7 +1,7 @@
 package src;
 
-// 构建变量表达式，变量与执行环境的Key对应
-// 变量表达式是可选的，不用VarExpression则可以直接用其他表达式替代
+// 构建变量表达式，或者叫终端表达式，其他表达式求值时通过层层追溯最后指向这里
+// 变量与执行环境的Key对应，最终会通过key获取传入的值
 public class VarExpression implements Expression {
   private String key;
 

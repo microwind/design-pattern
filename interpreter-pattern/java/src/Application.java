@@ -2,6 +2,11 @@ package src;
 
 public class Application {
 
+    /*
+     * 解释器模式先构建执行上下文Context，然后构建一个最终的获取值的表达式VarExpression，这就构成了含上下文和变量-值的基本环境。
+     * 再将基本环境放到工具表达式里AddExpression或SubtractExpreesion进行计算，最终得到结果。
+     */
+
    // 构建两个数相加的例子
    public static int addTwo(int one, int two) {
       // 构建执行上下文环境

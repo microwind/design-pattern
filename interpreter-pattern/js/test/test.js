@@ -1,32 +1,14 @@
-import { StockReceiver } from '../src/StockReceiver.js'
-import { BuyCommand } from '../src/BuyCommand.js'
-import { SellCommand } from '../src/SellCommand.js'
-import { CommandInvoker } from '../src/CommandInvoker.js'
+import { Application } from '../src/Application.js'
 
 export function test() {
-  /*
-   * 命令模式是客户端通过一个命令执行者invoker，去执行某个命令command
-   * 而命令则调用了业务类receiver的具体动作，从而完成真正的执行
-   */
+  const result1 = Application.addTwo(1, 2)
+  console.log('result1: ' + result1)
 
-  // 先声明一个被操作对象，也就是接收者
-  const stock1 = new StockReceiver('Apple', 200)
+  const result2 = Application.addMore(1, 2, 3, 4, 5)
+  console.log('result2: ' + result2)
 
-  // 再声明具体的命令
-  const buyCommand = new BuyCommand(stock1)
-  const sellCommand = new SellCommand(stock1)
-
-  // 最后声明调用者，由调用者来执行具体命令
-  const invoker = new CommandInvoker()
-  invoker.takeOrder(buyCommand)
-  invoker.takeOrder(sellCommand)
-  invoker.executeOrders()
-
-  // 再执行一只股票
-  const stock2 = new StockReceiver('Google', 100)
-  const buyCommand2 = new BuyCommand(stock2)
-  invoker.takeOrder(buyCommand2)
-  invoker.executeOrders()
+  const result3 = Application.addAndSubtract(3, 4, 5)
+  console.log('result3: ' + result3)
 }
 
 // 执行测试
@@ -40,15 +22,14 @@ jarry@jarrys-MacBook-Pro js % npm run test
 // or node execution
 jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
-CommandInvoker::takeOrder() BuyCommand    
-CommandInvoker::takeOrder() SellCommand   
-CommandInvoker::executeOrders()
-BuyCommand::execute()
-StockReceiver::buy() [name=Apple num=200] 
-SellCommand::execute()
-StockReceiver::sell() [name=Apple num=200]
-CommandInvoker::takeOrder() BuyCommand    
-CommandInvoker::executeOrders()
-BuyCommand::execute()
-StockReceiver::buy() [name=Google num=100]
+AddExpression::interpret() [context = Context]
+result1: 3
+AddExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+result2: 15
+SubtractExpression::interpret() [context = Context]
+AddExpression::interpret() [context = Context]
+result3: 2
 */
