@@ -42,7 +42,8 @@ if __name__ == '__main__':
 
 
 '''
-jarry@jarrys-MacBook-Pro python % python test/test.py
+# 这里使用了python3，如果是python2去掉abstract即可
+jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test start:
 ObjectList::createIterator() [获取迭代器 ObjectIterator]
 objectList[0] = Thomas

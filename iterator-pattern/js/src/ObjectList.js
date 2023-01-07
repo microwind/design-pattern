@@ -10,7 +10,7 @@ export class ObjectList extends Container {
 
   createIterator() {
     console.log(
-      this.constructor.name + '::createIterator() [获取迭代器 ObjectIterator]',
+      this.constructor.name + '::createIterator() [获取迭代器 ObjectIterator]'
     )
     // 把当前对象传给迭代器
     return new ObjectIterator(this)
