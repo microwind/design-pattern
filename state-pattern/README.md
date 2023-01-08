@@ -16,6 +16,7 @@ ConcreteStateA,ConcreteStateB: 具体的实现类，实现了State中定义的�
 1. 创建State状态接口，包括全部动作状态。
 2. 分别创建不同的状态类，实现State抽象接口，不同状态类的方法要实现不同类的切换。
 3. 创建Context执行对象，关联到状态接口，允许状态切换。
+4. 客户调用方通过初始化执行对象，设置初始状态，再调用执行对象动作的同时切换状态。
 
 # UML
 <img src="../docs/uml/state-pattern.png">

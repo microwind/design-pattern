@@ -13,16 +13,16 @@ class Context:
     def __init__(self):
         self.state = None
 
-    def getState(self):
+    def get_state(self):
         return self.state
 
-    def setState(self, state):
-        print(self.__class__.__name__ + '::setState() [state = ' +
+    def set_state(self, state):
+        print(self.__class__.__name__ + '::set_state() [state = ' +
               state.__class__.__name__ + ']')
         self.state = state
 
-    def turnOn(self):
+    def turn_on(self):
         self.state.on(self)
 
-    def turnOff(self):
+    def turn_off(self):
         self.state.off(self)

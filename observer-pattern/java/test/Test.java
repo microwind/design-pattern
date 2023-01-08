@@ -39,7 +39,6 @@ public class Test {
  * jarry@jarrys-MacBook-Pro java % javac -encoding utf-8 test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:
- * test start:
  * ConcreteSubject::register() [observer = ConcreteObserver]
  * ConcreteSubject::register() [observer = ConcreteObserver2]
  * ConcreteSubject::notify() [content = hello, this is broadcast.]

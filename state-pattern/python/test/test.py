@@ -21,16 +21,16 @@ def test():
 
     context = Context()
     # 初始状态是off
-    context.setState(ConcreteStateOff())
+    context.set_state(ConcreteStateOff())
     # turn on
-    context.turnOn()
+    context.turn_on()
     # 再次turn on
-    context.turnOn()
+    context.turn_on()
     # turn off
-    context.turnOff()
+    context.turn_off()
     # 再次turn off
-    context.turnOff()
-    print('context.state: ' + context.getState().__class__.__name__)
+    context.turn_off()
+    print('context.state: ' + context.get_state().__class__.__name__)
 
 
 if __name__ == '__main__':
