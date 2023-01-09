@@ -96,3 +96,8 @@ Implemented in different languages, including Java/JS/Python/TypeScript/Go, etc.
 - OOP [演示例子](./oop)
 
 ### [查看全部源码](https://microwind.github.io/design-pattern/)
+
+### Contact 联系
+欢迎共建 Welcome to join
+- Wechat:  **springbuild**
+- QQ: **12263529**
