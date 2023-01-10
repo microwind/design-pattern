@@ -31,6 +31,7 @@ jarry@jarrys-MacBook-Pro js % npm run test
 // or node execution
 jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
+test start:
 Circle::draw() [x=10 y=20 radius=50]
 DrawStyleA:drawStyle()
 RefinedShape::drawDone(), 执行的drawTool是: DrawStyleA
