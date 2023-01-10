@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    // "lib": ["es6", "dom", "ES2020"],
+    "target": "ES2020",
+    "strict": true,
+    "removeComments": true,
+    // "module": "CommonJS",
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+  }
+}
