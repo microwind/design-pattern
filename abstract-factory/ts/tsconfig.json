@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    // "lib": ["es6", "dom", "ES2020"],
-    "target": "ES2020",
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
     "strict": true,
     "removeComments": true,
-    // "module": "CommonJS",
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/*.ts",
+  ]
 }

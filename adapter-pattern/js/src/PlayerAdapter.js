@@ -52,7 +52,7 @@ export class PlayerAdapter {
   }
 
   // 通用的适配接口
-  playDefault() {
+  play() {
     if (this.mediaType === 'audio') {
       this.audioPlayer.play()
     } else if (this.mediaType === 'video') {
@@ -65,7 +65,7 @@ export class PlayerAdapter {
   }
 
   // 根据路径播放，可根据需要复用实例
-  play(mediaType, fileType, filePath) {
+  playBy(mediaType, fileType, filePath) {
     if (arguments.length <= 0) {
       this.playDefault(mediaType, fileType, filePath)
       return

@@ -5,7 +5,7 @@ export function test() {
   const playerAdapter1 = new PlayerAdapter('video', 'mp4', 'd:/video.mp4')
   playerAdapter1.play()
   // 复用实例播音频
-  playerAdapter1.play('audio', 'mp4', 'd:/audio.mp4')
+  playerAdapter1.playBy('audio', 'mp4', 'd:/audio.mp4')
 
   // hls播放
   const playerAdapter2 = new PlayerAdapter('video', 'hls', 'http://video.m3u8')
@@ -19,7 +19,7 @@ export function test() {
   const playerAdapter4 = new PlayerAdapter('audio', 'mp4', 'd:/audio.mp4')
   playerAdapter4.play()
   // 复用实例播视频
-  playerAdapter4.play('video', 'hls', 'd:/video.m3u8')
+  playerAdapter4.playBy('video', 'hls', 'd:/video.m3u8')
 }
 
 // 执行测试

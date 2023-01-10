@@ -55,7 +55,8 @@ export function test() {
 })()
 
 /*
-// 执行结果s
+// 指定编译选项
+// % tsc test/test.ts --charset utf-8 --lib es6,dom,es2020 --target es2020
 // node run
 jarry@jarrys-MacBook-Pro ts % node -v
 v16.15.1
