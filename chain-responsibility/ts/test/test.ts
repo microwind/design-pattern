@@ -37,15 +37,13 @@ export function test() {
   test()
 })()
 /**
-// npm run
-jarry@jarrys-MacBook-Pro js % npm run test
-// or node execution
-jarry@jarrys-MacBook-Pro js % node test/test.js
+jarry@jarrys-MacBook-Pro ts % tsc
+jarry@jarrys-MacBook-Pro ts % node test/test.js
 test start:
 handler1.check(1001)开始
 RequestHandler::check() [uid = 1001]
-UserHandler::check() [uid = 1001]   
-AuthHandler::check() [uid = 1001]   
+UserHandler::check() [uid = 1001]
+AuthHandler::check() [uid = 1001]
 handler1.check(1002)开始
 RequestHandler::check() [uid = 1002]
 UserHandler::check() [uid = 1002]

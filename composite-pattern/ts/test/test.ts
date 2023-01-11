@@ -47,10 +47,8 @@ export function test() {
   test()
 })()
 /**
-// npm run
-jarry@jarrys-MacBook-Pro js % npm run test
-// or node execution
-jarry@jarrys-MacBook-Pro js % node test/test.js
+jarry@jarrys-MacBook-Pro ts % tsc
+jarry@jarrys-MacBook-Pro ts % node test/test.js
 test start:
 CompanyComposite::operation() 西天旅游有限公司
 DepartmentComposite::operation() 总裁办

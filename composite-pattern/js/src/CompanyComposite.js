@@ -8,7 +8,10 @@ export class CompanyComposite extends OrganizationComponent {
   }
 
   operation() {
-    console.log('CompanyComposite::operation() prepare')
-    super.operation()
+    console.log(this.constructor.name + '::operation() ' + this.name)
+    for (const component of this.children) {
+      component.operation()
+    }
   }
+
 }

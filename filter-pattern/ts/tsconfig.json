@@ -6,6 +6,7 @@
     "removeComments": true,
     // "module": "CommonJS",
     "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true,
   }
 }

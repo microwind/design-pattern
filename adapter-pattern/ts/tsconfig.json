@@ -6,6 +6,7 @@
     "strict": true,
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true,
   },
   "include": [

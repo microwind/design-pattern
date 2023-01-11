@@ -1,8 +1,8 @@
 import { OrganizationComponent } from './OrganizationComponent.js'
 
-// 实现部件的树枝构件2
-export class DepartmentComposite extends OrganizationComponent {
-  constructor(name) {
+// 实现部件的树枝构件1
+export class CompanyComposite extends OrganizationComponent {
+  constructor(name: string) {
     super(name)
     this.children = []
   }
@@ -13,4 +13,9 @@ export class DepartmentComposite extends OrganizationComponent {
       component.operation()
     }
   }
+
+  getChild(index: number) {
+    return this.children[index]
+  }
+
 }
