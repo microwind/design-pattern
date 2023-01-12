@@ -8,6 +8,12 @@ public class Test {
 
   public static void start() {
 
+    /**
+     * 抽象工厂就是把生产产品的工厂也根据统一的抽象工厂来创建，
+     * 这样不同类型的工厂可以在统一的约束下，整体上看更新加清晰。
+     * 当声明工厂时可以通过抽象类型或具体工厂来声明，然后依据工厂来生产不同的产品。
+     */
+
     // 声明一个汽车工厂
     AbstractFactory vehicleFactory = FactoryCreator.getFactory("vehicle");
     // 从汽车工厂获取Bus对象，并调用它的 run 方法

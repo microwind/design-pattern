@@ -4,6 +4,12 @@ import { PhoneBuilder } from '../src/PhoneBuilder.js'
 import { ManualBuilder } from '../src/ManualBuilder.js'
 
 export function test() {
+  /**
+   * 建造者模式是使用多个简单的对象一步一步构建出一个复杂的对象来。
+   * 分为主管类和建造这类，主管类负责具体指挥调度，建造负责具体实施。
+   * 主管类通过一步一步调用各种建造者实现复杂对象。
+   */
+
   Application.makeIPhone()
 
   Application.makeHuaweiPhone()

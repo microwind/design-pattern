@@ -4,7 +4,10 @@ import { UserHandler } from '../src/UserHandler.js'
 import { RequestHandler } from '../src/RequestHandler.js'
 
 export function test() {
-  // 责任链模式核心是打造一个调用处理链，每个处理链都实现抽象类的next方法，从而可以任意组织各种检查链。
+  /**
+   * 责任链模式核心是打造一个调用处理链，每个处理链都实现抽象类的next方法，从而可以任意组织各种检查行为。
+   * 通过改变链内的成员或者调动它们的顺序，允许动态地新增或者删除职责，从而实现按需组织。
+   */
 
   // 可以任意组织职责链，先后顺序根据需要来
   const handler1 = AbstractHandler.link(

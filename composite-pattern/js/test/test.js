@@ -3,6 +3,12 @@ import { DepartmentComposite } from '../src/DepartmentComposite.js'
 import { EmployeeLeaf } from '../src/EmployeeLeaf.js'
 
 export function test() {
+  /**
+   * 组合模式依据树形结构来组合对象，用不同组件来构建整体对象。
+   * 不同组件之间有相同的接口约束，有不同的具体实现。
+   * 先定义顶级节点，然后陆续加入枝叶节点和叶子节点，这样不断添加，将零散的个体组成一个整体。ss
+   */
+
   // 通过组合模型组合了一个部件，分支和节点可以随意增删
   const com = new CompanyComposite('西天旅游有限公司')
   const com1 = new DepartmentComposite('总裁办')

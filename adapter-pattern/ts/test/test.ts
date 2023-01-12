@@ -1,6 +1,12 @@
 import { PlayerAdapter } from '../src/PlayerAdapter.js'
 
 export function test() {
+  /**
+   * 适配器模式是当调用方需需调用不同功能，但接口并不兼容时，
+   * 这时候可通过一个适配器类来做适配，让调用方通过适配类再去调用各个对象的功能。
+   * 调用方只知道适配器，而不知道后面的其他对象。
+   */
+
   // mp4播放
   const playerAdapter1 = new PlayerAdapter('video', 'mp4', 'd:/video.mp4')
   playerAdapter1.play()

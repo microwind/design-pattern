@@ -14,10 +14,12 @@ from src.BuyCommand import BuyCommand
 from src.SellCommand import SellCommand
 from src.CommandInvoker import CommandInvoker
 
+
 def test():
     '''
-    * 命令模式是客户端通过一个命令执行者invoker，去执行某个命令command
-    * 而命令则调用了业务类receiver的具体动作，从而完成真正的执行
+     * 命令模式是客户端通过一个命令执行者invoker，去执行某个命令command
+     * 而命令则调用了业务类receiver的具体动作，从而完成真正的执行
+     * 这种方式将命令和执行者进行了有效解耦。
     '''
 
     # 先声明一个被操作对象，也就是接收者

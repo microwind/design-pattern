@@ -16,6 +16,14 @@ from src.VehicleFactory import VehicleType
 from src.FactoryCreator import FactoryCreator
 
 def test():
+
+  '''
+    * 抽象工厂就是把生产产品的工厂也根据统一的抽象工厂来创建，
+    * 这样不同类型的工厂可以在统一的约束下，整体上看更新加清晰。
+    * 当声明工厂时可以通过抽象类型或具体工厂来声明，然后依据工厂来生产不同的产品。
+  '''
+
+  # 先基于抽象工厂类来创建一个工厂
   vehicle_factory = FactoryCreator.get_factory('vehicle')
 
   # 获取Bus对象，并调用它的 run 方法
