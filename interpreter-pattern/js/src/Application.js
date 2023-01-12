@@ -42,7 +42,7 @@ export class Application {
     // 再构建表达式，先赋值前两个
     let expression = new AddExpression(varOne, varTwo)
 
-    // 如果只有数则则直接返回结果
+    // 如果只有两个数则直接返回计算结果
     if (numbers.length === 2) {
       return expression.interpret(context)
     }

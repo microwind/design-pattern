@@ -10,7 +10,7 @@ public class Test {
 
     /**
      * 过滤器模式就是不断组合过滤条件，然后层层过滤的模式
-     * 这里是简单演示，其实就是List筛选
+     * 这里是简单演示，用List筛选来模拟过滤，实际例子有各种数据结构
      */
     List<Person> persons = new ArrayList<Person>();
 

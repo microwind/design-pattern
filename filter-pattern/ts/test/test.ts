@@ -22,7 +22,7 @@ export function test() {
 
   /**
    * 过滤器模式就是不断组合过滤条件，然后层层过滤的模式
-   * 这里是简单演示，其实就是List筛选。TS数组与JS同，filter非常方便
+   * TS数组虽然有filter本身非常方便，但这种层层组合过滤的模式还是有意义的。
    */
   const persons: Person[] = []
 

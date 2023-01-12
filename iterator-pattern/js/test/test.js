@@ -2,8 +2,9 @@ import { ObjectList } from '../src/ObjectList.js'
 
 export function test() {
   /*
-   * 迭代器模式是给数据容器创建单独的迭代器，用来遍历里面的对象
+   * 迭代器模式是给数据容器创建单独的迭代器，用来遍历里面的数据对象
    * 数据容器和迭代器相互关联，外部通过迭代器来访问数据容器
+   * 通过这种方式由迭代器类来负责数据遍历，这样可以做到不暴露集合的内部结构
    */
   let i = 0
   const objectList = new ObjectList()

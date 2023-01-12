@@ -2,6 +2,11 @@ import { FlyweightFactory } from '../src/FlyweightFactory.js'
 import { UnsharedConcreteFlyweight } from '../src/UnsharedConcreteFlyweight.js'
 
 export function test() {
+  /**
+   * 享元模式就是将已经声明过的实例或数据保存在内存里，需要使用时则取出来，无需再次实例化和声明。
+   * 通过共享多个对象所共有的相同状态，以达到节省开销的目的。
+   */
+
   // 假设有钢琴和吉他，钢琴使用者很多需要共享实例，而吉他每次创建新实例
 
   // 2个一样名称的共享对象

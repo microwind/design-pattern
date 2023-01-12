@@ -5,6 +5,10 @@ import src.*;
 public class Test {
 
   public static void start() {
+    /**
+     * 工厂模式由工厂类提供统一的创建对象的方法，省去直接new，而是通过统一方法来创建。
+     * 这样的好处就是让对象创建和调用解耦，便于在创建对象时统一干预。
+     */
     VehicleFactory vehicleFactory = new VehicleFactory();
 
     // 获取Bus对象，并调用它的 run 方法
@@ -14,12 +18,12 @@ public class Test {
     // 获取Car对象，并调用它的 run 方法
     Vehicle car = vehicleFactory.getVehicle(VehicleType.CAR);
     // 类型转为Car
-    Car car1 = (Car)car;
+    Car car1 = (Car) car;
     car1.run();
 
     // 获取Motorcycle对象，并调用它的 run 方法
     // 类型直接转为Motorcycle
-    Motorcycle motorcycle = (Motorcycle)vehicleFactory.getVehicle(VehicleType.MOTORCYCLE);
+    Motorcycle motorcycle = (Motorcycle) vehicleFactory.getVehicle(VehicleType.MOTORCYCLE);
     motorcycle.run();
 
     // 获取Motorcycle对象，并调用它的 run 方法
@@ -27,6 +31,7 @@ public class Test {
     van.run();
 
   }
+
   public static void main(String[] args) {
     System.out.println("test start:");
     start();
@@ -36,16 +41,16 @@ public class Test {
 
 /**
  * 测试
-jarry@jarrys-MacBook-Pro java % java --version
-java 14.0.1 2020-04-14
-Java(TM) SE Runtime Environment (build 14.0.1+7)
-Java HotSpot(TM) 64-Bit Server VM (build 14.0.1+7, mixed mode, sharing)
-
-jarry@jarrys-MacBook-Pro java % javac test/Test.java 
-jarry@jarrys-MacBook-Pro java % java test/Test 
-test start:
-Bus::run().
-Car::run().
-Motorcycle::run().
-Van::run().
+ * jarry@jarrys-MacBook-Pro java % java --version
+ * java 14.0.1 2020-04-14
+ * Java(TM) SE Runtime Environment (build 14.0.1+7)
+ * Java HotSpot(TM) 64-Bit Server VM (build 14.0.1+7, mixed mode, sharing)
+ * 
+ * jarry@jarrys-MacBook-Pro java % javac test/Test.java
+ * jarry@jarrys-MacBook-Pro java % java test/Test
+ * test start:
+ * Bus::run().
+ * Car::run().
+ * Motorcycle::run().
+ * Van::run().
  */

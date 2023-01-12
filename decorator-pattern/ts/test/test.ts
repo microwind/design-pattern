@@ -34,7 +34,7 @@ export function test() {
 })()
 /**
 jarry@jarrys-MacBook-Pro ts % sudo npm install -g ts-node
-// direct use ts-node-esm or use tsc before
+// direct use `ts-node-esm` or use `tsc` and `node`
 jarry@jarrys-MacBook-Pro ts % ts-node-esm test/test.ts
 test start:
 Circle::draw()

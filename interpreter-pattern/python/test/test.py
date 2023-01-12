@@ -14,8 +14,8 @@ from src.Application import Application
 
 def test():
     '''
-    * 命令模式是客户端通过一个命令执行者invoker，去执行某个命令command
-    * 而命令则调用了业务类receiver的具体动作，从而完成真正的执行
+    * 解释器模式实现了一个表达式接口，该接口可以解释一个特定的上下文的变量和语句。
+    * 也就是先定义上下文，然后定义变量，再使用表达式进行求值。相当可以构造一个简单的语法解析器。
     '''
     result1 = Application.add_two(1, 2)
     print('result1: ', result1)

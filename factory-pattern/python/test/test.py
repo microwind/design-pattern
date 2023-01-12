@@ -11,6 +11,10 @@ from src.VehicleFactory import VehicleFactory
 from src.VehicleFactory import VehicleType
 
 def test():
+  '''
+   * 工厂模式由工厂类提供统一的创建对象的方法，省去直接new，而是通过统一方法来创建。
+   * 这样的好处就是让对象创建和调用解耦，便于在创建对象时统一干预。
+  '''
   vehicle_factory = VehicleFactory()
 
   # 获取Bus对象，并调用它的 run 方法

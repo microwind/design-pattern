@@ -7,11 +7,16 @@ import src.*;
 public class Test {
 
   public static void start() {
+  /**
+   * 享元模式就是将已经声明过的实例或数据保存在内存里，需要使用时则取出来，无需再次实例化和声明。
+   * 通过共享多个对象所共有的相同状态，以达到节省开销的目的。
+   */
 
     // 假设有钢琴和吉他，钢琴使用者很多需要共享实例，而吉他每次创建新实例
 
     // 2个一样名称的共享对象
     Flyweight factory1 = FlyweightFactory.getFactory("piano1");
+    // piano1已经声明过了，同名则共享前面的实例
     Flyweight factory2 = FlyweightFactory.getFactory("piano1");
     Flyweight factory3 = FlyweightFactory.getFactory("piano2");
 

@@ -12,11 +12,18 @@ sys.path.append(os_path)
 from src.FlyweightFactory import FlyweightFactory
 from src.UnsharedConcreteFlyweight import UnsharedConcreteFlyweight
 
+
 def test():
+    '''
+    * 享元模式就是将已经声明过的实例或数据保存在内存里，需要使用时则取出来，无需再次实例化和声明。
+    * 通过共享多个对象所共有的相同状态，以达到节省开销的目的。
+    '''
+
     # 假设有钢琴和吉他，钢琴使用者很多需要共享实例，而吉他每次创建新实例
 
     # 2个一样名称的共享对象
     factory1 = FlyweightFactory.get_factory('piano1')
+    # piano1已经声明过了，同名则共享前面的实例
     factory2 = FlyweightFactory.get_factory('piano1')
     factory3 = FlyweightFactory.get_factory('piano2')
 
@@ -27,7 +34,7 @@ def test():
     # 查看一共多少个对象
     # for entry in FlyweightFactory.pool:
     #     print('保存的对象:' + entry)
-        
+
     for flyweight in FlyweightFactory.pool.values():
         print('保存的对象:' + flyweight.get_name())
 
@@ -42,8 +49,6 @@ if __name__ == '__main__':
     print(__file__)
     print("test start:")
     test()
-
-
 '''
 jarry@jarrys-MacBook-Pro python % python test/test.py
 test start:

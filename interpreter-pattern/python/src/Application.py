@@ -47,7 +47,7 @@ class Application():
         # 再构建表达式，先赋值前两个
         expression = AddExpression(var_one, var_two)
 
-        # 如果只有数则则直接返回结果
+        # 如果只有两个数则直接返回计算结果
         if len(numbers) == 2:
             return expression.interpret(context)
 
