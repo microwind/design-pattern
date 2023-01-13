@@ -6,6 +6,7 @@ export class Shape {
     this.type = null
   }
 
+  // 抽象方法，供子类覆盖
   draw() {
     console.log('Shape::draw()')
   }
@@ -45,7 +46,7 @@ export class Shape {
     function F() {}
     // 共享原型
     F.prototype = this
-    let obj = new F()
+    const obj = new F()
 
     // 复制属性
     for (let prop in this) {

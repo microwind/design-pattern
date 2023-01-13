@@ -2,6 +2,10 @@ import { Singleton } from '../src/Singleton.js'
 import { SingleObject } from '../src/SingleObject.js'
 
 export function test() {
+  /**
+   * 单例模式就是一个类只创建一个实例，以便节省开销和保证统一
+   * 对于多线程语言需要注意线程安全和性能之间取得一个平衡
+   */
   const singleton1 = Singleton.getInstance('singleton1')
   singleton1.run()
   const singleton2 = Singleton.getInstance('singleton2')

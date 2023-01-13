@@ -4,8 +4,8 @@ import { Basketball } from '../src/Basketball.js'
 
 export function test() {
   /**
-   * 模板方法模式就是当子类具备类似行为的时候，
-   * 创建一个公共模板，确定公用流程和操作动作，子类覆盖动作的模式
+   * 模板方法模式就是当子类具备类似行为的时候，让子类共用一套流程
+   * 创建一个公共模板，确定公用流程和操作动作，子类覆盖具体的动作
    */
   const football = new Football()
   football.play()

@@ -16,7 +16,7 @@ export function test() {
   // 也可以单独给主题注册一个新的观察者
   const observer2 = new ConcreteObserver2()
   concreteSubject.register(observer2)
-  // 可以移除观察者对象
+  // 可以移除观察者对象，可以打开注释试下
   // concreteSubject.remove(observer1)
 
   // 主题开始发布新通知，各观察者自动更新

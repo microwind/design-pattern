@@ -1,7 +1,7 @@
 export class Context {
   strategy = null
 
-  constructor(options) {
+  constructor() {
     // console.log('Context::init()')
   }
 

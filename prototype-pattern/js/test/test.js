@@ -2,6 +2,10 @@ import { Application } from '../src/Application.js'
 import { Square } from '../src/Square.js'
 
 export function test() {
+  /**
+   * 原型模式主要就是复制已有的对象，而无需实例化类，从而提升实例化对象时的性能
+   * 其实就是复制实例的属性到新对象上，减少了执行构造的步骤
+   */
   const application = new Application()
   application.addToShapes()
   const shapeClone = application.getShapeClone(1)

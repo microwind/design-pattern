@@ -5,12 +5,11 @@ import src.*;
 public class Test {
 
   public static void start() {
-
-    /**
-     * 访问者模式是当客户需要访问具体各元素Element时，先建立一个访问者Visitor作为媒介
-     * 客户基于对象结构ObjectStructure，调用accept访问，并传入访问者
-     * 对象结构向其他元素对象负责分发Visitor，元素对象接受之后会将自己回传给访问者，访问者则可以访问元素
-     */
+  /**
+   * 访问者模式是当客户需要访问具体各元素Element时，先建立一个访问者Visitor作为媒介
+   * 客户基于对象结构ObjectStructure，调用accept()，接受传入的访问者
+   * 对象结构向其他元素负责分发访问者，元素对象接受之后会将自己回传给访问者，从而访问者可以访问具体元素
+   */
     ObjectStructure structure = new ObjectStructure();
     // 接受访问者A，把访问者传递给具体元素
     structure.accept(new ConcreteVisitorA());

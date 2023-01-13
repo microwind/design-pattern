@@ -13,6 +13,11 @@ from src.SingletonSimple import SingletonSimple
 # from src.SingletonSafe import SingletonSafe
 
 def test():
+  '''
+  * 单例模式就是一个类只创建一个实例，以便节省开销和保证统一
+  * 对于多线程语言需要注意线程安全和性能之间取得一个平衡
+  '''
+
   singleton1 = Singleton.get_instance('singleton1')
   singleton1.run()
 

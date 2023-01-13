@@ -16,6 +16,7 @@ public abstract class Shape implements Cloneable {
     return type;
   }
 
+  // 抽象方法，子类覆盖
   public abstract void draw();
 
   public void setWidth(int width) {
