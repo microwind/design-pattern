@@ -7,7 +7,7 @@ type Strategy interface {
 	Run()
 }
 
-// 接口其他的方法，可选
+// 写在接口文件的其他全局方法
 func Init() {
-	fmt.Print("strategy init!")
+	fmt.Println("strategy init!")
 }

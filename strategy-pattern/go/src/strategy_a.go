@@ -7,6 +7,6 @@ type StrategyA struct {
 }
 
 // 实现策略接口的对应方法
-func (sa *StrategyA) Run() {
+func (s *StrategyA) Run() {
 	fmt.Println("StrategyA::Run")
 }

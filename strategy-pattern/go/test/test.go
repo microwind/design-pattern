@@ -8,8 +8,14 @@ import (
 
 // main包下的main入口方法
 func main() {
+	// 这里src.Init来自strategy.go文件
+	fmt.Println("test start:")
 	src.Init()
-	fmt.Println("test start!")
+
+	/**
+	 * 策略模式就是根据需要给对象绑定具体策略，使得具体实现和策略可以灵活搭配。
+	 * 先声明某个具体Context对象，该对象已经绑定了具体策略，同时还可以更改策略。
+	 */
 
 	// 声明策略执行对象
 	context := src.Context{}
@@ -49,7 +55,8 @@ jarry@jarrys-MacBook-Pro go % go version
 go version go1.15 darwin/amd64
 jarry@jarrys-MacBook-Pro go % go build src/*.go
 jarry@jarrys-MacBook-Pro go % go run test/test.go
-strategy init!test start!
+test start:
+strategy init!
 StrategyA::Run
 StrategyB::Run
 StrategyC::Run
