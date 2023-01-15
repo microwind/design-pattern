@@ -11,7 +11,7 @@ public abstract class GameTemplate {
    abstract void end();
 
    // 可复用的算法流程
-   public final void play() {
+   public void play() {
 
       System.out.println(this.getClass().getSimpleName() + "::play()");
 

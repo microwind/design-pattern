@@ -40,6 +40,7 @@ Basketball::init() [Basketball Game Initialized! Start playing.]
 Basketball::start() [Basketball Game Started. Enjoy the game!]
 Basketball::end() [Basketball Game Finished!]
 ===
+Tennis::play() [Tennis Game play!]
 Tennis::play()
 Tennis::init() [Tennis Game Initialized! Start playing.]
 Tennis::start() [Tennis Game Started. Enjoy the game!]

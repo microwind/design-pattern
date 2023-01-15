@@ -18,4 +18,11 @@ public class Tennis extends GameTemplate {
       System.out.println("Tennis::end() [Tennis Game Finished!]");
    }
 
+   // 在调用父类play之前，如果要执行自己的行为，也可以覆盖父类方法
+   // 先执行自己的，再调用父类的方法
+   @Override
+   public void play() {
+      System.out.println("Tennis::play() [Tennis Game play!]");
+      super.play();
+   }
 }

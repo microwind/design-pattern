@@ -35,7 +35,7 @@ func (o *ObjectStructure) GetName() string {
   return o.name
 }
 
-// 全局的函数，从这里开始
+// 结构对象的初始化函数
 func (o *ObjectStructure) Init() {
   // 可以想象为一台电脑，聚合了各种设备元素
   fmt.Println("ObjectStructure::Init() ", o.GetName())

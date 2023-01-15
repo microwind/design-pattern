@@ -13,4 +13,11 @@ export class Tennis extends GameTemplate {
   override end() {
     console.log('Tennis::end() [Tennis Game Finished!]')
   }
+
+  // 在调用父类play之前，如果要执行自己的行为，也可以覆盖父类方法
+  // 先执行自己的，再调用父类的方法
+  override play() {
+    console.log(this.constructor.name + '::play() [Tennis Game play!]')
+    super.play()
+  }
 }

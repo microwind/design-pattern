@@ -36,6 +36,8 @@ if __name__ == '__main__':
     print("test start:")
     test()
 '''
+jarry@jarrys-MacBook-Pro python % python3 -V
+Python 3.8.10
 jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test/test.py
 test start:
@@ -49,6 +51,7 @@ Basketball::init() [Basketball Game Initialized! Start playing.]
 Basketball::start() [Basketball Game Started. Enjoy the game!]
 Basketball::end() [Basketball Game Finished!]
 ===
+Tennis::play() [Tennis Game play!]
 Tennis::play()
 Tennis::init() [Tennis Game Initialized! Start playing.]
 Tennis::start() [Tennis Game Started. Enjoy the game!]

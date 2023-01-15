@@ -16,3 +16,9 @@ class Tennis(GameTemplate):
 
     def end(self):
         print('Tennis::end() [Tennis Game Finished!]')
+
+    # 在调用父类play之前，如果要执行自己的行为，也可以覆盖父类方法
+    # 先执行自己的，再调用父类的方法
+    def play(self):
+        print(self.__class__.__name__ + '::play() [Tennis Game play!]')
+        super().play()
