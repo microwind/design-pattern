@@ -7,13 +7,13 @@ export function test() {
    * 对于多线程语言需要注意线程安全和性能之间取得一个平衡
    */
   const singleton1 = Singleton.getInstance('singleton1')
-  singleton1.run()
   const singleton2 = Singleton.getInstance('singleton2')
+  singleton1.run()
   singleton2.run()
 
   const singleObject1 = SingleObject.getInstance('single1')
-  singleObject1.run()
   const singleObject2 = SingleObject.getInstance('single2')
+  singleObject1.run()
   singleObject2.run()
 }
 

@@ -5,6 +5,8 @@
 
 from threading import Lock, Thread
 
+
+# 加锁的基于元类的单例模式，基于元类type创建的加强版
 class SingletonMeta(type):
     # 线程安全单例模式，适用python3
     _instances = {}
@@ -18,12 +20,12 @@ class SingletonMeta(type):
                 cls._instances[cls] = instance
         return cls._instances[cls]
 
-
+# 继承SingletonMeta就是单例
 class SingletonSafe(metaclass=SingletonMeta):
-    value: str = None
+    name: str = None
 
-    def __init__(self, value: str) -> None:
-        self.value = value
+    def __init__(self, name: str) -> None:
+        self.name = name
 
     def run(self):
-      print('SingletonSafe::run()', self.value)
+        print('SingletonSafe::run()', self.name)

@@ -8,8 +8,8 @@ import (
 
 // main包下的main入口方法
 func main() {
-	// 这里src.Init来自strategy.go文件
 	fmt.Println("test start:")
+	// 这里src.Init来自strategy.go文件
 	src.Init()
 
 	/**
