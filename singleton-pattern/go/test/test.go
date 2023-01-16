@@ -28,6 +28,13 @@ func main() {
   // 实例相同
   lazySingletonSafe2.Run()
 
+  // 简单懒汉模式，线程安全
+  var singletonInterface1 = src.GetSingletonInterface("singletonInterface1")
+  singletonInterface2 := src.GetSingletonInterface("singletonInterface2")
+  singletonInterface1.Run()
+  // 实例相同
+  singletonInterface2.Run()
+
   // 双重检查机制，并发加锁
   var doubleCheckSingleton1 = src.GetDoubleCheckSingletonInstance("doubleCheckSingleton1")
   doubleCheckSingleton2 := src.GetDoubleCheckSingletonInstance("doubleCheckSingleton2")
@@ -52,6 +59,8 @@ LazySingleton::run() lazySingleton1
 LazySingleton::run() lazySingleton1
 LazySingletonSafe::run() lazySingletonSafe1
 LazySingletonSafe::run() lazySingletonSafe1
+SingletonInterface::run() singletonInterface1
+SingletonInterface::run() singletonInterface1
 DoubleCheckSingleton::run() doubleCheckSingleton1
 DoubleCheckSingleton::run() doubleCheckSingleton1
 EagerSingleton::run() eagerSingleton1
