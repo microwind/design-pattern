@@ -28,7 +28,7 @@ export class Subject {
   }
 
   // 通知由具体类来实现逻辑
-  notify(name) {
+  notify(content) {
     // todo
   }
 }

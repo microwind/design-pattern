@@ -5,4 +5,5 @@ type Shape interface {
   Draw()
   Clone() Shape
   String() string
+  SetColor(color string)
 }

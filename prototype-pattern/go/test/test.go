@@ -17,8 +17,8 @@ func main() {
   application.Init()
   application.AddToShapes()
   var shapeClone = application.GetShapeClone(0)
-  // Clone对象无法调用实例对象的方法
-  // shapeClone.SetColor("gray")
+  // SetColor需要接口中定义
+  shapeClone.SetColor("gray")
   fmt.Println("shapeClone : " + shapeClone.String())
   // 直接更改
   // application.GetShape(3).SetColor("yellow")
@@ -38,15 +38,15 @@ func main() {
 jarry@jarrys-MacBook-Pro go % go build src/*.go
 jarry@jarrys-MacBook-Pro go % go run test/test.go
 test start:
-shapeClone : {width = 10, height = 20, category = Circle[clone], color = red}
+shapeClone : {width = 10, height = 20, category = Circle[clone], color = gray}
 shape 0 : {width = 10, height = 20, category = Circle, color = red}
-shape 1 : {width = 10, height = 20, category = Circle[clone], color = red}
+shape 1 : {width = 10, height = 20, category = Circle[clone], color = pink}
 shape 2 : {width = 99, height = 69, category = Rectangle, color = green}
 shape 3 : {width = 99, height = 69, category = Rectangle[clone], color = green}
 Circle::Draw()
 {width = 10, height = 20, category = Circle, color = red}
 ShapeBase::Draw()
-{width = 10, height = 20, category = Circle[clone], color = red}
+{width = 10, height = 20, category = Circle[clone], color = pink}
 Rectangle::Draw()
 {width = 99, height = 69, category = Rectangle, color = green}
 ShapeBase::Draw()

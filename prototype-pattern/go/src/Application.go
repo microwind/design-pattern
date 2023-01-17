@@ -23,8 +23,7 @@ func (a *Application) AddToShapes() {
 
   // 添加Clone
   anotherCircle := circle.Clone()
-  // Clone对象无法拥有方法
-  // anotherCircle.SetColor("pink")
+  anotherCircle.SetColor("pink")
   a.shapes = append(a.shapes, anotherCircle)
   // 变量 `anotherCircle（另一个圆）`与 `circle（圆）`对象的内容完全一样。
 
