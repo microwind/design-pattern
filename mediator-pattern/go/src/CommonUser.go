@@ -2,7 +2,7 @@ package src
 
 import "fmt"
 
-// 继承基础类的普通用户
+// 实现基础类的普通用户1，聚合了中介者
 type CommonUser struct {
   Name         string
   roomMediator RoomMediator

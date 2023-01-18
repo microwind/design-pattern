@@ -2,7 +2,7 @@ package src
 
 import "fmt"
 
-// 继承基础类的普通用户
+// 实现基础类的普通用户2，聚合了中介者
 type MemberUser struct {
   // Name首字母大写以便跨模块访问
   Name         string

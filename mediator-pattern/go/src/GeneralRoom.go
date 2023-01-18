@@ -4,7 +4,7 @@ import (
   "fmt"
 )
 
-// 中介者的具体实现类
+// 中介者的具体实现类，聚合了全体用户，提供中转消息服务
 type GeneralRoom struct {
   users []AbstractUser
 }

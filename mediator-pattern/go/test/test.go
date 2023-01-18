@@ -22,10 +22,12 @@ func main() {
     Name: "user1",
   }
   generalRoom.Register(user1)
+
   var user2 = &src.CommonUser{
     Name: "user2",
   }
   generalRoom.Register(user2)
+
   var user3 = &src.MemberUser{
     Name: "user3",
   }
@@ -38,17 +40,15 @@ func main() {
 }
 
 /**
-// execute test
-jarry@jarrys-MacBook-Pro js % npm run test
-// or node execution
-jarry@jarrys-MacBook-Pro js % node test/test.js
+jarry@jarrys-MacBook-Pro go % go build src/*.go
+jarry@jarrys-MacBook-Pro go % go run test/test.go
 test start:
-CommonUser:send() [user: user1 message: hi, I"m user1. ]
->>GeneralRoom:send() [from: user1 message: hi, I"m user1. ]
-CommonUser:recieve() [user: user1 message: hi, I"m user1. from: user1]
-CommonUser:recieve() [user: user2 message: hi, I"m user1. from: user1]
-MemberUser:recieve() [user: user3 message: hi, I"m user1. from: user1]
-CommonUser:sendTo() [user: user2 message: haha. to: user3]
->>GeneralRoom:sendTo() [from: user2 message: haha. to:user3]
-MemberUser:recieve() [user: user3 message: haha. from: user2]
+CommonUser:Send() [user: user1 message: hi, I'm user1.]
+>>GeneralRoom::Send() [from: user1 message: hi, I'm user1.]
+CommonUser:Recieve() [user: user1 message: hi, I'm user1. from: user1]
+CommonUser:Recieve() [user: user2 message: hi, I'm user1. from: user1]
+MemberUser:Recieve() [user: user3 message: hi, I'm user1. from: user1]
+CommonUser:SendTo() [user: user2 message: haha.]
+>>GeneralRoom::SendTo() [from: user2 message: haha. to: user3]
+MemberUser:Recieve() [user: user3 message: haha. from: user2]
 */
