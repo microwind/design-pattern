@@ -12,13 +12,13 @@ export const VehicleType = {
 export class VehicleFactory {
   getVehicle(type: string, options: object = {}): Vehicle {
     switch (type) {
-      case 'bus':
+      case VehicleType.BUS:
         return new Bus(options)
-      case 'car':
+      case VehicleType.CAR:
         return new Car(options)
-      case 'motorcycle':
+      case VehicleType.MOTORCYCLE:
         return new Motorcycle(options)
-      case 'van':
+      case VehicleType.VAN:
         return new Van(options)
       default:
         return new Bus(options)
