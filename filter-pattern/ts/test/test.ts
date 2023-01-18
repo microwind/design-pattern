@@ -8,15 +8,7 @@ import { OrCriteria } from '../src/OrCriteria.js'
 export function test() {
   function printPersons(persons: Person[]) {
     for (const person of persons) {
-      console.log(
-        'Person : [ Name : ' +
-          person.getName() +
-          ', Gender : ' +
-          person.getGender() +
-          ', Marital Status : ' +
-          person.getStatus() +
-          ' ]'
-      )
+      console.log(person.toString())
     }
   }
 
@@ -26,12 +18,12 @@ export function test() {
    */
   const persons: Person[] = []
 
-  persons.push(new Person('Robert', 'Male', 'Single'))
-  persons.push(new Person('John', 'Male', 'Married'))
-  persons.push(new Person('Laura', 'Female', 'Married'))
-  persons.push(new Person('Diana', 'Female', 'Single'))
-  persons.push(new Person('Mike', 'Male', 'Single'))
-  persons.push(new Person('Bobby', 'Male', 'Single'))
+  persons.push(new Person('王男单', 'Male', 'Single'))
+  persons.push(new Person('李男婚', 'Male', 'Married'))
+  persons.push(new Person('张女婚', 'Female', 'Married'))
+  persons.push(new Person('赵女单', 'Female', 'Single'))
+  persons.push(new Person('刘男单', 'Male', 'Single'))
+  persons.push(new Person('杨男单', 'Male', 'Single'))
 
   const male = new CriteriaMale()
   const female = new CriteriaFemale()
@@ -76,27 +68,27 @@ jarry@jarrys-MacBook-Pro ts % tsc
 jarry@jarrys-MacBook-Pro ts % node test/test.js
 test start:
 Males: 
-Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
-Person : [ Name : John, Gender : Male, Marital Status : Married ]
-Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
-Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
+Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 李男婚, Gender : Male, Marital Status : Married ]
+Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
 
 Females: 
-Person : [ Name : Laura, Gender : Female, Marital Status : Married ]
-Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
+Person : [ Name : 张女婚, Gender : Female, Marital Status : Married ]
+Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
 
 Females and Single: 
-Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
+Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
 
 Single Males: 
-Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
-Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
-Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
+Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
 
 Single Or Females: 
-Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
-Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
-Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
-Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
-Person : [ Name : Laura, Gender : Female, Marital Status : Married ]
+Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
+Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 张女婚, Gender : Female, Marital Status : Married ]
 */

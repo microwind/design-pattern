@@ -12,11 +12,16 @@ class Person:
         self.gender = gender
         self.status = status
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def getGender(self):
+    def get_gender(self):
         return self.gender
 
-    def getStatus(self):
+    def get_status(self):
         return self.status
+
+    def to_string(self):
+        return 'Person : [ Name : ' + self.get_name(
+        ) + ', Gender : ' + self.get_gender(
+        ) + ', Marital Status : ' + self.get_status() + ' ]'

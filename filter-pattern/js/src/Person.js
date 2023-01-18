@@ -17,4 +17,14 @@ export class Person {
   getStatus() {
     return this.status
   }
+
+  toString() {
+    return 'Person : [ Name : ' +
+      this.getName() +
+      ', Gender : ' +
+      this.getGender() +
+      ', Marital Status : ' +
+      this.getStatus() +
+      ' ]'
+  }
 }

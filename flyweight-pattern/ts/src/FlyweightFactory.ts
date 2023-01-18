@@ -15,6 +15,8 @@ export class FlyweightFactory {
       // 如果对象不存在则创建新的对象放入到池子里，如果已经存在则复用前面的对象
       flyweight = new ConcreteFlyweight(name)
       pool.set(name, flyweight)
+    } else {
+      console.log('FlyweightFactory::getFactory(name) [成功获取具体享元' + name + ']')
     }
     return flyweight
   }

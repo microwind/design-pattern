@@ -11,7 +11,7 @@ class CriteriaSingle(Criteria):
     def filter(self, persons):
         singlePersons = []
         for person in persons:
-            if person.getStatus().upper() == 'SINGLE':
+            if person.get_status().upper() == 'SINGLE':
                 singlePersons.append(person)
 
         return singlePersons

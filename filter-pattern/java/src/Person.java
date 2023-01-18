@@ -24,4 +24,9 @@ public class Person {
    public String getStatus() {
       return status;
    }
+
+   public String toString() {
+      return "Person : [ Name : " + getName() + ", Gender : "
+            + getGender() + ", Marital Status : " + getStatus() + " ]";
+   }
 }

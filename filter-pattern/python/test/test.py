@@ -21,9 +21,7 @@ def test():
 
     def printPersons(persons):
         for person in persons:
-            print('Person : [ Name : ' + person.getName() + ', Gender : ' +
-                  person.getGender() + ', Marital Status : ' +
-                  person.getStatus() + ' ]')
+            print(person.to_string())
 
     '''
     * 过滤器模式就是不断组合过滤条件，然后层层过滤的模式
@@ -31,12 +29,12 @@ def test():
     '''
     persons = []
 
-    persons.append(Person('Robert', 'Male', 'Single'))
-    persons.append(Person('John', 'Male', 'Married'))
-    persons.append(Person('Laura', 'Female', 'Married'))
-    persons.append(Person('Diana', 'Female', 'Single'))
-    persons.append(Person('Mike', 'Male', 'Single'))
-    persons.append(Person('Bobby', 'Male', 'Single'))
+    persons.append(Person('王男单', 'Male', 'Single'))
+    persons.append(Person('李男婚', 'Male', 'Married'))
+    persons.append(Person('张女婚', 'Female', 'Married'))
+    persons.append(Person('赵女单', 'Female', 'Single'))
+    persons.append(Person('刘男单', 'Male', 'Single'))
+    persons.append(Person('杨男单', 'Male', 'Single'))
 
     male = CriteriaMale()
     female = CriteriaFemale()
@@ -74,27 +72,27 @@ jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test/test.py
 test start:
 Males: 
-Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
-Person : [ Name : John, Gender : Male, Marital Status : Married ]
-Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
-Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
+Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 李男婚, Gender : Male, Marital Status : Married ]
+Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
 
 Females: 
-Person : [ Name : Laura, Gender : Female, Marital Status : Married ]
-Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
+Person : [ Name : 张女婚, Gender : Female, Marital Status : Married ]
+Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
 
 Females and Single: 
-Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
+Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
 
 Single Males: 
-Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
-Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
-Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
+Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
 
 Single Or Females: 
-Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
-Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
-Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
-Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
-Person : [ Name : Laura, Gender : Female, Marital Status : Married ]
+Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
+Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
+Person : [ Name : 张女婚, Gender : Female, Marital Status : Married ]
 '''

@@ -11,7 +11,7 @@ class CriteriaMale(Criteria):
     def filter(self, persons):
         malePersons = []
         for person in persons:
-            if person.getGender().upper() == 'MALE':
+            if person.get_gender().upper() == 'MALE':
                 malePersons.append(person)
 
         return malePersons

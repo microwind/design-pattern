@@ -1,7 +1,6 @@
 package test;
 
 import src.*;
-
 import java.util.*;
 
 public class Test {
@@ -14,12 +13,12 @@ public class Test {
      */
     List<Person> persons = new ArrayList<Person>();
 
-    persons.add(new Person("Robert", "Male", "Single"));
-    persons.add(new Person("John", "Male", "Married"));
-    persons.add(new Person("Laura", "Female", "Married"));
-    persons.add(new Person("Diana", "Female", "Single"));
-    persons.add(new Person("Mike", "Male", "Single"));
-    persons.add(new Person("Bobby", "Male", "Single"));
+    persons.add(new Person("王男单", "Male", "Single"));
+    persons.add(new Person("李男婚", "Male", "Married"));
+    persons.add(new Person("张女婚", "Female", "Married"));
+    persons.add(new Person("赵女单", "Female", "Single"));
+    persons.add(new Person("刘男单", "Male", "Single"));
+    persons.add(new Person("杨男单", "Male", "Single"));
 
     Criteria male = new CriteriaMale();
     Criteria female = new CriteriaFemale();
@@ -51,10 +50,7 @@ public class Test {
 
   public static void printPersons(List<Person> persons) {
     for (Person person : persons) {
-      System.out.println("Person : [ Name : " + person.getName()
-          + ", Gender : " + person.getGender()
-          + ", Marital Status : " + person.getStatus()
-          + " ]");
+      System.out.println(person.toString());
     }
   }
 
@@ -71,27 +67,27 @@ public class Test {
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:
  * Males:
- * Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
- * Person : [ Name : John, Gender : Male, Marital Status : Married ]
- * Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
- * Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 李男婚, Gender : Male, Marital Status : Married ]
+ * Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
  * 
  * Females:
- * Person : [ Name : Laura, Gender : Female, Marital Status : Married ]
- * Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
+ * Person : [ Name : 张女婚, Gender : Female, Marital Status : Married ]
+ * Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
  * 
  * Females and Single:
- * Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
+ * Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
  * 
  * Single Males:
- * Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
- * Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
- * Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
  * 
  * Single Or Females:
- * Person : [ Name : Robert, Gender : Male, Marital Status : Single ]
- * Person : [ Name : Diana, Gender : Female, Marital Status : Single ]
- * Person : [ Name : Mike, Gender : Male, Marital Status : Single ]
- * Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]
- * Person : [ Name : Laura, Gender : Female, Marital Status : Married ]
+ * Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 赵女单, Gender : Female, Marital Status : Single ]
+ * Person : [ Name : 刘男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 杨男单, Gender : Male, Marital Status : Single ]
+ * Person : [ Name : 张女婚, Gender : Female, Marital Status : Married ]
  */

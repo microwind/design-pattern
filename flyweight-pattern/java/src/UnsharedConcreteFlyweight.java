@@ -7,6 +7,7 @@ public class UnsharedConcreteFlyweight implements Flyweight {
 
    public UnsharedConcreteFlyweight(String name) {
       this.name = name;
+      System.out.println("UnsharedConcreteFlyweight::UnsharedConcreteFlyweight(name) [创建非共享对象" + name + "]");
    }
 
 
