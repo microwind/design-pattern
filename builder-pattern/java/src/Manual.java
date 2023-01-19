@@ -15,8 +15,8 @@ public class Manual {
     return this.name;
   }
 
-  public void setScreen(Integer[] size) {
-    this.screen = size;
+  public void setScreen(Integer[] screen) {
+    this.screen = screen;
   }
 
   public Integer[] getScreen() {
@@ -38,4 +38,9 @@ public class Manual {
   public Integer getPages() {
     return this.pages;
   }
+
+  public String toString() {
+    return "[name=" + name + ", screen=" + screen.toString() + ", gpuType=" + gpuType + "]";
+  }
+
 }

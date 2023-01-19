@@ -49,8 +49,14 @@ public class Test {
  * jarry@jarrys-MacBook-Pro java % javac test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:
- * SingleObject::run()
- * SingletonLazy::run()
- * SingletonSafe::run()
- * SingletonInner::run()
+ * iPhone:iPhone | [name=iPhone, screen=[Ljava.lang.Integer;@7e9e5f8a,
+ * gpuType=100]
+ * manual:iPhone | [name=iPhone, screen=[Ljava.lang.Integer;@4554617c,
+ * gpuType=100]
+ * huaweiPhone:HuaweiPhone | [name=HuaweiPhone,
+ * screen=[Ljava.lang.Integer;@74a14482, gpuType=102]
+ * manual:HuaweiPhone | [name=HuaweiPhone, screen=[Ljava.lang.Integer;@1540e19d,
+ * gpuType=102]
+ * miPhone:MiPhone | 103
+ * manual:MiPhone | 103
  */

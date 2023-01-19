@@ -18,8 +18,8 @@ class Manual():
   def getName(self):
     return self.name
 
-  def setScreen(self, size):
-    self.screen = size
+  def setScreen(self, screen):
+    self.screen = screen
 
   def getScreen(self):
     return self.screen

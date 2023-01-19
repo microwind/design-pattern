@@ -14,8 +14,8 @@ public class Phone {
     return this.name;
   }
 
-  public void setScreen(Integer[] size) {
-    this.screen = size;
+  public void setScreen(Integer[] screen) {
+    this.screen = screen;
   }
 
   public Integer[] getScreen() {
@@ -28,6 +28,10 @@ public class Phone {
 
   public Integer getGpuType() {
     return this.gpuType;
+  }
+
+  public String toString() {
+    return "[name=" + name + ", screen=" + screen.toString() + ", gpuType=" + gpuType + "]";
   }
 
 }

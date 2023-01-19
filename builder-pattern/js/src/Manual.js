@@ -14,8 +14,8 @@ export class Manual {
     return this.name
   }
 
-  setScreen(size) {
-    this.screen = size
+  setScreen(screen) {
+    this.screen = screen
   }
 
   getScreen() {

@@ -18,8 +18,8 @@ export class Phone {
     return this.name
   }
 
-  setScreen(size: number[]) {
-    this.screen = size
+  setScreen(screen: number[]) {
+    this.screen = screen
   }
 
   getScreen() {
