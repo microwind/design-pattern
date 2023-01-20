@@ -1,4 +1,6 @@
 package src.vehicle;
+
+// 具体产品类，实现抽象产品接口
 public class Motorcycle implements Vehicle {
  
   @Override

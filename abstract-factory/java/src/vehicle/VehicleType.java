@@ -1,5 +1,6 @@
 package src.vehicle;
 
+// Vehicle产品类型枚举
 public enum VehicleType {
   BUS("bus", 1),
   CAR("car", 2),

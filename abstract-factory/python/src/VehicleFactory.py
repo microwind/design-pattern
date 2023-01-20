@@ -16,6 +16,7 @@ class VehicleType(Enum):
   MOTORCYCLE = 3
   VAN = 4
 
+# 具体工厂类，实现抽象父类工厂接口
 class VehicleFactory(AbstractFactory):
   # def __init__(self,):
     # print("VehicleFactory init")

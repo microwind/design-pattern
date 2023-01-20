@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+@author: jarry
+"""
 from src.shop.Shop import Shop
 
 

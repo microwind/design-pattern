@@ -8,7 +8,7 @@ public class PlayerAdapter implements MediaPlayer {
   private String filePath;
   private MediaPlayer mp4Player;
   private MediaPlayer hlsPlayer;
-  private AudioPlayer audioPlayer;
+  private MediaPlayer audioPlayer;
 
   public PlayerAdapter(String mediaType, String fileType, String filePath) {
     this.mediaType = mediaType;

@@ -82,7 +82,7 @@ SupermarketShop::greetings
 ShopFactory init
 Shop init
 DirectSaleShop::greetings
-Shop::Welcome
+DirectSaleShop::welcome
 '''
 
 '''

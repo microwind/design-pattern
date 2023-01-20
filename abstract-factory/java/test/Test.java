@@ -45,10 +45,14 @@ public class Test {
     AbstractFactory shopFactory2 = FactoryCreator.getFactory("shop");
     Shop directSaleShop = shopFactory2.getShop("DirectSaleShop");
     directSaleShop.greetings();
+    // Shop接口没有welcome方法，故调用失败
+    // directSaleShop.welcome();
 
-    // 类型转换测试
+    // 类型转换测试，将Shop接口类强转为DirectSaleShop实现类
     DirectSaleShop directSaleShop2 = (DirectSaleShop) directSaleShop;
     directSaleShop2.greetings();
+    // 通过类型转换就可以调用welcome了
+    directSaleShop2.welcome();
 
   }
 
@@ -78,4 +82,5 @@ SupermarketShop::greetings().
 AgencyShop::greetings().
 DirectSaleShop::greetings().
 DirectSaleShop::greetings().
+DirectSaleShop::welcome().
  */

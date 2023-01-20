@@ -7,6 +7,7 @@ from src.shop.DirectSaleShop import DirectSaleShop
 from src.shop.SupermarketShop import SupermarketShop
 from src.AbstractFactory import AbstractFactory
 
+# 具体工厂类，实现抽象父类工厂接口
 class ShopFactory(AbstractFactory):
   def __init__(self,):
     print("ShopFactory init")

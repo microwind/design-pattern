@@ -50,7 +50,7 @@ class PlayerAdapter():
             self.audio_player.set_file_path(file_path)
 
     # 通用的适配接口
-    def play_default(self):
+    def play(self):
         if (self.media_type == 'audio'):
             self.audio_player.play()
         elif (self.media_type == 'video'):
@@ -60,7 +60,7 @@ class PlayerAdapter():
                 self.hls_player.play()
 
     # 根据路径播放，可根据需要复用实例
-    def play(self, media_type, file_type, file_path):
+    def playBy(self, media_type, file_type, file_path):
 
         if (media_type == 'audio'):
             self.set_audio_player(file_type, file_path)

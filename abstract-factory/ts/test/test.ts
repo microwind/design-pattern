@@ -48,9 +48,9 @@ export function test() {
   const directSaleShop = shopFactory2 && shopFactory2.getShop('DirectSaleShop', {})
   if (directSaleShop) {
     directSaleShop.greetings()
-    // 这里返回的是接口Shop，而接口并并没有welcome方法，故需要类型强转
+    // 这里返回的是接口Shop，而接口并没有welcome方法，故需要类型强转
     // const directSaleShop2 = directSaleShop as DirectSaleShop
-    // directSaleShop2.welcome()ss
+    // directSaleShop2.welcome()
     ;(directSaleShop as DirectSaleShop).welcome()
   }
 }
@@ -78,5 +78,5 @@ Motorcycle::run().
 Van::run().
 SupermarketShop::greetings
 DirectSaleShop::greetings
-Shop::Welcome
+DirectSaleShop::welcome()
 */

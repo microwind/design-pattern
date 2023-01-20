@@ -66,10 +66,6 @@ export class PlayerAdapter {
 
   // 根据路径播放，可根据需要复用实例
   playBy(mediaType, fileType, filePath) {
-    if (arguments.length <= 0) {
-      this.playDefault(mediaType, fileType, filePath)
-      return
-    }
     if (mediaType === 'audio') {
       this.setAudioPlayer(fileType, filePath)
       this.audioPlayer.play()

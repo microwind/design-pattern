@@ -3,6 +3,7 @@
 @author: jarry
 """
 
+# 抽象工厂接口/父类，用于规范具体工厂
 class AbstractFactory():
 
     def __init__(self, ):

@@ -5,6 +5,7 @@
 from src.VehicleFactory import VehicleFactory
 from src.ShopFactory import ShopFactory
 
+# 工厂的创建类，根据需求创建具体工厂
 class FactoryCreator:
   # def __init__(self,):
     # print("FactoryCreator init")

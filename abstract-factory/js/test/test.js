@@ -42,6 +42,7 @@ export function test() {
   const shopFactory2 = FactoryCreator.getFactory('shop')
   const directSaleShop = shopFactory2.getShop('DirectSaleShop')
   directSaleShop.greetings()
+  // 调用自己独立的方法
   directSaleShop.welcome()
 }
 
@@ -63,7 +64,7 @@ Motorcycle::run().
 Van::run().
 SupermarketShop::greetings
 DirectSaleShop::greetings
-Shop::Welcome
+DirectSaleShop::Welcome
 */
 
 /*

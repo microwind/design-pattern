@@ -5,6 +5,7 @@
 
 from src.MediaPlayer import MediaPlayer
 
+
 class AudioPlayer(MediaPlayer):
 
     def __init__(self, file_type, file_path):
@@ -12,9 +13,8 @@ class AudioPlayer(MediaPlayer):
         self.file_path = file_path
 
     def play(self, ):
-        print(
-            'AudioPlayer file_type:' + self.file_type + ' | file_path:' +
-            self.file_path, )
+        print('AudioPlayer file_type:' + self.file_type + ' | file_path:' +
+              self.file_path)
         print('AudioPlayer::play()')
         if (self.file_type == 'mp3'):
             print('AudioPlayer::play() mp3')
