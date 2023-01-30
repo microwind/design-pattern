@@ -70,17 +70,23 @@ public class Test {
  * Java(TM) SE Runtime Environment (build 14.0.1+7)
  * Java HotSpot(TM) 64-Bit Server VM (build 14.0.1+7, mixed mode, sharing)
  * 
+ * or using java 19
+ * jarry@jarrys-MacBook-Pro java % java --version
+ * java 19.0.1 2022-10-18
+ * Java(TM) SE Runtime Environment (build 19.0.1+10-21)
+ * Java HotSpot(TM) 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
+ * 
  * jarry@jarrys-MacBook-Pro java % pwd
  * /Users/jarry/github/design-pattern/abstract-factory/java
  * jarry@jarrys-MacBook-Pro java % javac test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * 
-test start:
-Bus::run().
-Car::run().
-SupermarketShop::greetings().
-AgencyShop::greetings().
-DirectSaleShop::greetings().
-DirectSaleShop::greetings().
-DirectSaleShop::welcome().
+ * test start:
+ * Bus::run().
+ * Car::run().
+ * SupermarketShop::greetings().
+ * AgencyShop::greetings().
+ * DirectSaleShop::greetings().
+ * DirectSaleShop::greetings().
+ * DirectSaleShop::welcome().
  */

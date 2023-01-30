@@ -1,9 +1,9 @@
 package main
 
 import (
-  "fmt"
+	"fmt"
 
-  "../src"
+	"microwind/src"
 )
 
 // main包下的main入口方法

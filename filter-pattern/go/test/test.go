@@ -1,9 +1,9 @@
 package main
 
 import (
-  "fmt"
+	"fmt"
 
-  "../src"
+	"microwind/src"
 )
 
 func printPersons(persons []*src.Person) {

@@ -1,8 +1,8 @@
 package src
 
 import (
-  "./shop"
-  "./vehicle"
+  "microwind/src/shop"
+  "microwind/src/vehicle"
 )
 
 type ShopFactory struct {

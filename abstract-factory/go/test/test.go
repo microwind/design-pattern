@@ -3,8 +3,8 @@ package main
 import (
   "fmt"
 
-  "../src"
-  "../src/shop"
+  "microwind/src"
+  "microwind/src/shop"
 )
 
 // main包下的main入口方法

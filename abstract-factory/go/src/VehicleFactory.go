@@ -1,9 +1,9 @@
 package src
 
 import (
-  "./shop"
+  "microwind/src/shop"
 
-  "./vehicle"
+  "microwind/src/vehicle"
 )
 
 const (

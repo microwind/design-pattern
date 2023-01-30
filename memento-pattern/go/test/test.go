@@ -1,10 +1,10 @@
 package main
 
 import (
-  "fmt"
-  "strconv"
+	"fmt"
+	"strconv"
 
-  "../src"
+	"microwind/src"
 )
 
 // main包下的main入口方法
