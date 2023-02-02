@@ -18,3 +18,165 @@
 
 # UML
 <img src="../docs/uml/abstract-factory.png">
+
+# 代码
+
+## 基础工厂类
+```java
+// AbstractFactory.java 定义工厂基本规范，抽象类或是接口
+public abstract class AbstractFactory {
+  public abstract Vehicle getVehicle(VehicleType type);
+  public abstract Shop getShop(String name);
+}
+```
+
+## 具体工厂类，可以多个，继承或实现基础工厂类
+```java
+/*
+  VehicleFactory.java，车辆创建类，继承自抽象工厂基类
+ */
+public class VehicleFactory extends AbstractFactory {
+  @Override
+  public Vehicle getVehicle(VehicleType type) {
+    switch (type) {
+      case BUS:
+        return new Bus();
+      case CAR:
+        return new Car();
+      case MOTORCYCLE:
+        return new Motorcycle();
+      case VAN:
+        return new Van();
+      default:
+        return null;
+    }
+
+  }
+
+  @Override
+  public Shop getShop(String name) {
+    return null;
+  }
+}
+```
+
+```java
+/*
+ ShopFactory.java，商店创建类，继承自抽象工厂
+*/
+public class ShopFactory extends AbstractFactory {
+  @Override
+  public Shop getShop(String name) {
+    if (name.equals("AgencyShop")) {
+      return new AgencyShop();
+    } else if (name.equals("DirectSaleShop")) {
+      return new DirectSaleShop();
+    } else if (name.equals("SupermarketShop")) {
+      return new SupermarketShop();
+    } else {
+      return null;
+    }
+  }
+
+  @Override
+  public Vehicle getVehicle(VehicleType type) {
+    return null;
+  }
+}
+```
+
+## 工厂创建者类
+```java
+/*
+  AbstractFactory.java，工厂创建者，用来创建不同的工厂
+*/
+public class FactoryCreator {
+  public static AbstractFactory getFactory(String name) {
+    switch (name) {
+      // 车辆工厂
+      case "vehicle":
+        return new VehicleFactory();
+      // 商店工厂
+      case "shop":
+        return new ShopFactory();
+      default:
+        return null;
+    }
+  }
+}
+```
+
+
+## 具体产品类即接口，分为shop和vehicle两类
+```java
+/*
+ Shop.java，商店类接口，约束具体产品的行为
+*/
+public interface Shop {
+  void greetings();
+}
+```
+
+```java
+/*
+ Vehicle.java，商店类接口，约束具体产品的行为
+*/
+public interface Vehicle {
+  void run();
+}
+```
+
+## 具体产品类，分为shop和vehicle两种
+```java
+/*
+ SupermarketShop.java，具体某个商店，存在多个不同类型
+*/
+public class SupermarketShop implements Shop {
+  @Override
+  public void greetings() {
+     System.out.println("SupermarketShop::greetings().");
+  }
+}
+```
+
+```java
+/*
+ Bus.java，具体某个车辆，存在多个同步类型
+*/
+public class Bus implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Bus::run().");
+  }
+}
+```
+
+## 客户端调用方
+```java
+    // 声明一个汽车工厂
+    AbstractFactory vehicleFactory = FactoryCreator.getFactory("vehicle");
+    // 从汽车工厂获取Bus对象，并调用它的 run 方法
+    Vehicle bus = vehicleFactory.getVehicle(VehicleType.BUS);
+    bus.run();
+
+    // 获取Car对象，类型强转，并调用它的 run 方法
+    Vehicle car = vehicleFactory.getVehicle(VehicleType.CAR);
+    Car car1 = (Car) car;
+    car1.run();
+
+    // 声明商店工厂
+    AbstractFactory shopFactory = FactoryCreator.getFactory("shop");
+    // 从商店工厂获取商店对象
+    Shop shop = shopFactory.getShop("SupermarketShop");
+    // 调用商店的方法
+    shop.greetings();
+
+    // 声明时强转
+    AgencyShop agencyShop = (AgencyShop) shopFactory.getShop("AgencyShop");
+    // 调用商店的方法
+    agencyShop.greetings();
+```
+
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
