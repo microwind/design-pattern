@@ -32,9 +32,7 @@ public abstract class AbstractFactory {
 
 ## 具体工厂类，可以多个，继承或实现基础工厂类
 ```java
-/*
-  VehicleFactory.java，车辆创建类，继承自抽象工厂基类
- */
+// VehicleFactory.java，车辆创建类，继承自抽象工厂基类
 public class VehicleFactory extends AbstractFactory {
   @Override
   public Vehicle getVehicle(VehicleType type) {
@@ -61,9 +59,7 @@ public class VehicleFactory extends AbstractFactory {
 ```
 
 ```java
-/*
- ShopFactory.java，商店创建类，继承自抽象工厂
-*/
+// ShopFactory.java，商店创建类，继承自抽象工厂
 public class ShopFactory extends AbstractFactory {
   @Override
   public Shop getShop(String name) {
@@ -87,9 +83,7 @@ public class ShopFactory extends AbstractFactory {
 
 ## 工厂创建者类
 ```java
-/*
-  AbstractFactory.java，工厂创建者，用来创建不同的工厂
-*/
+// AbstractFactory.java，工厂创建者，用来创建不同的工厂
 public class FactoryCreator {
   public static AbstractFactory getFactory(String name) {
     switch (name) {
@@ -107,20 +101,16 @@ public class FactoryCreator {
 ```
 
 
-## 具体产品类即接口，分为shop和vehicle两类
+## 具体产品类接口，分为shop和vehicle两类
 ```java
-/*
- Shop.java，商店类接口，约束具体产品的行为
-*/
+// Shop.java，商店类接口，约束具体产品的行为
 public interface Shop {
   void greetings();
 }
 ```
 
 ```java
-/*
- Vehicle.java，商店类接口，约束具体产品的行为
-*/
+// Vehicle.java，商店类接口，约束具体产品的行为
 public interface Vehicle {
   void run();
 }
@@ -128,9 +118,7 @@ public interface Vehicle {
 
 ## 具体产品类，分为shop和vehicle两种
 ```java
-/*
- SupermarketShop.java，具体某个商店，存在多个不同类型
-*/
+// SupermarketShop.java，具体某个商店，存在多个不同类型
 public class SupermarketShop implements Shop {
   @Override
   public void greetings() {
@@ -140,9 +128,7 @@ public class SupermarketShop implements Shop {
 ```
 
 ```java
-/*
- Bus.java，具体某个车辆，存在多个同步类型
-*/
+// Bus.java，具体某个车辆，存在多个同步类型
 public class Bus implements Vehicle {
  
   @Override
@@ -152,8 +138,15 @@ public class Bus implements Vehicle {
 }
 ```
 
-## 客户端调用方
+## 测试调用
 ```java
+
+    /**
+     * 抽象工厂就是把生产产品的工厂也根据统一的抽象工厂来创建，
+     * 这样不同类型的工厂可以在统一的约束下，整体上看更新加清晰。
+     * 当声明工厂时可以通过抽象类型或具体工厂来声明，然后依据工厂来生产不同的产品。
+     */
+
     // 声明一个汽车工厂
     AbstractFactory vehicleFactory = FactoryCreator.getFactory("vehicle");
     // 从汽车工厂获取Bus对象，并调用它的 run 方法
@@ -164,6 +157,8 @@ public class Bus implements Vehicle {
     Vehicle car = vehicleFactory.getVehicle(VehicleType.CAR);
     Car car1 = (Car) car;
     car1.run();
+
+    /*********************** 分割线 ******************************************/
 
     // 声明商店工厂
     AbstractFactory shopFactory = FactoryCreator.getFactory("shop");
@@ -176,6 +171,21 @@ public class Bus implements Vehicle {
     AgencyShop agencyShop = (AgencyShop) shopFactory.getShop("AgencyShop");
     // 调用商店的方法
     agencyShop.greetings();
+
+    /*********************** 分割线 ******************************************/
+
+    // 再声明一个商店工厂
+    AbstractFactory shopFactory2 = FactoryCreator.getFactory("shop");
+    Shop directSaleShop = shopFactory2.getShop("DirectSaleShop");
+    directSaleShop.greetings();
+    // Shop接口没有welcome方法，故调用失败
+    // directSaleShop.welcome();
+
+    // 类型转换测试，将Shop接口类强转为DirectSaleShop实现类
+    DirectSaleShop directSaleShop2 = (DirectSaleShop) directSaleShop;
+    directSaleShop2.greetings();
+    // 通过类型转换就可以调用welcome了
+    directSaleShop2.welcome();
 ```
 
 ## 更多语言版本
