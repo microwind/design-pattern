@@ -3,9 +3,9 @@
 @author: jarry
 """
 
-# 定义抽象形状类，桥接图形操作接口DrawTool
+# 定义抽象桥接类，关联图形操作接口
 # python用普通类代替亦可
-class Shape():
+class AbstractShape():
     draw_tool = None
 
     def __init__(self, draw_tool):

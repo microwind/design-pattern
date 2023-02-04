@@ -10,38 +10,34 @@ import (
 func main() {
   fmt.Println("test start:")
   /**
-   * 桥接模式是将基础抽象类作为桥接器，用来连接抽象对象和具体动作，将两者充分解耦。
-   * 抽象对象和具体动作都有自己的父类或接口，其中抽象对象以基础抽象类为父类，实现约定的方法。
-   * 具体对象以抽象对象为父类，实现父类方法，具体动作也有统一的接口，为抽象对象服务。
-   * 使用时，通过抽象对象声明具体对象，再传入具体行为，使得具体对象可以使用具体动作。
+   * 桥接模式是将基础抽象类作为桥接器，用来连接业务对象和具体动作，将两者充分解耦。
+   * 具体对象以抽象对象为父类，实现父类方法。
+   * 具体工具类实现统一的工具接口，为抽象桥接对象服务
+   * 使用时，声明具体对象同时传入具体工具，使得具体对象可以使用具体工具的动作。
    */
   // 声明具体对象，并指定具体工具
-  var circle = &src.Circle{
-    Name: "circle1",
-    // 传递父类
-    RefinedShape: &src.RefinedShape{
-      Name: "RefinedShape1",
-    },
+  var shape = &src.RefinedShape{
+    Name: "shape1",
   }
-  circle.SetDrawTool(&src.DrawStyleA{
+  shape.SetDrawTool(&src.DrawStyleA{
     Name: "DrawStyleA1",
   })
   // 调用对象的方法，里面执行了工具类的方法
-  circle.Draw(10, 20, 50)
-  // 还可以调用父类里的方法
-  circle.DrawDone(circle)
+  shape.Draw(10, 20, 50)
+  // 调用具体类的扩充方法
+  shape.DrawDone(shape)
 
   // /*********************** 分割线 ******************************************/
 
   // 声明具体对象，并指定另外的工具
-  var circle2 = new(src.Circle)
-  circle2.SetDrawTool(&src.DrawStyleB{
+  var shape2 = new(src.RefinedShape)
+  shape2.SetDrawTool(&src.DrawStyleB{
     Name: "DrawStyleB1",
   })
   // 调用对象的方法，里面执行了工具类的方法
-  circle2.Draw(11, 22, 33)
-  // 还可以调用父类里的方法
-  circle2.DrawDone(circle2)
+  shape2.Draw(11, 22, 33)
+  // 调用具体类的扩充方法
+  shape2.DrawDone(shape2)
 }
 
 /**
