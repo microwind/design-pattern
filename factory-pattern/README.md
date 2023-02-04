@@ -18,3 +18,112 @@
 
 # UML
 <img src="../docs/uml/factory-pattern.png">
+
+# 代码
+
+## 产品接口类
+```java
+// Vehicle.java 车辆基础类
+public interface Vehicle {
+  void run();
+}
+```
+
+## 具体产品类，实现产品接口
+
+```java
+// Car.java 具体车辆
+public class Car implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Car::run().");
+  }
+}
+```
+
+```java
+// Bus.java 具体车辆
+public class Bus implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Bus::run().");
+  }
+}
+```
+
+```java
+// Motorcycle.java 具体车辆
+public class Motorcycle implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Motorcycle::run().");
+  }
+}
+```
+
+```java
+// Van.java 具体车辆
+public class Van implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Van::run().");
+  }
+}
+```
+
+## 工厂类，创建具体产品
+```java
+// VehicleFactory.java 外观模式实现类，是外部调用与内部子系统的衔接层
+public class VehicleFactory {
+  public Vehicle getVehicle(VehicleType type) {
+    switch (type) {
+      case BUS:
+        return new Bus();
+      case CAR:
+        return new Car();
+      case MOTORCYCLE:
+        return new Motorcycle();
+      case VAN:
+        return new Van();
+      default:
+        return null;
+    }
+
+  }
+}
+```
+
+## 测试调用
+```java
+    /**
+     * 工厂模式由工厂类提供统一的创建对象的方法，省去直接new，而是通过统一方法来创建。
+     * 这样的好处就是让对象创建和调用解耦，便于在创建对象时统一干预。
+     */
+    VehicleFactory vehicleFactory = new VehicleFactory();
+
+    // 获取Bus对象，并调用它的 run 方法
+    Vehicle bus = vehicleFactory.getVehicle(VehicleType.BUS);
+    bus.run();
+
+    // 获取Car对象，并调用它的 run 方法
+    Vehicle car = vehicleFactory.getVehicle(VehicleType.CAR);
+    // 类型转为Car
+    Car car1 = (Car) car;
+    car1.run();
+
+    // 获取Motorcycle对象，并调用它的 run 方法
+    // 类型直接转为Motorcycle
+    Motorcycle motorcycle = (Motorcycle) vehicleFactory.getVehicle(VehicleType.MOTORCYCLE);
+    motorcycle.run();
+
+    // 获取Motorcycle对象，并调用它的 run 方法
+    Vehicle van = vehicleFactory.getVehicle(VehicleType.VAN);
+    van.run();
+```
+
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)s

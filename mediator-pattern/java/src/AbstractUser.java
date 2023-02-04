@@ -1,6 +1,6 @@
 package src;
 
-// 定义抽象形状类，关联图形操作接口
+// 定义抽象用户类，聚合中介者
 public abstract class AbstractUser {
 
    private String name;

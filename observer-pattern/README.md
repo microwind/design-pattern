@@ -19,3 +19,133 @@
 
 # UML
 <img src="../docs/uml/observer-pattern.png">
+
+
+# 代码
+
+## 观察者接口
+```java
+// ObserverAPI.java 观察者接口，Java 9已经默认支持Observer接口
+// 这里避免冲突采取ObserverAPI命名
+public interface ObserverAPI {
+   public Subject subject = null;
+   public void update(String content);
+}
+```
+
+## 具体观察者
+```java
+// ConcreteObserver.java 具体的观察者实现类，也可以看成订阅者，关联对应的主题类。
+// 不同的观察者也可以对应多个主题
+public class ConcreteObserver implements ObserverAPI {
+
+   public Subject subject;
+
+   // 给观察者绑定主题，同时把观察者添加到主题列表
+   public ConcreteObserver(Subject subject) {
+      this.subject = subject;
+      this.subject.register((ObserverAPI) this);
+   }
+
+   // 观察者发出更新通知，不用单独告诉订阅者，由订阅者自行监听
+   public void update(String content) {
+      System.out.println(String.format("%s::update() [subject.name = %s content = %s]",
+            this.getClass().getName(),
+            this.subject.getName(), content));
+   }
+}
+```
+
+```java
+// ConcreteObserver2.java 具体的观察者实现类，也可以看成订阅者，关联对应的主题类。
+// 不同的观察者可以对应不同的主题。
+public class ConcreteObserver2 implements ObserverAPI {
+
+  // 这里没有在构造器就绑定某个主题，而是从客户角度去注册观察者
+  public ConcreteObserver2() {
+  }
+
+  // 观察者发出更新通知，观察者自行监听
+  public void update(String content) {
+    System.out.println(String.format("%s::update() [content = %s]",
+        this.getClass().getName(), content));
+  }
+}
+```
+
+## 抽象主题类
+```java
+// Subject.java 定义抽象主题类或者接口，供具体主题类继承
+public abstract class Subject {
+   private String name;
+   // protected Set<ObserverAPI> observers = new HashSet<>();
+   protected List<ObserverAPI> observers = new ArrayList<>();
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public void register(ObserverAPI observer) {
+      System.out.println(this.getClass().getName() + "::register() [observer = " + observer.getClass().getSimpleName() + "]");
+      observers.add(observer);
+   }
+
+   public void remove(ObserverAPI observer) {
+      observers.remove(observer);
+   }
+
+   // 通知由具体类来实现逻辑
+   public abstract void notify(String name);
+}
+```
+
+## 具体主题类
+```java
+// ConcreteSubject.java 观察者主题类，也是发布者，重写具体的通知方法。不同主题可以关联不同的观察者。
+public class ConcreteSubject extends Subject {
+
+   public ConcreteSubject(String name) {
+      this.setName(name);
+   }
+
+   // 不同的主题类有自己的通知方法，批量通知绑定的观察者
+   @Override
+   public void notify(String content) {
+      System.out.println(this.getClass().getName() + "::notify() [content = " + content + "]");
+      for (Object observer : this.observers) {
+         ((ObserverAPI) observer).update(content);
+      }
+
+   }
+
+}
+```
+
+## 测试调用
+```java
+    /**
+     * 观察者模式应用非常广泛，主要是观察者提前绑定到发布者
+     * 当发布者发布消息时，批量广播通知，而无需逐一通知
+     * 观察者监听到消息后自己决定采取哪一种行为
+     */
+
+    // 定义一个主题，也就是发布者
+    Subject concreteSubject = new ConcreteSubject("subject1");
+    // 再声明观察者，通过构造器注册到主题上
+    ObserverAPI observer1 = new ConcreteObserver(concreteSubject);
+
+    // 也可以单独给主题注册一个新的观察者
+    concreteSubject.register(new ConcreteObserver2());
+    // 可以移除观察者对象，可以打开注释试下
+    // concreteSubject.remove(observer1);
+
+    // 主题开始发布新通知，各观察者自动更新
+    concreteSubject.notify("hello, this is broadcast.");
+
+```
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

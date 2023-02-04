@@ -2,7 +2,7 @@ package src;
 
 import java.util.*;
 
-// 命令调用类，通过关联命令来实行命令的调用
+// 命令调用类，通过关联命令来执行命令的调用
 public class CommandInvoker {
 
     private List<Command> commandList = new ArrayList<Command>();

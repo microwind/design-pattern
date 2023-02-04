@@ -10,8 +10,8 @@ export function test() {
    * 主管类通过一步一步调用各种建造者实现复杂对象。
    */
 
+  // 通过封装调用
   Application.makeIPhone()
-
   Application.makeHuaweiPhone()
 
   // *********************** 分割线 ******************************************/

@@ -18,3 +18,83 @@
 
 # UML
 <img src="../docs/uml/proxy-pattern.png">
+
+
+# 代码
+
+## 代理接口类
+```java
+// Image.java 定义一个接口供代理和实际调用来使用
+public interface Image {
+  void display();
+}
+```
+
+## 功能代理类
+```java
+// ProxyImage.java 代理类也实现了基础接口
+public class ProxyImage implements Image {
+
+  private RealImage realImage;
+  private String fileName;
+
+  public ProxyImage(String fileName) {
+    this.fileName = fileName;
+  }
+
+  @Override
+  public void display() {
+    System.out.println("ProxyImage::display() " + fileName);
+    if (realImage == null) {
+      realImage = new RealImage(fileName);
+    }
+    // 代理类调用真实类的方法
+    realImage.display();
+  }
+}
+```
+
+## 真实功能类
+```java
+// RealImage.java 真实类也实现基础代理接口
+public class RealImage implements Image {
+
+  private String fileName;
+
+  public RealImage(String fileName) {
+    // 在初始化时执行内部逻辑
+    this.fileName = fileName;
+    loadFromDisk(fileName);
+  }
+
+  @Override
+  public void display() {
+    System.out.println("RealImage::display() " + fileName);
+  }
+
+  // 这个方法只是内部使用
+  private void loadFromDisk(String fileName) {
+    System.out.println("RealImage::loadFromDisk()  " + fileName);
+  }
+}
+```
+
+## 测试调用
+```java
+  /**
+   * 代理模式就是用一个类来代理另一个类或几个类的功能，以便隔绝外部客户和内部真实类
+   * 这样真实类和调用方之间有一个代理屏障，保证了安全
+   * 同时真实的类如果初始化过，就不再初始化，提升了性能
+   */
+
+    // 声明代理类来执行真实类的能力
+    Image image = new ProxyImage("001.jpg");
+
+    // 代理类执行真实类的能力
+    image.display();
+
+    // 再调用一次，不会重复实例化
+    image.display();
+```
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

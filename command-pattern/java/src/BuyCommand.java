@@ -8,7 +8,7 @@ public class BuyCommand implements Command {
     this.stockReceiver = stockReceiver;
   }
 
-  // 命令类调用执行者来自行真正的动作
+  // 命令类调用执行者的实际动作
   public void execute() {
     System.out.println(this.getClass().getName() + "::execute() ");
     this.stockReceiver.buy();

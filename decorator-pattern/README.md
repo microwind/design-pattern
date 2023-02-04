@@ -15,3 +15,126 @@
 
 # UML
 <img src="../docs/uml/decorator-pattern.png">
+
+# 代码
+
+## 基础形状接口
+```java
+// Shape.java 基础形状接口
+public interface Shape {
+   void draw();
+}
+```
+
+## 具体形状实现
+```java
+// Circle.java 具体形状实现了基础形状接口
+public class Circle implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Circle::draw()");
+   }
+}
+```
+
+```java
+// Square.java 具体形状实现了基础形状接口
+public class Square implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Square::draw()");
+   }
+}
+```
+
+## 抽象装饰器
+```java
+// ShapeDecorator.java 抽象装饰类，是否实现Shape可选
+public abstract class ShapeDecorator implements Shape {
+// public abstract class ShapeDecorator {
+   protected Shape decoratedShape;
+
+   public ShapeDecorator(Shape decoratedShape) {
+      this.decoratedShape = decoratedShape;
+   }
+
+   public void draw() {
+      decoratedShape.draw();
+   }
+}
+```
+
+## 具体装饰器
+```java
+// RedShapeDecorator.java 具体装饰器1
+public class RedShapeDecorator extends ShapeDecorator {
+
+  public RedShapeDecorator(Shape decoratedShape) {
+    super(decoratedShape);
+  }
+
+  @Override
+  public void draw() {
+    decoratedShape.draw();
+    setRedColor(decoratedShape);
+  }
+
+  private void setRedColor(Shape decoratedShape) {
+    System.out.println(
+      "RedShapeDecorator::setRedColor() " + decoratedShape.getClass().getName()
+    );
+  }
+}
+```
+
+```java
+// ShadowShapeDecorator.java 具体装饰器2
+public class ShadowShapeDecorator extends ShapeDecorator {
+
+  public ShadowShapeDecorator(Shape decoratedShape) {
+    super(decoratedShape);
+  }
+
+  @Override
+  public void draw() {
+    // decoratedShape.draw();
+    setShadow(decoratedShape);
+  }
+
+  private void setShadow(Shape decoratedShape) {
+    System.out.println(
+      "ShadowShapeDecorator::setShadow() " + decoratedShape.getClass().getName()
+    );
+  }
+}
+```
+
+## 测试调用
+```java
+    /**
+     * 装饰器模式是将一个对象放到一个装饰器对象中，执行装饰器类里的方法时，对象的行为能力得到增强。
+     * 先声明具体对象，然后放到装饰器，得到一个带有装饰器的新对象，该对象具备了新的能力。
+     */
+
+    // 声明形状
+    Shape circle = new Circle();
+    Shape square = new Square();
+
+    // 增加红色装饰
+    ShapeDecorator redCircle = new RedShapeDecorator(circle);
+    ShapeDecorator redSquare = new RedShapeDecorator(square);
+    circle.draw();
+    redCircle.draw();
+    redSquare.draw();
+
+    // 增加影子装饰
+    ShadowShapeDecorator shadowCircle = new ShadowShapeDecorator(circle);
+    ShadowShapeDecorator shadowSquare = new ShadowShapeDecorator(square);
+    shadowCircle.draw();
+    shadowSquare.draw();
+```
+
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

@@ -20,3 +20,114 @@ ConcreteStateA,ConcreteStateB: 具体的实现类，实现了State中定义的�
 
 # UML
 <img src="../docs/uml/state-pattern.png">
+
+# 代码
+
+## 状态基础接口
+```java
+// 定义状态接口和状态方法，当前context只有一种状态
+public interface State {
+  public void on(Context context);
+  public void off(Context context);
+}
+```
+
+## 状态实现类 
+```java
+// ConcreteStateOff.java 具体的状态实现者
+public class ConcreteStateOff implements State {
+
+  @Override
+  public void on(Context context) {
+    System.out.println(this.getClass().getSimpleName() + "::on() [turn ON ok!]");
+    // 状态变为on后，状态类切换到ConcreteStateOn
+    context.setState(new ConcreteStateOn());
+  }
+
+  @Override
+  public void off(Context context) {
+    // 当前是off状态，再点击off只是提示，不切换状态类
+    System.out.println(this.getClass().getSimpleName() + "::off() [needn't switch, state is OFF.]");
+  }
+
+}
+```
+
+```java
+// ConcreteStateOn.java 具体的状态实现者
+public class ConcreteStateOn implements State {
+
+  // 策略模式与状态模式都是将策略/状态绑定到执行对象(Context)上
+  // 不同的是策略模式是客户可设定策略，而状态则是通过状态动作来实现改变
+  @Override
+  public void on(Context context) {
+    // 当前是on状态，再点击on只是提示，不切换状态类
+    System.out.println(this.getClass().getSimpleName() + "::on() [needn't switch, state is ON.]");
+  }
+
+  @Override
+  public void off(Context context) {
+    // 状态变为off后，状态类切换到ConcreteStateOff
+    System.out.println(this.getClass().getSimpleName() + "::off() [turn OFF ok!]");
+    context.setState(new ConcreteStateOff());
+  }
+
+}
+```
+
+## 业务状态类
+```java
+// Context.java 执行实体类，内部关联状态
+public class Context {
+  private State state;
+
+  public Context(State state) {
+    this.state = state;
+  }
+
+  public Context() {
+  }
+
+  public State getState() {
+    return state;
+  }
+
+  public void setState(State state) {
+    System.out
+        .println(this.getClass().getSimpleName() + "::setState() [state = " + state.getClass().getSimpleName() + "]");
+    this.state = state;
+  }
+
+  public void turnOn() {
+    state.on(this);
+  }
+
+  public void turnOff() {
+    state.off(this);
+  }
+}
+```
+
+## 测试调用
+```java
+    /**
+     * 状态模式就是对象Context在不同行为下有不同的状态，当前只有一种状态。
+     * 通过行为的改变，状态也随之自动发生了改变。
+     * 策略模式与状态模式类似，但策略模式是可以重新设置策略，而状态则通过行为来切换状态。
+     */
+
+    Context context = new Context();
+    // 初始状态是off
+    context.setState(new ConcreteStateOff());
+    // turn on
+    context.turnOn();
+    // 再次turn on
+    context.turnOn();
+    // turn off
+    context.turnOff();
+    // 再次turn off
+    context.turnOff();
+    System.out.println("context.state: " + context.getState().getClass().getSimpleName());
+```
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

@@ -15,7 +15,6 @@
 # UML
 <img src="../docs/uml/adapter-pattern.png">
 
-
 # 代码
 
 ## 基础接口类

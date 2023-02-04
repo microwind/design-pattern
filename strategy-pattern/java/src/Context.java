@@ -1,5 +1,6 @@
 package src;
 
+// 抽象业务类，聚合策略对象
 public abstract class Context {
 
   protected Strategy strategy;

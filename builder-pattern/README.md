@@ -16,3 +16,190 @@
 
 # UML
 <img src="../docs/uml/builder-pattern.png">
+
+
+# 代码
+
+## 创建建造者接口
+```java
+// Builder.java 建造者接口，定义基本建造方法
+public interface Builder {
+  public void reset();
+  public void setName(String name);
+  public void setScreen(Integer[] screen);
+  public void setGPU(Integer no); 
+}
+
+```
+
+## 具体建造者类，可以多个
+```java
+// ManualBuilder.java 使用手册建造者类也实现了建造者接口
+public class ManualBuilder implements Builder {
+  private Manual manual;
+
+  public void reset() {
+    this.manual = new Manual();
+  }
+
+  public void setName(String name) {
+    this.manual.setName(name);
+  }
+
+  public void setScreen(Integer[] screen) {
+    this.manual.setScreen(screen);
+  }
+
+  public void setGPU(Integer no) {
+    this.manual.setGpuType(no);
+  }
+
+  public Manual getProduct() {
+    return this.manual;
+  }
+}
+```
+
+```java
+// PhoneBuilder.java 手机建造者实现了建造者接口
+public class PhoneBuilder implements Builder {
+  private Phone phone;
+
+  public void reset() {
+    this.phone = new Phone();
+  }
+
+  public void setName(String name) {
+    this.phone.setName(name);
+  }
+
+  public void setScreen(Integer[] screen) {
+    this.phone.setScreen(screen);
+  }
+
+  public void setGPU(Integer no) {
+    this.phone.setGpuType(no);
+  }
+
+  public Phone getProduct() {
+    return this.phone;
+  }
+}
+```
+
+## 定义具体产品类，不同建造者建造不同产品
+```java
+// Manual.java 手册产品类
+public class Manual {
+  private String name = "PhoneManualName";
+  private Integer[] screen = { 0, 0 };
+  private Integer gpuType = 0;
+  private Integer pages = 0;
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setScreen(Integer[] screen) {
+    this.screen = screen;
+  }
+
+  public Integer[] getScreen() {
+    return this.screen;
+  }
+  ......
+
+}
+```
+
+```java
+// Phone.java 手机产品类
+public class Phone {
+  private String name = "PhoneName";
+  private Integer[] screen = { 0, 0 };
+  private Integer gpuType = 0;
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setScreen(Integer[] screen) {
+    this.screen = screen;
+  }
+
+  public Integer[] getScreen() {
+    return this.screen;
+  }
+  ......
+
+}
+```
+
+## 指挥调度类
+```java
+// Director.java 指挥调度类，负责利用建造者建造产品，隔离需求与功能
+public class Director {
+
+  // 建造phone1
+  public void buildIPhone(Builder builder) {
+    builder.reset();
+    Integer[] screen = { 120, 500 };
+    builder.setName("iPhone");
+    builder.setScreen(screen);
+    builder.setGPU(100);
+  }
+
+  // 建造phone2
+  public void buildHuaweiPhone(Builder builder) {
+    builder.reset();
+    Integer[] screen = { 130, 600 };
+    builder.setName("HuaweiPhone");
+    builder.setScreen(screen);
+    builder.setGPU(102);
+  }
+
+  // 建造phone3
+  public void buildMiPhone(Builder builder) {
+    builder.reset();
+    Integer[] screen = { 120, 650 };
+    builder.setName("MiPhone");
+    builder.setScreen(screen);
+    builder.setGPU(103);
+  }
+
+}
+```
+
+## 测试调用
+```java
+    /**
+     * 建造者模式是使用多个简单的对象一步一步构建出一个复杂的对象来。
+     * 分为主管类和建造这类，主管类负责具体指挥调度，建造负责具体实施。
+     * 主管类通过一步一步调用各种建造者实现复杂对象。
+     */
+
+    // 声明指挥者
+    Director director = new Director();
+    // 创建手机
+    PhoneBuilder phoneBuilder = new PhoneBuilder();
+    director.buildMiPhone(phoneBuilder);
+    Phone miPhone = phoneBuilder.getProduct();
+    System.out.println("miPhone:" + miPhone.getName() + " | " + miPhone.getGpuType().toString());
+    // 创建手册
+    ManualBuilder manualBuilder = new ManualBuilder();
+    director.buildMiPhone(manualBuilder);
+    Manual manual = manualBuilder.getProduct();
+    System.out.println("manual:" + manual.getName() + " | " + manual.getGpuType().toString());
+
+```
+
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

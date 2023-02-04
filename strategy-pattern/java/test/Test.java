@@ -23,7 +23,6 @@ public class Test {
     Context contextGog = new ContextDog();
     contextGog.action();
 
-
   }
   public static void main(String[] args) {
     System.out.println("test start:");

@@ -1,4 +1,5 @@
 package src;
+// 具体策略B
 public class StrategyB implements Strategy {
  
   @Override

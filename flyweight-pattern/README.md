@@ -18,3 +18,136 @@
 
 # UML
 <img src="../docs/uml/flyweight-pattern.png">
+
+# 代码
+
+## 享元抽象接口
+```java
+// Flyweight.java 享元角色抽象接口
+public interface Flyweight {
+   void operate(String state);
+}
+```
+
+## 具体享元角色
+
+```java
+// ConcreteFlyweight.java 具体享元角色，实现抽象接口，用于共享状态，一个类被创建以后就不用重复创建了
+public class ConcreteFlyweight implements Flyweight {
+   private String name;
+   private String type;
+
+   public ConcreteFlyweight(String name) {
+      // 内部状态，即不会随着环境的改变而改变的可共享部分
+      // 这里的name也是对象保存的key
+      this.name = name;
+      this.type = "piano";
+      System.out.println("ConcreteFlyweight::ConcreteFlyweight(name) [创建具体享元" + name + "]");
+   }
+
+  // 这里state属于外部状态，由外部调用时传入
+  // 也可以把非共享的对象传入进来
+   @Override
+   public void operate(String state) {
+      System.out.println(
+            String.format("%s::operate() [%s %s %s]", this.getClass().getName(), this.getName(),
+                  this.getType(), state));
+   }
+
+   public String getName() {
+      return this.name;
+   }
+
+   public String getType() {
+      return this.type;
+   }
+}
+```
+
+```java
+// UnsharedConcreteFlyweight.java 无需共享的角色，每次都是新实例
+public class UnsharedConcreteFlyweight implements Flyweight {
+   private String name;
+   private String type = "guitar";
+
+   public UnsharedConcreteFlyweight(String name) {
+      this.name = name;
+      System.out.println("UnsharedConcreteFlyweight::UnsharedConcreteFlyweight(name) [创建非共享对象" + name + "]");
+   }
+
+
+   // 这里state属于外部状态，在调用时外部传入。
+   @Override
+   public void operate(String state) {
+      System.out.println(
+            String.format("%s::operate() [%s %s %s]", this.getClass().getName(), this.getName(),
+                  this.getType(), state));
+   }
+
+   public String getName() {
+      return this.name;
+   }
+
+   public String getType() {
+      return this.type;
+   }
+}
+```
+
+## 享元工厂类
+```java
+// FlyweightFactory.java 享元工厂，储存一个对象共享池，已经生成过的对象直接取出
+public class FlyweightFactory {
+   public static Map<String, Flyweight> pool = new HashMap<String, Flyweight>();
+
+   // 这里的name可以认为是内部状态，在构造时确定，具有唯一性。
+   public static Flyweight getFactory(String name) {
+      Flyweight flyweight = pool.get(name);
+      if (flyweight == null) {
+         // 如果对象不存在则创建新的对象放入到池子里，如果已经存在则复用前面的对象
+         flyweight = new ConcreteFlyweight(name);
+         pool.put(name, flyweight);
+      } else {
+         System.out.println("FlyweightFactory::getFactory(name) [成功获取具体享元" + name + "]");
+       }
+      return flyweight;
+   }
+}
+```
+
+## 测试调用
+```java
+    /**
+     * 享元模式就是将已经声明过的实例或数据保存在内存里，需要使用时则取出来，无需再次实例化和声明。
+     * 通过共享多个对象所共有的相同状态，以达到节省开销的目的。
+     * 享元模式分为内部状态和外部状态，内部状态基于享元对象共享，外部状态则外部传入或使用非享元类。
+     */
+
+    // 假设有钢琴和吉他，钢琴使用者很多需要共享实例，而吉他每次创建新实例
+
+    // 2个一样名称的为共享对象，只创建1个实例，后面的返回缓存实例
+    Flyweight factory1 = FlyweightFactory.getFactory("piano1");
+    // piano1已经声明过了，同名则共享前面的实例
+    Flyweight factory2 = FlyweightFactory.getFactory("piano1");
+    Flyweight factory3 = FlyweightFactory.getFactory("piano2");
+    Flyweight factory4 = FlyweightFactory.getFactory("piano2");
+
+    factory1.operate("factory1");
+    factory2.operate("factory2");
+    factory3.operate("factory3");
+    factory4.operate("factory4");
+
+    // 查看一共多少个对象
+    for (Map.Entry<String, Flyweight> entry : FlyweightFactory.pool.entrySet()) {
+      System.out.println("享元对象:" + entry.getKey());
+      // entry.getValue().operate(null);
+    }
+
+    // 无需共享的，名字一样也是多个对象
+    Flyweight factory5 = new UnsharedConcreteFlyweight("guitar1");
+    Flyweight factory6 = new UnsharedConcreteFlyweight("guitar1");
+    factory5.operate("factory5");
+    factory6.operate("factory6");
+```
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

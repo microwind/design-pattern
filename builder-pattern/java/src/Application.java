@@ -1,5 +1,7 @@
 package src;
 
+// 客户调用类，将建造过程再封装
+// 也可以单独给外部调用，而无需再次封装
 public class Application {
   public static void makeIPhone() {
     Director director = new Director();

@@ -15,3 +15,108 @@
 
 # UML
 <img src="../docs/uml/iterator-pattern.png">
+
+# 代码
+
+## 迭代器抽象接口
+```java
+// Iterator.java 迭代器抽象接口，提供next和hasNext方法
+public interface Iterator {
+   public boolean hasNext();
+   public Object next();
+}
+```
+
+## 具体迭代器
+```java
+// ObjectIterator.java 对象迭代器，实现了抽象迭代器的方法，聚合了对象列表
+public class ObjectIterator implements Iterator {
+
+   private ObjectList objectList;
+
+   int index;
+
+   public ObjectIterator(ObjectList objectList) {
+      this.objectList = objectList;
+   }
+
+   @Override
+   public boolean hasNext() {
+      if (index < objectList.size()) {
+         return true;
+      }
+      return false;
+   }
+
+   @Override
+   public Object next() {
+      if (this.hasNext()) {
+         // 返回数据对象提供的get方法，每访问一次则增加下标
+         return objectList.get(index++);
+      }
+      return null;
+   }
+}
+```
+
+## 数据容器接口
+```java
+// 创建抽象容器接口，创建一个迭代器
+public interface Container {
+   public Iterator createIterator();
+}
+```
+
+## 具体数据对象
+```java
+// ObjectList.java 对象列表，是一种数据容器，可以创建一个迭代器
+public class ObjectList implements Container {
+   private Object[] objects = { "Google", "Apple", "Amazon" };
+
+   @Override
+   public Iterator createIterator() {
+      System.out.println(this.getClass().getName() + "::createIterator() [获取迭代器 ObjectIterator]");
+      // 把当前对象传给迭代器
+      return new ObjectIterator(this);
+   }
+
+   public void setObjects(Object[] objects) {
+      this.objects = objects;
+   }
+
+   public int size() {
+      return objects.length;
+   }
+
+   public Object get(int index) {
+      return objects[index];
+   }
+}
+```
+
+## 测试调用
+```java
+    /*
+     * 迭代器模式是给数据容器创建单独的迭代器，用来遍历里面的数据对象
+     * 数据容器和迭代器相互关联，外部通过迭代器来访问数据容器
+     * 通过这种方式由迭代器类来负责数据遍历，这样可以做到不暴露集合的内部结构
+     */
+
+    int i = 0;
+    ObjectList objectList = new ObjectList();
+    objectList.setObjects(new String[] { "Thomas", "Merry", "Jack", "Tony", "Jerry", "Joey" });
+    // for循环迭代对象
+    for (Iterator iter = objectList.createIterator(); iter.hasNext();) {
+      String name = (String) iter.next();
+      System.out.println("objectList[" + i + "] = " + name);
+      i++;
+    }
+
+    // while循环迭代对象
+    Iterator iter2 = objectList.createIterator();
+    while (iter2.hasNext()) {
+      System.out.println(iter2.next());
+    }
+```
+## 更多语言版本
+不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

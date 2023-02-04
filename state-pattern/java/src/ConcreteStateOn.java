@@ -1,6 +1,6 @@
 package src;
 
-// 具体的状态实现者，
+// 具体的状态实现者
 public class ConcreteStateOn implements State {
 
   // 策略模式与状态模式都是将策略/状态绑定到执行对象(Context)上

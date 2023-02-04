@@ -2,7 +2,7 @@ package src;
 
 import java.util.*;
 
-// 定义子类覆写父类抽象方法
+// 根据标准接口实现按属性的过滤
 public class CriteriaSingle implements Criteria {
 
    @Override
