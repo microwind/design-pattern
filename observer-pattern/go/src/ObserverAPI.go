@@ -7,17 +7,3 @@ type ObserverAPI interface {
   SetName(name string)
   Update(content string)
 }
-
-// constructor(name) {
-//   this.name = name || this.constructor.name
-// }
-
-//   // 观察者发出更新通知，观察者自行监听
-//   update(content) {
-//     fmt.Println(`${this.constructor.name}::update() [content = ${content}]`)
-//   }
-
-//   setName(name) {
-//     this.name = name
-//   }
-// }

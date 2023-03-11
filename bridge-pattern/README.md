@@ -67,7 +67,7 @@ public interface DrawTool {
 
 ## 定义工具实现类，可以多个
 ```java
-// 画圆A，实现了图画基础API
+// DrawStyeA.java 画圆A，实现了图画基础API
 public class DrawStyeA implements DrawTool {
    @Override
    public void drawStyle() {
@@ -77,7 +77,7 @@ public class DrawStyeA implements DrawTool {
 ```
 
 ```java
-// 画圆B，实现了图画基础API
+// DrawStyleB.java 画圆B，实现了图画基础API
 public class DrawStyleB implements DrawTool {
    @Override
    public void drawStyle() {
@@ -88,7 +88,6 @@ public class DrawStyleB implements DrawTool {
 
 ## 测试调用
 ```java
-
     /**
      * 桥接模式是将基础抽象类作为桥接器，用来连接业务对象和具体动作，将两者充分解耦。
      * 具体对象以抽象对象为父类，实现父类方法。
