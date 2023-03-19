@@ -15,7 +15,7 @@ ManualBuilder *create_manual_builder()
 
 void reset_manual(ManualBuilder *builder)
 {
-  // 初始化Phone对象
+  // 初始化Manual对象
   Manual *manual = (Manual *)malloc(sizeof(Manual));
   manual->name[0] = '\0';
   int screen_len = (int)sizeof(manual->screen) / sizeof(manual->screen[0]);

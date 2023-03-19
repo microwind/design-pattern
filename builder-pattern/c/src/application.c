@@ -46,6 +46,7 @@ void make_iphone()
   // 根据建造者获取对象
   printf("iphone: %s | ", phone->name);
   print_phone(phone);
+  free_phone_builder(phone_builder);
 
   // 创建手册建造者
   ManualBuilder *manual_builder = create_manual_builder();
@@ -55,6 +56,8 @@ void make_iphone()
   Manual *manual = get_manual_product(manual_builder);
   printf("iphone manual: %s | ", manual->name);
   print_manual(manual);
+  free_manual_builder(manual_builder);
+
 }
 
 void make_huawei_phone()
@@ -67,6 +70,7 @@ void make_huawei_phone()
   // 根据建造者获取对象
   printf("huawei phone: %s", phone->name);
   print_phone(phone);
+  free_phone_builder(phone_builder);
 
   // 创建手册建造者
   ManualBuilder *manual_builder = create_manual_builder();
@@ -76,4 +80,5 @@ void make_huawei_phone()
   Manual *manual = get_manual_product(manual_builder);
   printf("huawei manual: %s", manual->name);
   print_manual(manual);
+  free_manual_builder(manual_builder);
 }

@@ -23,7 +23,7 @@ func (r *RequestHandler) GetNext() Handler {
 // 如果检查不通过则返回失败，否则继续下一个检查
 func (r *RequestHandler) Check(uid int) bool {
   fmt.Println("RequestHandler::Check() [uid = " + strconv.Itoa(uid) + "]")
-  if uid%1 != 0 {
+  if uid%5 == 0 {
     return false
   }
   // 通过聚合类来调用下一步检查

@@ -23,6 +23,7 @@ int main()
   Phone *phone = get_phone_product(phone_builder);
   printf("mi phone: %s | ", phone->name);
   print_phone(phone);
+  free_phone_builder(phone_builder);
 
   // 创建手册
   ManualBuilder *manual_builder = create_manual_builder();
@@ -30,6 +31,7 @@ int main()
   Manual *manual = get_manual_product(manual_builder);
   printf("mi manual: %s | ", manual->name);
   print_manual(manual);
+  free_manual_builder(manual_builder);
 }
 
 /**

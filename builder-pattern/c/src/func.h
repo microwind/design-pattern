@@ -14,13 +14,13 @@ typedef struct
   int gpu_type;
 } Manual;
 
-// 定义手册创建者结构体，用来创建Manual对象
+// 定义手册创建者结构体，聚合了Manual对象
 typedef struct
 {
   Phone *phone;
 } PhoneBuilder;
 
-// 定义手册创建者结构体，用来创建Manual对象
+// 定义手册创建者结构体，聚合了Manual对象
 typedef struct
 {
   Manual *manual;
