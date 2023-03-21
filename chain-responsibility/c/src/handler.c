@@ -28,25 +28,18 @@ Handler *make_handler_chain_count(int lenght, ...)
   return first;
 }
 
-// 不定参数创建调用链，第一个参数是handler的数量，后面是多个handler
+// 不定参数创建调用链，第一个参数是handler的数量，后面是多个handler，最后一个传NULL
 Handler *make_handler_chain(Handler *first, ...)
 {
   va_list args;
   va_start(args, first);
   Handler *head = first;
-  printf("\r\nname: %s \r\n", first->name);
-  // 把handler追加到next中
-  int i = 0;
-  // 需要设置数量，否则会不断添加
-  while (head != NULL && i < 3)
+  // 把handler追加到next中，以NULL作为结束符
+  while (head != NULL)
   {
-    printf("\r\n handler: %s", head->name);
     head->next = va_arg(args, Handler *);
     head = head->next;
-    i++;
   }
-  printf("\r\n first->name: %s", first->name);
-  printf("\r\n head->name: %s", head->name);
   va_end(args);
   return first;
 }

@@ -1,7 +1,13 @@
-// 建造者的基础接口，C语言可以不需要
-// typedef struct
-// {
-//   char name[50];
-//   int screen[2];
-//   int gpu_type;
-// } Builder;
+#include <string.h>
+#include <stdlib.h>
+#include "func.h"
+
+// 初始化Builder对象
+Builder *create_builder()
+{
+  // 申请Builder空间
+  Builder *builder = (Builder *)malloc(sizeof(Builder));
+  builder->phone = NULL;
+  builder->manual = NULL;
+  return builder;
+}

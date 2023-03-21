@@ -5,6 +5,7 @@
     "string.h": "c",
     "memory": "c",
     "utility": "c",
-    "type_traits": "c"
+    "type_traits": "c",
+    "typeinfo": "c"
   }
 }

@@ -18,25 +18,25 @@ int main()
   // *********************** 分割线 ******************************************/
   // 直接调用director相关方法
   // 创建手机
-  PhoneBuilder *phone_builder = create_phone_builder();
-  build_mi_phone(phone_builder);
-  Phone *phone = get_phone_product(phone_builder);
+  Builder *phone_builder = create_builder();
+  build_mi_phone((PhoneBuilder *)phone_builder);
+  Phone *phone = get_phone_product((PhoneBuilder *)phone_builder);
   printf("mi phone: %s | ", phone->name);
   print_phone(phone);
-  free_phone_builder(phone_builder);
+  free_phone_builder((PhoneBuilder *)phone_builder);
 
   // 创建手册
-  ManualBuilder *manual_builder = create_manual_builder();
-  build_mi_manual(manual_builder);
-  Manual *manual = get_manual_product(manual_builder);
+  Builder *manual_builder = create_builder();
+  build_mi_manual((ManualBuilder *)manual_builder);
+  Manual *manual = get_manual_product((ManualBuilder *)manual_builder);
   printf("mi manual: %s | ", manual->name);
   print_manual(manual);
-  free_manual_builder(manual_builder);
+  free_manual_builder((ManualBuilder *)manual_builder);
 }
 
 /**
-jarry@jarrys-MacBook-Pro c % gcc ./test/*.c ./src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out                 
+jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
+jarry@jarrys-MacBook-Pro c % ./a.out             
 
 test start:
 iphone: iPhone | { name: "iPhone", screen: [120, 500], gpu_type: 100 } 

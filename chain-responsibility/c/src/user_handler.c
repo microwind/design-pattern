@@ -8,6 +8,7 @@ bool user_handler_check(Handler *handler, int param)
 {
   printf("\r\n user_handler_check: [handler.name = %s param = %d]", handler->name, param);
   UserHandler *user_handler = (UserHandler *)handler;
+  // 这里是判断条件，如果出错则终止调用链，返回false
   if (param % 3 == 0)
   {
     printf("\r\n user_handler_check: error[ %d %s 3 ] == 0", param, "%");
@@ -18,7 +19,7 @@ bool user_handler_check(Handler *handler, int param)
   {
     return user_handler->next->check_next(handler->next, param);
   }
-  return false;
+  return true;
 }
 
 /* 创建具体处理器的函数 */
