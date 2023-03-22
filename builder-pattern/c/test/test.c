@@ -1,4 +1,6 @@
+#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "../src/func.h"
 
 // main包下的main入口方法
@@ -17,32 +19,44 @@ int main()
 
   // *********************** 分割线 ******************************************/
   // 直接调用director相关方法
+
+  // 创建指挥者
+  Director *director = create_director();
+
   // 创建手机
-  Builder *phone_builder = create_builder();
-  build_mi_phone((PhoneBuilder *)phone_builder);
-  Phone *phone = get_phone_product((PhoneBuilder *)phone_builder);
-  printf("mi phone: %s | ", phone->name);
+  PhoneBuilder *phone_builder = create_phone_builder();
+  director->build_mi_phone((Builder *)phone_builder);
+  Phone *phone = phone_builder->get_product(phone_builder);
+  // 根据建造者获取对象
+  printf("\r\n get_product: %s | ", phone->name);
   print_phone(phone);
-  free_phone_builder((PhoneBuilder *)phone_builder);
+  free(phone_builder);
 
   // 创建手册
-  Builder *manual_builder = create_builder();
-  build_mi_manual((ManualBuilder *)manual_builder);
-  Manual *manual = get_manual_product((ManualBuilder *)manual_builder);
-  printf("mi manual: %s | ", manual->name);
+  ManualBuilder *manual_builder = create_manual_builder();
+  director->build_huawei_phone((Builder *)manual_builder);
+  Manual *manual = ((Builder *)manual_builder)->get_manual_product((Builder *)manual_builder);
+  // 根据建造者获取对象
+  printf("\r\n get_product: %s | ", manual->name);
   print_manual(manual);
-  free_manual_builder((ManualBuilder *)manual_builder);
+  free(manual_builder);
 }
 
 /**
 jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out             
+jarry@jarrys-MacBook-Pro c % ./a.out 
 
 test start:
-iphone: iPhone | { name: "iPhone", screen: [120, 500], gpu_type: 100 } 
-iphone manual: iPhone | { name: "iPhone", screen: [120, 500], gpu_type: 100 } 
-huawei phone: HuaweiPhone{ name: "HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
-huawei manual: HuaweiPhone{ name: "HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
-mi phone: MiPhone | { name: "MiPhone", screen: [130, 550], gpu_type: 103 } 
-mi manual: MiPhone | { name: "MiPhone", screen: [130, 550], gpu_type: 103 } 
+build_iphone:[name=Phone:iPhone]
+ get_product: Phone:iPhone | { name: "Phone:iPhone", screen: [120, 500], gpu_type: 100 } 
+build_iphone:[name=Manual:iPhone]
+ get_product: Manual:iPhone | { name: "Manual:iPhone", screen: [120, 500], gpu_type: 100 } 
+build_huawei_phone:[name=Phone:HuaweiPhone]
+ get_product: Phone:HuaweiPhone | { name: "Phone:HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
+build_huawei_phone:[name=Manual:HuaweiPhone]
+ get_product: Manual:HuaweiPhone | { name: "Manual:HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
+build_mi_phone:[name=Phone:MiPhone]
+ get_product: Phone:MiPhone | { name: "Phone:MiPhone", screen: [130, 550], gpu_type: 103 } 
+build_huawei_phone:[name=Manual:HuaweiPhone]
+ get_product: Manual:HuaweiPhone | { name: "Manual:HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
 */

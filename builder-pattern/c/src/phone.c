@@ -1,4 +1,4 @@
-// 定义Phone结构体，放在head
+// 定义Phone结构体，可放在head
 // typedef struct
 // {
 //   char name[50];

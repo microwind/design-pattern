@@ -3,18 +3,9 @@
 #include <stdlib.h>
 #include "func.h"
 
-/* 手机建造者 */
+/* 手机产品建造者 */
 
-// 初始化PhoneBuilder对象以及Phone数据
-PhoneBuilder *create_phone_builder()
-{
-  // 申请PhoneBuilder空间
-  PhoneBuilder *builder = (PhoneBuilder *)malloc(sizeof(PhoneBuilder));
-  builder->phone = NULL;
-  return builder;
-}
-
-void reset_phone(PhoneBuilder *builder)
+void reset_phone(Builder *builder)
 {
   // 初始化Phone对象
   Phone *phone = (Phone *)malloc(sizeof(Phone));
@@ -28,43 +19,54 @@ void reset_phone(PhoneBuilder *builder)
   builder->phone = phone;
 }
 
-Phone *get_phone_product(PhoneBuilder *builder)
+void set_phone_name(Builder *builder, char *name)
 {
-  return builder->phone;
+  char display_name[50] = "Phone:";
+  strcat(display_name, name);
+
+  strncpy(builder->phone->name, display_name, 50);
 }
 
-void free_phone_builder(PhoneBuilder *builder)
-{
-  free(builder);
-}
-
-void set_phone_name(PhoneBuilder *builder, char *name)
-{
-  strncpy(builder->phone->name, name, 50);
-}
-
-char *get_phone_name(PhoneBuilder *builder)
+char *get_phone_name(Builder *builder)
 {
   return builder->phone->name;
 }
 
-void set_phone_screen(PhoneBuilder *builder, int *screen)
+void set_phone_screen(Builder *builder, int *screen)
 {
   int screen_len = (int)sizeof(screen) / sizeof(screen[0]);
   memcpy(builder->phone->screen, screen, screen_len * sizeof(int));
 }
 
-int *get_phone_screen(PhoneBuilder *builder)
-{
-  return builder->phone->screen;
-}
-
-void set_phone_gpu_type(PhoneBuilder *builder, int gpu_type)
+void set_phone_gpu_type(Builder *builder, int gpu_type)
 {
   builder->phone->gpu_type = gpu_type;
 }
 
-int get_phone_gpu_type(PhoneBuilder *builder)
+Phone *get_phone_product_by_builder(Builder *builder)
 {
-  return builder->phone->gpu_type;
+  return builder->phone;
+}
+
+Phone *get_phone_product(PhoneBuilder *builder)
+{
+  return builder->phone;
+}
+
+// 初始化PhoneBuilder对象以及Phone数据
+PhoneBuilder *create_phone_builder()
+{
+  // 申请Builder空间，创建基础Builder
+  Builder *builder = (Builder *)malloc(sizeof(Builder));
+  builder->phone = NULL;
+  builder->reset = &reset_phone;
+  builder->set_name = &set_phone_name;
+  builder->get_name = &get_phone_name;
+  builder->set_screen = &set_phone_screen;
+  builder->set_gpu_type = &set_phone_gpu_type;
+  builder->get_phone_product = &get_phone_product_by_builder;
+  // 转成PhoneBuilder对象
+  PhoneBuilder *phone_builder = (PhoneBuilder *)builder;
+  phone_builder->get_product = &get_phone_product;
+  return phone_builder;
 }
