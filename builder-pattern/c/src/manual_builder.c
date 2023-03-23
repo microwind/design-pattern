@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "func.h"
 
-/* 手册产品建造者 */
+/* 手册产品建造者，提供各种建造产品部件的方法，供指挥者调用 */
 
 void reset_manual(Builder *builder)
 {
@@ -43,12 +43,12 @@ void set_manual_gpu_type(Builder *builder, int gpu_type)
   builder->manual->gpu_type = gpu_type;
 }
 
-Manual *get_manual_product_by_builder(Builder *builder)
+Manual *get_manual_product(Builder *builder)
 {
   return builder->manual;
 }
 
-Manual *get_manual_product(ManualBuilder *builder)
+Manual *get_product_by_manual_builder(ManualBuilder *builder)
 {
   return builder->manual;
 }
@@ -64,9 +64,9 @@ ManualBuilder *create_manual_builder()
   builder->get_name = &get_manual_name;
   builder->set_screen = &set_manual_screen;
   builder->set_gpu_type = &set_manual_gpu_type;
-  builder->get_manual_product = &get_manual_product_by_builder;
+  builder->get_manual_product = &get_manual_product;
   // 转成ManualBuilder对象
   ManualBuilder *manual_builder = (ManualBuilder *)builder;
-  manual_builder->get_product = &get_manual_product;
+  manual_builder->get_product = &get_product_by_manual_builder;
   return manual_builder;
 }

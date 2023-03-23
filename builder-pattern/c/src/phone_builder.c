@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "func.h"
 
-/* 手机产品建造者 */
+/* 手机产品建造者，提供各种建造产品部件的方法，供指挥者调用 */
 
 void reset_phone(Builder *builder)
 {
@@ -43,12 +43,12 @@ void set_phone_gpu_type(Builder *builder, int gpu_type)
   builder->phone->gpu_type = gpu_type;
 }
 
-Phone *get_phone_product_by_builder(Builder *builder)
+Phone *get_phone_product(Builder *builder)
 {
   return builder->phone;
 }
 
-Phone *get_phone_product(PhoneBuilder *builder)
+Phone *get_product_by_phone_builder(PhoneBuilder *builder)
 {
   return builder->phone;
 }
@@ -64,9 +64,9 @@ PhoneBuilder *create_phone_builder()
   builder->get_name = &get_phone_name;
   builder->set_screen = &set_phone_screen;
   builder->set_gpu_type = &set_phone_gpu_type;
-  builder->get_phone_product = &get_phone_product_by_builder;
+  builder->get_phone_product = &get_phone_product;
   // 转成PhoneBuilder对象
   PhoneBuilder *phone_builder = (PhoneBuilder *)builder;
-  phone_builder->get_product = &get_phone_product;
+  phone_builder->get_product = &get_product_by_phone_builder;
   return phone_builder;
 }

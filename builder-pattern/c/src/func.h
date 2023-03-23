@@ -1,5 +1,5 @@
 // 定义手机创建者结构体，用来创建Phone对象
-typedef struct
+typedef struct Phone
 {
   char name[50];
   int screen[2];
@@ -7,7 +7,7 @@ typedef struct
 } Phone;
 
 // 定义手册创建者结构体，用来创建Manual对象
-typedef struct
+typedef struct Manual
 {
   char name[50];
   int screen[2];
@@ -17,30 +17,32 @@ typedef struct
 // 基础建造者，用于构建复杂对象的接口
 typedef struct Builder
 {
-  Phone *phone;
-  Manual *manual;
+  struct Phone *phone;
+  struct Manual *manual;
   void (*reset)(struct Builder *);
   void (*set_name)(struct Builder *, char *);
   char *(*get_name)(struct Builder *);
   void (*set_screen)(struct Builder *, int *);
   void (*set_gpu_type)(struct Builder *, int);
-  Phone *(*get_phone_product)(struct Builder *);
-  Manual *(*get_manual_product)(struct Builder *);
+  struct Phone *(*get_phone_product)(struct Builder *);
+  struct Manual *(*get_manual_product)(struct Builder *);
 } Builder;
 
 // 定义手机创建者结构体，聚合了Manual对象
 typedef struct PhoneBuilder
 {
-  Phone *phone;
-  Phone *(*get_product)(struct PhoneBuilder *);
+  struct Phone *phone;
+  // get_product可以统一放在Builder
+  struct Phone *(*get_product)(struct PhoneBuilder *);
 } PhoneBuilder;
 
 // 定义手册创建者结构体，聚合了Phone对象
 typedef struct ManualBuilder
 {
-  Manual *manual;
-  Manual *(*get_product)(struct ManualBuilder *);
+  struct Manual *manual;
+  struct Manual *(*get_product)(struct ManualBuilder *);
 } ManualBuilder;
+
 
 // 定义指挥者，指挥Builder来创建对象，可以根据需要创建不同产品
 typedef struct Director

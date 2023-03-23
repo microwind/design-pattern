@@ -34,7 +34,7 @@ int main(void)
 
     // 从执行handler开始
     printf("\r\n开始检查:");
-    bool result1 = request_handler_check((Handler *)request_handler, 666);
+    bool result1 = request_handler->check_handler((Handler *)request_handler, 666);
     printf("\r\n执行结果: %s \r\n", result1 ? "true" : "false");
 
     /* 释放内存 */
@@ -61,8 +61,7 @@ int main(void)
         printf(" -> %s", handler_cur2->name);
         handler_cur2 = handler_cur2->next;
     }
-    // 从指定的handler开始执行
-    // auth_handler_check((Handler *)auth_handler2, 777);
+
     // 调用通用检查函数开始
     printf("\r\n开始检查:");
     bool result2 = check_handler_start(handler2, 777);
@@ -104,7 +103,7 @@ int main(void)
 }
 
 /**
-jarry@jarrys-MacBook-Pro c % gcc ./test/test.c ./src/*.c
+jarry@jarrys-MacBook-Pro c % gcc 
 jarry@jarrys-MacBook-Pro c % ./a.out 
 创建handler:
  request_handler_01 user_handler_02 auth_handler_03

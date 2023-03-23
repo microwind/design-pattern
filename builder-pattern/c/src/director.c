@@ -11,7 +11,9 @@
 // 建造iphone
 void build_iphone(Builder *builder)
 {
+  // 初始化建造者
   builder->reset(builder);
+  // 调用建造者相应函数，建造产品的组成组件
   int screen[2] = {120, 500};
   builder->set_name(builder, "iPhone");
   builder->set_screen(builder, screen);
@@ -41,9 +43,9 @@ void build_mi_phone(Builder *builder)
   printf("build_mi_phone:[name=%s]", builder->get_name(builder));
 }
 
+// 初始化指挥者，申请Director空间
 Director *create_director()
 {
-  // 申请Builder空间
   Director *director = (Director *)malloc(sizeof(Director));
   director->build_iphone = &build_iphone;
   director->build_huawei_phone = &build_huawei_phone;

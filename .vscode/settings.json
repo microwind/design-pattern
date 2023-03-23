@@ -6,6 +6,7 @@
     "memory": "c",
     "utility": "c",
     "type_traits": "c",
-    "typeinfo": "c"
+    "typeinfo": "c",
+    "ratio": "c"
   }
 }

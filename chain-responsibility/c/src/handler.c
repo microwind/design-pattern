@@ -47,5 +47,5 @@ Handler *make_handler_chain(Handler *first, ...)
 // 单独handler检查开始函数
 bool check_handler_start(Handler *handler, int param)
 {
-  return handler->check_next(handler, param);
+  return handler->check_handler(handler, param);
 }

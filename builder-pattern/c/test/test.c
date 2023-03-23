@@ -45,7 +45,6 @@ int main()
 /**
 jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
 jarry@jarrys-MacBook-Pro c % ./a.out 
-
 test start:
 build_iphone:[name=Phone:iPhone]
  get_product: Phone:iPhone | { name: "Phone:iPhone", screen: [120, 500], gpu_type: 100 } 

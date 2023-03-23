@@ -17,7 +17,7 @@ bool request_handler_check(Handler *handler, int param)
   // 通过next调用下一步检查
   if (handler->next != NULL)
   {
-    return request_handler->next->check_next(handler->next, param);
+    return request_handler->next->check_handler(handler->next, param);
   }
   return true;
 }
@@ -27,8 +27,8 @@ RequestHandler *create_request_handler(char *name)
 {
   RequestHandler *handler = (RequestHandler *)malloc(sizeof(RequestHandler));
   strncpy(handler->name, name, 50);
-  // 将handler的check_next函数赋值为指定函数，便于检查处理
-  handler->check_next = &request_handler_check;
+  // 将handler的check_handler函数赋值为指定函数，便于检查处理
+  handler->check_handler = &request_handler_check;
   handler->next = NULL;
   return handler;
 }
