@@ -3,7 +3,7 @@
 #include <stdarg.h>
 #include "func.h"
 
-// 创建调用链，按顺序形成链，返回第一个handler
+// 创建调用链，按顺序形成链，返回前面的handler
 Handler *link_handler(Handler *handler, Handler *next)
 {
   handler->next = next;
@@ -28,7 +28,7 @@ Handler *make_handler_chain_count(int lenght, ...)
   return first;
 }
 
-// 不定参数创建调用链，第一个参数是handler的数量，后面是多个handler，最后一个传NULL
+// 不定参数创建调用链，可以传入多个Handler，最后一个传NULL
 Handler *make_handler_chain(Handler *first, ...)
 {
   va_list args;

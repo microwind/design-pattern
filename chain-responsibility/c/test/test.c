@@ -5,6 +5,7 @@
 
 int main(void)
 {
+    printf("test start:\r\n");
     /**
      * 责任链模式核心是打造一个调用处理链，每个处理链都实现抽象类的next方法，从而可以任意组织各种检查行为。
      * 通过改变链内的成员或者调动它们的顺序，允许动态地新增或者删除职责，从而实现按需组织。
@@ -104,7 +105,7 @@ int main(void)
 
 /**
 jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out 
+jarry@jarrys-MacBook-Pro c % ./a.out
 创建handler:
  request_handler_01 user_handler_02 auth_handler_03
 建立职责链:
@@ -113,7 +114,7 @@ jarry@jarrys-MacBook-Pro c % ./a.out
  request_handler_check: [handler.name = request_handler_01 param = 666]
  user_handler_check: [handler.name = user_handler_02 param = 666]
  user_handler_check: error[ 666 % 3 ] == 0
-执行结果: false 
+执行结果: false
 
 =============
 
@@ -126,7 +127,7 @@ jarry@jarrys-MacBook-Pro c % ./a.out
  request_handler_check: [handler.name = request_handler_101 param = 777]
  user_handler_check: [handler.name = user_handler_102 param = 777]
  user_handler_check: error[ 777 % 3 ] == 0
-执行结果: false 
+执行结果: false
 
 =============
 
@@ -138,5 +139,5 @@ jarry@jarrys-MacBook-Pro c % ./a.out
  auth_handler_check: [handler.name = auth_handler_203 param = 167]
  user_handler_check: [handler.name = user_handler_202 param = 167]
  request_handler_check: [handler.name = request_handler_201 param = 167]
-执行结果: true 
+执行结果: true
  */

@@ -6,7 +6,7 @@
 // main包下的main入口方法
 int main()
 {
-  printf("\r\ntest start:\r\n");
+  printf("test start:\r\n");
   /**
    * 建造者模式是使用多个简单的对象一步一步构建出一个复杂的对象来。
    * 分为主管类和建造者类，主管类负责具体指挥调度，建造负责具体实施。
@@ -44,18 +44,18 @@ int main()
 
 /**
 jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out 
+jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 build_iphone:[name=Phone:iPhone]
- get_product: Phone:iPhone | { name: "Phone:iPhone", screen: [120, 500], gpu_type: 100 } 
+ get_product: Phone:iPhone | { name: "Phone:iPhone", screen: [120, 500], gpu_type: 100 }
 build_iphone:[name=Manual:iPhone]
- get_product: Manual:iPhone | { name: "Manual:iPhone", screen: [120, 500], gpu_type: 100 } 
+ get_product: Manual:iPhone | { name: "Manual:iPhone", screen: [120, 500], gpu_type: 100 }
 build_huawei_phone:[name=Phone:HuaweiPhone]
- get_product: Phone:HuaweiPhone | { name: "Phone:HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
+ get_product: Phone:HuaweiPhone | { name: "Phone:HuaweiPhone", screen: [140, 600], gpu_type: 102 }
 build_huawei_phone:[name=Manual:HuaweiPhone]
- get_product: Manual:HuaweiPhone | { name: "Manual:HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
+ get_product: Manual:HuaweiPhone | { name: "Manual:HuaweiPhone", screen: [140, 600], gpu_type: 102 }
 build_mi_phone:[name=Phone:MiPhone]
- get_product: Phone:MiPhone | { name: "Phone:MiPhone", screen: [130, 550], gpu_type: 103 } 
+ get_product: Phone:MiPhone | { name: "Phone:MiPhone", screen: [130, 550], gpu_type: 103 }
 build_huawei_phone:[name=Manual:HuaweiPhone]
- get_product: Manual:HuaweiPhone | { name: "Manual:HuaweiPhone", screen: [140, 600], gpu_type: 102 } 
+ get_product: Manual:HuaweiPhone | { name: "Manual:HuaweiPhone", screen: [140, 600], gpu_type: 102 }
 */

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 // main包下的main入口方法
@@ -28,7 +28,7 @@ func main() {
   var motorcycle = vehicleFactory.GetVehicle(src.VehicleType_MOTORCYCLE)
   motorcycle.Run()
 
-  // 获取Motorcycle对象，并调用它的 run 方法
+  // 获取Van对象，并调用它的 run 方法
   var van = vehicleFactory.GetVehicle(src.VehicleType_VAN)
   van.Run()
 }
