@@ -1,15 +1,12 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "func.h"
+#include "../func.h"
 
 /* Motorcycle对象函数实现 */
-void motorcycle_run()
+void motorcycle_run(Vehicle *vehicle)
 {
-  printf("motorcycle_run(). \r\n");
+  printf("\r\n motorcycle_run() [name=%s]", vehicle->name);
 }
 
-/* 创建具体处理器的函数 */
+/* 创建对象构造函数 */
 Motorcycle *motorcycle_constructor(char *name)
 {
   Motorcycle *motorcycle = (Motorcycle *)malloc(sizeof(Motorcycle));

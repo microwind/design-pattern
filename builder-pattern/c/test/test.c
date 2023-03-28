@@ -23,7 +23,7 @@ int main()
   // 创建指挥者
   Director *director = create_director();
 
-  // 创建手机
+  // 创建mi手机
   PhoneBuilder *phone_builder = create_phone_builder();
   director->build_mi_phone((Builder *)phone_builder);
   Phone *phone = phone_builder->get_product(phone_builder);
@@ -32,19 +32,19 @@ int main()
   print_phone(phone);
   free(phone_builder);
 
-  // 创建手册
+  // 创建huawei手册
   ManualBuilder *manual_builder = create_manual_builder();
   director->build_huawei_phone((Builder *)manual_builder);
-  Manual *manual = ((Builder *)manual_builder)->get_manual_product((Builder *)manual_builder);
+  Manual *manual = manual_builder->get_product(manual_builder);
   // 根据建造者获取对象
-  printf("\r\n get_product: %s | ", manual->name);
+  printf("\r\n get_product 1111: %s | ", manual->name);
   print_manual(manual);
   free(manual_builder);
 }
 
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
+jarry@jarrys-MacBook-Pro c % gcc src/*.c test/test.c
+jarry@jarrys-MacBook-Pro c % ./a.out s
 test start:
 build_iphone:[name=Phone:iPhone]
  get_product: Phone:iPhone | { name: "Phone:iPhone", screen: [120, 500], gpu_type: 100 }

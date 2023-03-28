@@ -41,10 +41,10 @@ int main(void)
 
 /**
 jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
+jarry@jarrys-MacBook-Pro c % ./a.out 
 test start:
-Bus::Run().
-Car::Run().
-Motorcycle::Run().
-Van::Run().
+bus_run(). 
+car_run().
+motorcycle_run(). 
+van_run(). 
  */

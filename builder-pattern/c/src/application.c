@@ -56,7 +56,8 @@ void make_iphone()
   // 指挥者指挥建造者创建对象
   director->build_iphone((Builder *)manual_builder);
   // 从建造者处获取产品对象
-  Manual *manual = ((Builder *)manual_builder)->get_manual_product((Builder *)manual_builder);
+  Manual *manual = manual_builder->get_product(manual_builder);
+
   printf("\r\n get_product: %s | ", manual->name);
   print_manual(manual);
   free(manual_builder);
@@ -81,7 +82,7 @@ void make_huawei_phone()
   ManualBuilder *manual_builder = create_manual_builder();
   // 根据建造者来创建对象
   director->build_huawei_phone((Builder *)manual_builder);
-  Manual *manual = ((Builder *)manual_builder)->get_manual_product((Builder *)manual_builder);
+  Manual *manual = manual_builder->get_product(manual_builder);
   // 根据建造者获取对象
   printf("\r\n get_product: %s | ", manual->name);
   print_manual(manual);

@@ -43,12 +43,7 @@ void set_manual_gpu_type(Builder *builder, int gpu_type)
   builder->manual->gpu_type = gpu_type;
 }
 
-Manual *get_manual_product(Builder *builder)
-{
-  return builder->manual;
-}
-
-Manual *get_product_by_manual_builder(ManualBuilder *builder)
+Manual *get_manual_product(ManualBuilder *builder)
 {
   return builder->manual;
 }
@@ -64,9 +59,8 @@ ManualBuilder *create_manual_builder()
   builder->get_name = &get_manual_name;
   builder->set_screen = &set_manual_screen;
   builder->set_gpu_type = &set_manual_gpu_type;
-  builder->get_manual_product = &get_manual_product;
   // 转成ManualBuilder对象
   ManualBuilder *manual_builder = (ManualBuilder *)builder;
-  manual_builder->get_product = &get_product_by_manual_builder;
+  manual_builder->get_product = &get_manual_product;
   return manual_builder;
 }

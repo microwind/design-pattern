@@ -7,6 +7,9 @@
     "utility": "c",
     "type_traits": "c",
     "typeinfo": "c",
-    "ratio": "c"
+    "ratio": "c",
+    "stdbool.h": "c",
+    "func.h": "c",
+    "vehicle.h": "c"
   }
 }

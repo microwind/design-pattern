@@ -24,25 +24,33 @@ typedef struct Builder
   char *(*get_name)(struct Builder *);
   void (*set_screen)(struct Builder *, int *);
   void (*set_gpu_type)(struct Builder *, int);
-  struct Phone *(*get_phone_product)(struct Builder *);
-  struct Manual *(*get_manual_product)(struct Builder *);
 } Builder;
 
-// 定义手机创建者结构体，聚合了Manual对象
+// 定义手机创建者结构体，与Builder对齐
 typedef struct PhoneBuilder
 {
   struct Phone *phone;
-  // get_product可以统一放在Builder
+  struct Manual *manual;
+  void (*reset)(struct Builder *);
+  void (*set_name)(struct Builder *, char *);
+  char *(*get_name)(struct Builder *);
+  void (*set_screen)(struct Builder *, int *);
+  void (*set_gpu_type)(struct Builder *, int);
   struct Phone *(*get_product)(struct PhoneBuilder *);
 } PhoneBuilder;
 
-// 定义手册创建者结构体，聚合了Phone对象
+// 定义手册创建者结构体，与Builder对齐
 typedef struct ManualBuilder
 {
+  struct Phone *phone;
   struct Manual *manual;
+  void (*reset)(struct Builder *);
+  void (*set_name)(struct Builder *, char *);
+  char *(*get_name)(struct Builder *);
+  void (*set_screen)(struct Builder *, int *);
+  void (*set_gpu_type)(struct Builder *, int);
   struct Manual *(*get_product)(struct ManualBuilder *);
 } ManualBuilder;
-
 
 // 定义指挥者，指挥Builder来创建对象，可以根据需要创建不同产品
 typedef struct Director

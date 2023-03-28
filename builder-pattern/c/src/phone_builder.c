@@ -43,12 +43,7 @@ void set_phone_gpu_type(Builder *builder, int gpu_type)
   builder->phone->gpu_type = gpu_type;
 }
 
-Phone *get_phone_product(Builder *builder)
-{
-  return builder->phone;
-}
-
-Phone *get_product_by_phone_builder(PhoneBuilder *builder)
+Phone *get_phone_product(PhoneBuilder *builder)
 {
   return builder->phone;
 }
@@ -64,9 +59,9 @@ PhoneBuilder *create_phone_builder()
   builder->get_name = &get_phone_name;
   builder->set_screen = &set_phone_screen;
   builder->set_gpu_type = &set_phone_gpu_type;
-  builder->get_phone_product = &get_phone_product;
+  // builder->get_phone_product = &get_phone_product;
   // 转成PhoneBuilder对象
   PhoneBuilder *phone_builder = (PhoneBuilder *)builder;
-  phone_builder->get_product = &get_product_by_phone_builder;
+  phone_builder->get_product = &get_phone_product;
   return phone_builder;
 }

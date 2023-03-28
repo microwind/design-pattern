@@ -5,10 +5,11 @@
 
 /*
  * 指挥者，负责指挥建造者建造产品，隔离需求
- * 指挥者通过建造者建造产品的部件
+ * 指挥者通过调用建造者提供部件函数来建造产品
+ * 以下通过PhoneBuilder和ManualBuilder可以创建不同厂商的手机
  */
 
-// 建造iphone
+// 建造iphone，支持手机或手册builder
 void build_iphone(Builder *builder)
 {
   // 初始化建造者

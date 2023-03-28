@@ -1,15 +1,12 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "func.h"
+#include "../func.h"
 
 /* Van对象函数实现 */
-void van_run()
+void van_run(Vehicle *vehicle)
 {
-  printf("van_run(). \r\n");
+  printf("\r\n van_run() [name=%s]", vehicle->name);
 }
 
-/* 创建具体处理器的函数 */
+/* 创建对象构造函数 */
 Van *van_constructor(char *name)
 {
   Van *van = (Van *)malloc(sizeof(Van));
