@@ -10,6 +10,8 @@
     "ratio": "c",
     "stdbool.h": "c",
     "func.h": "c",
-    "vehicle.h": "c"
+    "vehicle.h": "c",
+    "queue": "c",
+    "stack": "c"
   }
 }
