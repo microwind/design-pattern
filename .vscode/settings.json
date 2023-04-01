@@ -12,6 +12,7 @@
     "func.h": "c",
     "vehicle.h": "c",
     "queue": "c",
-    "stack": "c"
+    "stack": "c",
+    "filesystem": "c"
   }
 }

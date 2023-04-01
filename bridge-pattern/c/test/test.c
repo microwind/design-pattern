@@ -19,6 +19,9 @@ int main(void)
   // 调用具体类的扩充方法
   shape->draw_done(shape);
 
+  free(shape);
+  free(draw_style_a);
+
   /*********************** 分割线 ******************************************/
 
   // 用具体对象声明对象，绑定具体的工具，传递的类型与抽象声明时的不同
@@ -30,12 +33,15 @@ int main(void)
   // 调用具体类的扩充方法
   shape2->draw_done(shape2);
 
+  free(shape2);
+  free(draw_style_b);
+
   return 0;
 }
 
 /**
 jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out                
+jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  refined_shape_constructor() [name=shape1]
@@ -47,5 +53,5 @@ test start:
  RefinedShape::set_draw_tool() [name=DrawStyleB1
  RefinedShape::draw() [x=11 y=22 radius=33]
  DrawStyleB::draw_style()
- RefinedShape::draw_done(), 执行的DrawTool是: DrawStyleB1% 
+ RefinedShape::draw_done(), 执行的DrawTool是: DrawStyleB1%
  */
