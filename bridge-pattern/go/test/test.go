@@ -44,12 +44,12 @@ func main() {
 jarry@jarrys-MacBook-Pro go % go build src/*.go
 jarry@jarrys-MacBook-Pro go % go run test/test.go
 test start:
-Circle::SetDrawTool() [drawTool.Name=DrawStyleA1]
-Circle::Draw() [x=10 y=20 radius=50]
+RefinedShape::SetDrawTool() [drawTool.Name=DrawStyleA1]
+RefinedShape::Draw() [x=10 y=20 radius=50]
 DrawStyleA::DrawStyle()
 RefinedShape::DrawDone(), 执行的DrawTool是:  &{DrawStyleA1}
-Circle::SetDrawTool() [drawTool.Name=DrawStyleB1]
-Circle::Draw() [x=11 y=22 radius=33]
+RefinedShape::SetDrawTool() [drawTool.Name=DrawStyleB1]
+RefinedShape::Draw() [x=11 y=22 radius=33]
 DrawStyleB::DrawStyle()
 RefinedShape::DrawDone(), 执行的DrawTool是:  &{DrawStyleB1}
 */

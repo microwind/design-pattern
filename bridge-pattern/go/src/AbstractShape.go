@@ -1,6 +1,6 @@
 package src
 
-// 定义抽象形状类，关联图形操作接口，相当于桥接
+// 定义抽象的Shape接口，关联具体的DrawTool操作接口，桥接具体的Shape实现与DrawTool实现
 type AbstractShape interface {
   SetDrawTool(drawTool DrawTool)
   GetDrawTool() DrawTool
