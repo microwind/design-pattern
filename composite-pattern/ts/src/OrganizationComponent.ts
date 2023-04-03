@@ -13,7 +13,7 @@ export abstract class OrganizationComponent {
   remove(component: OrganizationComponent) {
     // 根据名称或删除成员
     for (let i = 0, l = this.children.length; i < l; i++) {
-      if (this.children[i].getName() === component.getName()) {
+      if (this.children[i] == component) {
         this.children.splice(i, 1)
         break
       }

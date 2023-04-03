@@ -13,9 +13,10 @@ class OrganizationComponent:
         self.children.append(component)
 
     def remove(self, component):
-        # 根据名称或删除成员
         for i in range(len(self.children)):
-            if (self.children[i].get_name() == component.get_name()):
+            # 根据名称或直接删除成员
+            if (self.children[i] == component):
+            # if (self.children[i].get_name() == component.get_name()):
                 del self.children[i]
                 break
 

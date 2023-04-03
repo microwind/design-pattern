@@ -13,11 +13,10 @@ func (d *DepartmentComposite) Add(component OrganizationComponent) {
 }
 
 func (d *DepartmentComposite) Remove(component OrganizationComponent) {
-  // 根据名称或删除成员
+  // 删除组件
   for i := 0; i < len(d.children); i++ {
     com := d.children[i]
-    if com.GetName() == component.GetName() {
-      // 名称相同则从切片移除掉
+    if com == component {
       d.children = append(d.children[:i], d.children[i+1:]...)
       break
     }

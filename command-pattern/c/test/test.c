@@ -35,6 +35,12 @@ int main(void)
     invoker->take_order(invoker, (Command *)buy_command2);
     invoker->execute_orders(invoker);
 
+    free(stocker_receiver1);
+    free(buy_command);
+    free(invoker);
+    free(stock_receiver2);
+    free(buy_command2);
+
     return 0;
 }
 

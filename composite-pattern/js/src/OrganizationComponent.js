@@ -9,9 +9,10 @@ export class OrganizationComponent {
   }
 
   remove(component) {
-    // 根据名称或删除成员
     for (let i = 0, l = this.children.length; i < l; i++) {
-      if (this.children[i].getName() === component.getName()) {
+      if (this.children[i] === component) {
+      // 根据名称id或直接比较对象
+      // if (this.children[i].getName() === component.getName()) {
         this.children.splice(i, 1)
         break
       }

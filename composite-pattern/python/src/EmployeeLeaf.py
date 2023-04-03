@@ -9,8 +9,9 @@ from src.OrganizationComponent import OrganizationComponent
 # 实现部件的叶子节点，叶子节点不能再含有子节点
 class EmployeeLeaf(OrganizationComponent):
     def __init__(self, name):
-        # OrganizationComponent.__init__(self, name)
-        super(EmployeeLeaf, self).__init__(name)
+        OrganizationComponent.__init__(self, name)
+        # python3支持调用父类方式
+        # super(EmployeeLeaf, self).__init__(name)
 
     # 叶子节点不能再增加内容
     def add(self):

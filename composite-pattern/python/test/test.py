@@ -63,10 +63,12 @@ if __name__ == '__main__':
     print("test start:")
     test()
 '''
-jarry@jarrys-MacBook-Pro python % python -V
+jarry@jarrys-MacBook-Pro python % python -V           
 Python 2.7.16
+jarry@jarrys-MacBook-Pro python % python3 -V
+Python 3.8.10
 
-jarry@jarrys-MacBook-Pro python % python test/test.py
+jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test start:
 CompanyComposite::operation() prepare
 CompanyComposite::operation() 西天旅游有限公司        
