@@ -13,6 +13,20 @@
     "vehicle.h": "c",
     "queue": "c",
     "stack": "c",
-    "filesystem": "c"
+    "filesystem": "c",
+    "__functional_base": "c",
+    "__functional_base_03": "c",
+    "__hash_table": "c",
+    "__tuple": "c",
+    "algorithm": "c",
+    "array": "c",
+    "chrono": "c",
+    "functional": "c",
+    "iterator": "c",
+    "limits": "c",
+    "tuple": "c",
+    "istream": "c",
+    "ostream": "c",
+    "__locale": "c"
   }
 }

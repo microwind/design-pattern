@@ -30,11 +30,11 @@ class Facade():
         self.file_module.read_file()
         self.encode_module.encoding()
 
-    def getfile_module():
+    def getfile_module(self):
         return self.file_module
 
-    def getnetwork_module():
+    def getnetwork_module(self):
         return self.network_module
 
-    def getencode_module():
+    def getencode_module(self):
         return self.encode_module

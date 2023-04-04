@@ -1,4 +1,4 @@
-# 【装饰器设计模式详解】Java/JS/Go/Python/TS不同语言实现
+# 【装饰器设计模式详解】C/Java/JS/Go/Python/TS不同语言实现
 
 # 简介
 装饰器模式（Decorator Pattern）是一种结构型设计模式。将对象放入到一个特殊封装的对象中，为这个对象绑定新的行为，具备新的能力，同时又不改变其原有结构。
@@ -18,7 +18,7 @@
 # UML
 <img src="../docs/uml/decorator-pattern.png">
 
-# 代码
+# Java代码
 
 ## 基础形状接口
 ```java
@@ -138,5 +138,121 @@ public class ShadowShapeDecorator extends ShapeDecorator {
     shadowSquare.draw();
 ```
 
+# Go代码
+
+## 基础形状接口
+```go
+// Shape.go 基础形状接口
+type Shape interface {
+  Draw()
+  GetName() string
+}
+
+```
+
+## 具体形状实现
+```go
+// Circle.go 具体形状实现了基础形状接口
+type Circle struct {
+}
+
+func (c *Circle) Draw() {
+  fmt.Println("Circle::Draw()")
+}
+
+func (c *Circle) GetName() string {
+  return "Circle"
+}
+
+```
+
+```go
+// Square.go 具体形状实现了基础形状接口
+type Square struct {
+}
+
+func (c *Square) Draw() {
+  fmt.Println("Square::Draw()")
+}
+
+func (c *Square) GetName() string {
+  return "Square"
+}
+```
+
+## 抽象装饰器
+```go
+// ShapeDecorator.go 抽象装饰类，是否实现Shape可选
+type ShapeDecorator interface {
+  Draw()
+}
+```
+
+## 具体装饰器
+```go
+// RedShapeDecorator.go 具体装饰器1
+type RedShapeDecorator struct {
+  DecoratedShape Shape
+}
+
+func (r *RedShapeDecorator) Draw() {
+  r.DecoratedShape.Draw()
+  r.SetRedColor(r.DecoratedShape)
+}
+
+func (r *RedShapeDecorator) SetRedColor(decoratedShape Shape) {
+  fmt.Println("RedShapeDecorator::setRedColor() " + decoratedShape.GetName())
+}
+```
+
+```go
+// ShadowShapeDecorator.go 具体装饰器2
+type ShadowShapeDecorator struct {
+  DecoratedShape Shape
+}
+
+func (s *ShadowShapeDecorator) Draw() {
+  // 装饰器根据需要是否调用形状的Draw方法
+  // s.DecoratedShape.Draw()
+  s.SetShadow(s.DecoratedShape)
+}
+
+func (s *ShadowShapeDecorator) SetShadow(decoratedShape Shape) {
+  fmt.Println("ShadowShapeDecorator::SetShadow() " + decoratedShape.GetName())
+}
+```
+
+## 测试调用
+```go
+  /**
+   * 装饰器模式是将一个对象放到一个装饰器对象中，执行装饰器类里的方法时，对象的行为能力得到增强。
+   * 先声明具体对象，然后放到装饰器，得到一个带有装饰器的新对象，该对象具备了新的能力。
+   */
+
+  // 声明形状
+  var circle = new(src.Circle)
+  var square = new(src.Square)
+
+  // 增加红色装饰
+  var redCircle = &src.RedShapeDecorator{
+    DecoratedShape: circle,
+  }
+  var redSquare = &src.RedShapeDecorator{
+    DecoratedShape: square,
+  }
+  circle.Draw()
+  redCircle.Draw()
+  redSquare.Draw()
+
+  // 增加影子装饰
+  var shadowCircle = &src.ShadowShapeDecorator{
+    DecoratedShape: circle,
+  }
+  var shadowSquare = &src.ShadowShapeDecorator{
+    DecoratedShape: square,
+  }
+  shadowCircle.Draw()
+  shadowSquare.Draw()
+```
 ## 更多语言版本
 不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
