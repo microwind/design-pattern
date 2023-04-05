@@ -9,9 +9,9 @@ from src.Criteria import Criteria
 class CriteriaMale(Criteria):
 
     def filter(self, persons):
-        malePersons = []
+        male_persons = []
         for person in persons:
             if person.get_gender().upper() == 'MALE':
-                malePersons.append(person)
+                male_persons.append(person)
 
-        return malePersons
+        return male_persons

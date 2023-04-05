@@ -9,9 +9,9 @@ from src.Criteria import Criteria
 class CriteriaSingle(Criteria):
 
     def filter(self, persons):
-        singlePersons = []
+        single_persons = []
         for person in persons:
             if person.get_status().upper() == 'SINGLE':
-                singlePersons.append(person)
+                single_persons.append(person)
 
-        return singlePersons
+        return single_persons

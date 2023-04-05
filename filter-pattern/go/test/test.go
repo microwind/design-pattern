@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 func printPersons(persons []*src.Person) {
@@ -18,8 +18,7 @@ func main() {
 
   /**
    * 过滤器模式就是不断组合过滤条件，然后层层过滤的模式
-   * 这里是简单演示，用List筛选来模拟过滤，实际例子有各种数据结构。
-   * JS 数组虽然有filter本身非常方便，但这种层层组合过滤的模式还是有意义的。
+   * 这里是简单演示，用数组切片筛选来模拟过滤，实际例子有各种数据结构。
    */
 
   // 定义Person数组切片
@@ -74,7 +73,6 @@ jarry@jarrys-MacBook-Pro js % npm run test
 // or node execution
 jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
-Males:
 Males:
 Person : [ Name : 王男单, Gender : Male, Marital Status : Single ]
 Person : [ Name : 李男婚, Gender : Male, Marital Status : Married ]

@@ -2,7 +2,7 @@
 
 超过23种经典设计模式源码详解，结合实际场景，充分注释说明，每一行代码都经过检验，确保可靠。
 
-用不同语言来实现，包括Java/JS/Python/TypeScript/Go等。
+用不同语言来实现，包括C/Java/JS/Python/TypeScript/Go等。
     
 Including over 23 source code examples of classic design patterns, which are fully annotated in combination with actual scenarios. Every line of code has been verified to ensure reliability.
 

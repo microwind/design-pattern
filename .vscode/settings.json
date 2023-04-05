@@ -27,6 +27,11 @@
     "tuple": "c",
     "istream": "c",
     "ostream": "c",
-    "__locale": "c"
+    "__locale": "c",
+    "__bit_reference": "c",
+    "bitset": "c",
+    "unordered_map": "c",
+    "string": "c",
+    "string_view": "c"
   }
 }
