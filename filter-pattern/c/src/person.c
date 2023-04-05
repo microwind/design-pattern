@@ -1,17 +1,14 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "func.h"
 
 /* Person实体对象，用来做过滤 */
 
 // 是否被包含在对象数组中
-bool person_is_contained(Person *person, Person **persons)
+bool person_is_contained(Person *person, FilterPersons *filter)
 {
-  int persons_size = PERSON_DATA_SIZE;
+  int persons_size = filter->length;
   for (int i = 0; i < persons_size; i++)
   {
-    if (persons[i] == person)
+    if (filter->persons[i] == person)
     {
       return true;
     }

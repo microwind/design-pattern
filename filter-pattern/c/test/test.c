@@ -1,19 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "../src/func.h"
 
-void print_persons(Person *persons[], int size)
+void print_persons(FilterPersons *filter)
 {
-    if (persons == NULL)
-        return;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < filter->length; i++)
     {
-        if (persons[i] == NULL)
-        {
-            break;
-        }
-        char *result = persons[i]->to_string(persons[i]);
+        char *result = filter->persons[i]->to_string(filter->persons[i]);
         printf("\r\n %s", result);
         free(result);
     }
@@ -27,8 +18,7 @@ int main(void)
      * 这里是简单演示，用List筛选来模拟过滤，实际例子有各种数据结构。
      */
 
-    PERSON_DATA_SIZE = 6;
-    int data_size = PERSON_DATA_SIZE;
+    int data_size = 6;
     // 定义一些数据
     char data[6][3][100] = {
         {"王男单", "Male", "Single"},
@@ -40,7 +30,6 @@ int main(void)
 
     // 定义persons数组
     Person *persons[data_size];
-    // Person **persons = (Person **)calloc(data_size, sizeof(Person *));
     for (int i = 0; i < data_size; i++)
     {
         char *name = data[i][0];
@@ -50,9 +39,10 @@ int main(void)
         persons[i] = person;
     }
 
-    // 没法计算得到指针数组长度，定义全局数组长度
-    // printf("size:%zd", sizeof(persons) / sizeof(persons[0]));
-    // print_persons(persons, data_size);
+    // 构建查询对象
+    FilterPersons *filter_persons = (FilterPersons *)malloc(sizeof(FilterPersons *));
+    filter_persons->length = data_size;
+    filter_persons->persons = persons;
 
     // 声明属性过滤条件，可用Criteria或具体条件声明
     Criteria *criteria_male = (Criteria *)criteria_male_constructor();
@@ -65,29 +55,37 @@ int main(void)
 
     // 查询男性
     printf("\n Males: ");
-    print_persons(((CriteriaMale *)criteria_male)->filter(persons, criteria_male), data_size);
+    print_persons(((CriteriaMale *)criteria_male)->filter(filter_persons, criteria_male));
 
     // 查询女性
     printf("\nFemales: ");
-    print_persons(criteria_female->filter(persons, (Criteria *)criteria_female), data_size);
+    print_persons(criteria_female->filter(filter_persons, (Criteria *)criteria_female));
 
     // 嵌套查询女性且单身
     printf("\nFemales and Single: ");
-    Person **females = criteria_female->filter(persons, (Criteria *)criteria_female);
-    print_persons(((CriteriaSingle *)criteria_single)->filter(females, criteria_single), data_size);
+    FilterPersons *females = criteria_female->filter(filter_persons, (Criteria *)criteria_female);
+    print_persons(((CriteriaSingle *)criteria_single)->filter(females, criteria_single));
 
     // 查询男性男性单身
     printf("\nSingle Males: ");
-    // 逐个条件过滤
-    // Person **single_males = ((CriteriaMale *)criteria_male)->filter(persons, criteria_male);
-    // print_persons(((CriteriaSingle *)criteria_single)->filter(single_males, criteria_single), data_size);
+    // 逐个条件过滤，与下面AndCriteria效果相同
+    FilterPersons *single_males = ((CriteriaMale *)criteria_male)->filter(filter_persons, criteria_male);
+    print_persons(((CriteriaSingle *)criteria_single)->filter(single_males, criteria_single));
+    printf("\nSingle Males: ");
     // 通过AndCriteria来过滤
-    Person **single_males = ((AndCriteria *)single_male)->filter(persons, single_male);
-    print_persons(single_males, data_size);
+    FilterPersons *single_males2 = ((AndCriteria *)single_male)->filter(filter_persons, single_male);
+    print_persons(single_males2);
 
     // 查询女性或单身
     printf("\nSingle Or Females: ");
-    print_persons(single_or_female->filter(persons, (Criteria *)single_or_female), data_size);
+    print_persons(single_or_female->filter(filter_persons, (Criteria *)single_or_female));
+
+    free(filter_persons);
+    free(criteria_male);
+    free(criteria_female);
+    free(criteria_single);
+    free(single_male);
+    free(single_or_female);
 
     return 0;
 }
@@ -97,24 +95,28 @@ jarry@jarrys-MacBook-Pro c % gcc test/test.c src*.c
 jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
- Males: 
+ Males:
  Person :[ name :王男单, gender : Male, status : Single]
  Person :[ name :李男婚, gender : Male, status : Married]
  Person :[ name :刘男单, gender : Male, status : Single]
  Person :[ name :杨男单, gender : Male, status : Single]
-Females: 
+Females:
  Person :[ name :张女婚, gender : Female, status : Married]
  Person :[ name :赵女单, gender : Female, status : Single]
-Females and Single: 
+Females and Single:
  Person :[ name :赵女单, gender : Female, status : Single]
-Single Males: 
+Single Males:
  Person :[ name :王男单, gender : Male, status : Single]
  Person :[ name :刘男单, gender : Male, status : Single]
  Person :[ name :杨男单, gender : Male, status : Single]
-Single Or Females: 
+Single Males:
+ Person :[ name :王男单, gender : Male, status : Single]
+ Person :[ name :刘男单, gender : Male, status : Single]
+ Person :[ name :杨男单, gender : Male, status : Single]
+Single Or Females:
  Person :[ name :王男单, gender : Male, status : Single]
  Person :[ name :赵女单, gender : Female, status : Single]
  Person :[ name :刘男单, gender : Male, status : Single]
  Person :[ name :杨男单, gender : Male, status : Single]
- Person :[ name :张女婚, gender : Female, status : Married]%  
+ Person :[ name :张女婚, gender : Female, status : Married]%
  */

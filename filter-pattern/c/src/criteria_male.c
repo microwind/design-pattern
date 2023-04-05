@@ -1,22 +1,19 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "func.h"
 
 // 根据是否男性进行过滤
-Person **criteria_male_filter(Person **persons, Criteria *criteria)
+FilterPersons *criteria_male_filter(FilterPersons *filter, Criteria *criteria)
 {
-  int person_size = PERSON_DATA_SIZE;
+  int person_size = filter->length;
   int *male_index_list = (int *)malloc(person_size * sizeof(int));
   int count = 0;
   char *gender;
   for (int i = 0; i < person_size; i++)
   {
-    if (persons[i] == NULL)
+    if (filter->persons[i] == NULL)
     {
       break;
     }
-    gender = str_tolower(persons[i]->gender);
+    gender = str_tolower(filter->persons[i]->gender);
     if (strcmp(gender, "male") == 0)
     {
       // 记录下所有符合条件的person下标
@@ -31,9 +28,12 @@ Person **criteria_male_filter(Person **persons, Criteria *criteria)
   Person **male_persons = (Person **)calloc(count, sizeof(Person));
   for (int i = 0; i < count; i++)
   {
-    male_persons[i] = persons[male_index_list[i]];
+    male_persons[i] = filter->persons[male_index_list[i]];
   }
-  return male_persons;
+  FilterPersons *male_filter = (FilterPersons *)calloc(1, sizeof(FilterPersons));
+  male_filter->length = count;
+  male_filter->persons = male_persons;
+  return male_filter;
 }
 
 CriteriaMale *criteria_male_constructor()

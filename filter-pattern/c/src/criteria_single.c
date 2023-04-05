@@ -1,22 +1,19 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "func.h"
 
 // 根据是否单身进行过滤
-Person **criteria_single_filter(Person **persons, Criteria *criteria)
+FilterPersons *criteria_single_filter(FilterPersons *filter, Criteria *criteria)
 {
-  int person_size = PERSON_DATA_SIZE;
+  int person_size = filter->length;
   int *single_index_list = (int *)malloc(person_size * sizeof(int));
   int count = 0;
   char *status;
   for (int i = 0; i < person_size; i++)
   {
-    if (persons[i] == NULL)
+    if (filter->persons[i] == NULL)
     {
       break;
     }
-    status = str_tolower(persons[i]->status);
+    status = str_tolower(filter->persons[i]->status);
     if (strcmp(status, "single") == 0)
     {
       // 记录下所有符合条件的person下标
@@ -31,9 +28,13 @@ Person **criteria_single_filter(Person **persons, Criteria *criteria)
   Person **single_persons = (Person **)calloc(count, sizeof(Person));
   for (int i = 0; i < count; i++)
   {
-    single_persons[i] = persons[single_index_list[i]];
+    single_persons[i] = filter->persons[single_index_list[i]];
   }
-  return single_persons;
+
+  FilterPersons *single_filter = (FilterPersons *)calloc(1, sizeof(FilterPersons));
+  single_filter->length = count;
+  single_filter->persons = single_persons;
+  return single_filter;
 }
 
 CriteriaSingle *criteria_single_constructor()

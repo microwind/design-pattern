@@ -1,6 +1,3 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "func.h"
 
 /* Criterial是条件的抽象接口，聚合要过滤的对象集合 */
