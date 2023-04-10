@@ -32,6 +32,8 @@
     "bitset": "c",
     "unordered_map": "c",
     "string": "c",
-    "string_view": "c"
+    "string_view": "c",
+    "iosfwd": "c",
+    "locale": "c"
   }
 }

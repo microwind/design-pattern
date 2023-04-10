@@ -16,5 +16,5 @@ func (s *SubtractExpression) Init(exprOne Expression, exprTwo Expression) {
 // 覆盖表达式，执行context对象
 func (s *SubtractExpression) Interpret(context Context) int {
   fmt.Println("SubtractExpression::Interpret() [context = Context]")
-  return s.exprOne.Interpret(context) + s.exprTwo.Interpret(context)
+  return s.exprOne.Interpret(context) - s.exprTwo.Interpret(context)
 }

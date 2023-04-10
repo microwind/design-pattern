@@ -6,7 +6,7 @@ import "fmt"
 type FlyweightFactory struct {
 }
 
-// 定义公共map用作共享池子
+// 定义公共map用作共享池子，类似于静态对象，全局共用
 var FlyweightFactoryPool = make(map[string]Flyweight)
 
 // 享元对象实例化函数，仅内部调用
