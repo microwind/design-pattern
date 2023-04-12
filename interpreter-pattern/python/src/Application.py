@@ -73,7 +73,7 @@ class Application():
         var_two = VarExpression('two')
         var_three = VarExpression('three')
 
-        # 再构建计算步骤，前两个用减法
+        # 再构建计算步骤，前两个用加法
         result = AddExpression(var_one, var_two)
         result = SubtractExpression(result, var_three)
         # 第3个用减法

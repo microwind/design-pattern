@@ -2,9 +2,7 @@ package src
 
 // 构建可执行环境上下文
 type Context struct {
-  key   string
-  value int
-  Map   map[string]int
+  Map map[string]int
 }
 
 func (c *Context) Init(key string, value int) {

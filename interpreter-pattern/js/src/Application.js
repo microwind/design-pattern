@@ -70,7 +70,7 @@ export class Application {
     const varTwo = new VarExpression('two')
     const varThree = new VarExpression('three')
 
-    // 再构建计算步骤，前两个用减法
+    // 再构建计算步骤，前两个用加法
     let result = new AddExpression(varOne, varTwo)
     result = new SubtractExpression(result, varThree)
     // 第3个用减法

@@ -14,13 +14,14 @@ Flyweight *get_factory(char *name)
 {
 
   // 定义公共map用作共享池子，全局共用
+  int number = 100;
   if (flyweight_factory_member_pool == NULL)
   {
-    flyweight_factory_member_pool = (Flyweight **)calloc(100, sizeof(Flyweight));
+    flyweight_factory_member_pool = (Flyweight **)calloc(number, sizeof(Flyweight));
   }
   if (flyweight_factory_name_pool == NULL)
   {
-    flyweight_factory_name_pool = (char **)calloc(100, sizeof(char));
+    flyweight_factory_name_pool = (char **)calloc(number, sizeof(char));
   }
 
   Flyweight **flyweight_pool = flyweight_factory_member_pool;

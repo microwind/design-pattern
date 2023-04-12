@@ -34,6 +34,7 @@
     "string": "c",
     "string_view": "c",
     "iosfwd": "c",
-    "locale": "c"
+    "locale": "c",
+    "*.tcc": "c"
   }
 }

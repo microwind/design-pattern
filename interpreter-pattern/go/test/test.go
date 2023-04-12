@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 // main包下的main入口方法
@@ -38,5 +38,5 @@ AddExpression::interpret() [context = Context]
 result2:  15
 SubtractExpression::Interpret() [context = Context]
 AddExpression::interpret() [context = Context]
-result3:  12
+result3:  2
 */
