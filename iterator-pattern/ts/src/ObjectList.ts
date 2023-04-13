@@ -3,7 +3,7 @@ import { ObjectIterator } from './ObjectIterator.js'
 
 // 对象列表，是一种数据容器，可以创建一个迭代器
 export class ObjectList implements Container {
-  objects: string[]
+  objects: Object[]
   constructor() {
     this.objects = ['Google', 'Apple', 'Amazon']
   }
@@ -16,7 +16,7 @@ export class ObjectList implements Container {
     return new ObjectIterator(this)
   }
 
-  setObjects(objects: string[]) {
+  setObjects(objects: Object[]) {
     this.objects = objects
   }
 

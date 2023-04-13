@@ -2,7 +2,7 @@ package src;
 
 // 对象列表，是一种数据容器，可以创建一个迭代器
 public class ObjectList implements Container {
-   private Object[] objects = { "Google", "Apple", "Amazon" };
+   private Object[] objects;
 
    @Override
    public Iterator createIterator() {

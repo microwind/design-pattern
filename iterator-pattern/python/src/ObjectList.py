@@ -18,7 +18,7 @@ class ObjectList(Container):
     def __init__(self):
         Container.__init__(self)
         # 默认数据
-        self.objects = ['Google', 'Apple', 'Amazon']
+        self.objects = []
 
     def createIterator(self):
         print(

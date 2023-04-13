@@ -23,6 +23,7 @@ public class Test {
 
     // while循环迭代对象
     Iterator iter2 = objectList.createIterator();
+    objectList.setObjects(new Integer[] { 3, 5, 7, 9, 11 });
     while (iter2.hasNext()) {
       System.out.println(iter2.next());
     }
@@ -49,10 +50,9 @@ public class Test {
  * objectList[4] = Jerry
  * objectList[5] = Joey
  * src.ObjectList::createIterator() [获取迭代器 ObjectIterator]
- * Thomas
- * Merry
- * Jack
- * Tony
- * Jerry
- * Joey
+ * 3
+ * 5
+ * 7
+ * 9
+ * 11
  */

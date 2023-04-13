@@ -18,6 +18,7 @@ export function test() {
 
   // while循环迭代对象
   const iter2 = objectList.createIterator()
+  objectList.setObjects([3, 5, 7, 9, 11])
   while (iter2.hasNext()) {
     console.log(iter2.next())
   }
@@ -43,10 +44,9 @@ objectList[3] = Tony
 objectList[4] = Jerry
 objectList[5] = Joey
 ObjectList::createIterator() [获取迭代器 ObjectIterator]
-Thomas
-Merry
-Jack
-Tony
-Jerry
-Joey
+3
+5
+7
+9
+11
 */
