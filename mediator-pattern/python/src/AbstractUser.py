@@ -18,19 +18,19 @@ class AbstractUser:
 
     def send(self, message):
         print('{0}:send() [user: {1} message: {2}]'.format(
-            type(self).__name__, self.get_name(), message))
+            self.__class__.__name__, self.get_name(), message))
         # 通过中介者来中转消息
-        self.room_mediator.send(self.get_name(), message)
+        self.room_mediator.send(self, message)
 
     def send_to(self, to, message):
-        print('{0}:send_to() [user: {1} message: {2} to: {3}]'.format(type(
-            self).__name__, self.get_name(), message, to))
+        print('{0}:send_to() [user: {1} message: {2} to: {3}]'.format(
+            self.__class__.__name__, self.get_name(), message, to.get_name()))
         # 通过中介者来中转消息
-        self.room_mediator.send_to(self.get_name(), to, message)
+        self.room_mediator.send_to(self, to, message)
 
     def recieve(self, sender, message):
-        print('{0}:recieve() [user: {1} message: {2} from: {3}]'.format(type(
-            self).__name__, self.get_name(), message, sender))
+        print('{0}:recieve() [user: {1} message: {2} from: {3}]'.format(
+            self.__class__.__name__, self.get_name(), message, sender.get_name()))
 
     def get_name(self):
         return self.name

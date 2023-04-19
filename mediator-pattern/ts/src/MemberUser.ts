@@ -11,24 +11,24 @@ export class MemberUser extends AbstractUser {
       `MemberUser execute send() [user: ${this.getName()} message: ${message} ]`
     )
     // 通过中介者来中转消息
-    this.roomMediator.send(this.getName(), message)
+    this.roomMediator.send(this, message)
   }
 
-  override sendTo(to: string, message: string) {
+  override sendTo(to: AbstractUser, message: string) {
     console.log(
       `${
         this.constructor.name
-      }:sendTo() [user: ${this.getName()} message: ${message} to: ${to}]`
+      }:sendTo() [user: ${this.getName()} message: ${message} to: ${to.getName()}]`
     )
     // 通过中介者来中转消息
-    this.roomMediator.sendTo(this.getName(), to, message)
+    this.roomMediator.sendTo(this, to, message)
   }
 
-  override recieve(from: string, message: string) {
+  override recieve(from: AbstractUser, message: string) {
     console.log(
       `${
         this.constructor.name
-      }:recieve() [user: ${this.getName()} message: ${message} from: ${from}]`
+      }:recieve() [user: ${this.getName()} message: ${message} from: ${from.getName()}]`
     )
   }
 }

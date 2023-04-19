@@ -11,19 +11,18 @@ public class CommonUser extends AbstractUser {
    public void send(String message) {
       System.out.println("CommonUser:send() [user: " + this.getName() + " message:" + message + "]");
       // 通过中介者来中转消息
-      this.roomMediator.send(this.getName(), message);
+      this.roomMediator.send(this, message);
    }
 
    @Override
-   public void sendTo(String to, String message) {
-      System.out.println("CommonUser:sendTo() [user: " + this.getName() + " message:" + message + " to: " + to + "]");
+   public void sendTo(AbstractUser to, String message) {
+      System.out.println("CommonUser:sendTo() [user: " + this.getName() + " message:" + message + " to: " + to.getName() + "]");
       // 通过中介者来中转消息
-      this.roomMediator.sendTo(this.getName(), to, message);
+      this.roomMediator.sendTo(this, to, message);
    }
 
    @Override
-   public void recieve(String from, String message) {
-      System.out.println("CommonUser:recieve() [user: " + this.getName() + " message: " + message + " from:" + from + "]");
+   public void recieve(AbstractUser from, String message) {
+      System.out.println("CommonUser:recieve() [user: " + this.getName() + " message: " + message + " from:" + from.getName() + "]");
    }
-
 }

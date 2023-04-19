@@ -4,6 +4,6 @@ import { AbstractUser } from './AbstractUser.js'
 export interface RoomMediator {
   users: AbstractUser[]
   register(user: AbstractUser): void
-  sendTo(from: string, to: string, message: string): void
-  send(from: string, message: string): void
+  sendTo(from: AbstractUser, to: AbstractUser, message: string): void
+  send(from: AbstractUser, message: string): void
 }

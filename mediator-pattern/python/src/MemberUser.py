@@ -17,4 +17,4 @@ class MemberUser(AbstractUser):
         print('MemberUser call:send() [user: {1} message: {2}]'.format(type(
             self).name, self.get_name(), message))
        # 通过中介者来中转消息
-        self.room_mediator.send(this.get_name(), message)
+        self.room_mediator.send(self, message)

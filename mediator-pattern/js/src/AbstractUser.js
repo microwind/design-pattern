@@ -13,20 +13,20 @@ export class AbstractUser {
       `${this.constructor.name}:send() [user: ${this.getName()} message: ${message} ]`
     )
     // 通过中介者来中转消息
-    this.roomMediator.send(this.getName(), message)
+    this.roomMediator.send(this, message)
   }
 
   sendTo(to, message) {
     console.log(
-      `${this.constructor.name}:sendTo() [user: ${this.getName()} message: ${message} to: ${to}]`
+      `${this.constructor.name}:sendTo() [user: ${this.getName()} message: ${message} to: ${to.getName()}]`
     )
     // 通过中介者来中转消息
-    this.roomMediator.sendTo(this.getName(), to, message)
+    this.roomMediator.sendTo(this, to, message)
   }
 
   recieve(from, message) {
     console.log(
-      `${this.constructor.name}:recieve() [user: ${this.getName()} message: ${message} from: ${from}]`
+      `${this.constructor.name}:recieve() [user: ${this.getName()} message: ${message} from: ${from.getName()}]`
     )
   }
 

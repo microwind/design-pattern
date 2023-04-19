@@ -16,9 +16,9 @@ public abstract class AbstractUser {
 
    public abstract void send(String message);
 
-   public abstract void sendTo(String to, String message);
+   public abstract void sendTo(AbstractUser to, String message);
 
-   public abstract void recieve(String from, String message);
+   public abstract void recieve(AbstractUser from, String message);
 
    public String getName() {
       return this.name;

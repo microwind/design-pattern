@@ -4,7 +4,7 @@ package src
 type AbstractUser interface {
   SetRoomMediator(roomMediator RoomMediator)
   Send(message string)
-  SendTo(to string, message string)
-  Recieve(from string, message string)
+  SendTo(to AbstractUser, message string)
+  Recieve(from AbstractUser, message string)
   GetName() string
 }

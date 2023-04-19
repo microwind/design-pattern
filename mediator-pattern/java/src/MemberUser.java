@@ -10,21 +10,20 @@ public class MemberUser extends AbstractUser {
    public void send(String message) {
       System.out.println("MemberUser:send() [user: " + this.getName() + " message:" + message + "]");
       // 通过中介者来中转消息
-      this.roomMediator.send(this.getName(), message);
+      this.roomMediator.send(this, message);
    }
 
    @Override
-   public void sendTo(String to, String message) {
+   public void sendTo(AbstractUser to, String message) {
       System.out
-            .println("MemberUser:sendTo() [user: " + this.getName() + " message:" + message + " to: " + to + "]");
+            .println("MemberUser:sendTo() [user: " + this.getName() + " message:" + message + " to: " + to.getName() + "]");
       // 通过中介者来中转消息
-      this.roomMediator.sendTo(this.getName(), to, message);
+      this.roomMediator.sendTo(this, to, message);
    }
 
    @Override
-   public void recieve(String from, String message) {
+   public void recieve(AbstractUser from, String message) {
       System.out.println("MemberUser:recieve() [user: " + this.getName() + " message: " + message
-            + " from user:" + from + "]");
+            + " from user:" + from.getName() + "]");
    }
-
 }

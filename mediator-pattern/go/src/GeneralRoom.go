@@ -16,19 +16,15 @@ func (g *GeneralRoom) Register(user AbstractUser) {
 }
 
 // 作为中介者通知给某个用户
-func (g *GeneralRoom) SendTo(from string, to string, message string) {
-  fmt.Println(">>GeneralRoom::SendTo() [from: " + from + " message: " + message + " to: " + to + "]")
-  for _, user := range g.users {
-    // 定向发送给某个用户
-    if user.GetName() == to {
-      user.Recieve(from, message)
-    }
-  }
+func (g *GeneralRoom) SendTo(from AbstractUser, to AbstractUser, message string) {
+  fmt.Println("GeneralRoom::SendTo() [from: " + from.GetName() + " message: " + message + " to: " + to.GetName() + "]")
+  // 定向发送给某个用户，名称唯一
+  to.Recieve(from, message)
 }
 
 // 作为中介者通知给全体用户
-func (g *GeneralRoom) Send(from string, message string) {
-  fmt.Println(">>GeneralRoom::Send() [from: " + from + " message: " + message + "] ")
+func (g *GeneralRoom) Send(from AbstractUser, message string) {
+  fmt.Println("GeneralRoom::Send() [from: " + from.GetName() + " message: " + message + "] ")
   for _, user := range g.users {
     user.Recieve(from, message)
   }

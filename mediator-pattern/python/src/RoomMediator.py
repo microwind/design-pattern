@@ -7,6 +7,8 @@
 
 
 class RoomMediator:
+    def __init__(self):
+        pass
     users = []
 
     def register(self, user):

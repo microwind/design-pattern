@@ -14,9 +14,9 @@ export abstract class AbstractUser {
 
   abstract send(message: string): void
 
-  abstract sendTo(to: string, message: string): void
+  abstract sendTo(to: AbstractUser, message: string): void
 
-  abstract recieve(from: string, message: string): void
+  abstract recieve(from: AbstractUser, message: string): void
 
   getName() {
     return this.name

@@ -1,17 +1,17 @@
 #include "func.h"
 
-void set_objects(ObjectList *object_list, char **objects, int len)
+void object_list_set_objects(ObjectList *object_list, char **objects, int len)
 {
   object_list->length = len;
   object_list->objects = objects;
 }
 
-char **get_objects(ObjectList *object_list)
+char **object_list_get_objects(ObjectList *object_list)
 {
   return object_list->objects;
 }
 
-char *get(ObjectList *object_list, int index)
+char *object_list_get(ObjectList *object_list, int index)
 {
   return object_list->objects[index];
 }
@@ -30,9 +30,9 @@ ObjectList *object_list_constructor()
   ObjectList *list = (ObjectList *)obj;
   list->objects = NULL;
   list->length = 0;
-  list->set_objects = &set_objects;
-  list->get_objects = &get_objects;
-  list->get=&get;
+  list->set_objects = &object_list_set_objects;
+  list->get_objects = &object_list_get_objects;
+  list->get=&object_list_get;
   list->create_iterator = &create_iterator;
   return list;
 }

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 // main包下的main入口方法
@@ -36,7 +36,7 @@ func main() {
   // user1 发送给全体
   user1.Send("hi, I'm " + user1.GetName() + ".")
   // user2 发送给 user3
-  user2.SendTo(user3.GetName(), "haha.")
+  user2.SendTo(user3, "haha.")
 }
 
 /**
@@ -44,11 +44,11 @@ jarry@jarrys-MacBook-Pro go % go build src/*.go
 jarry@jarrys-MacBook-Pro go % go run test/test.go
 test start:
 CommonUser:Send() [user: user1 message: hi, I'm user1.]
->>GeneralRoom::Send() [from: user1 message: hi, I'm user1.]
+GeneralRoom::Send() [from: user1 message: hi, I'm user1.]
 CommonUser:Recieve() [user: user1 message: hi, I'm user1. from: user1]
 CommonUser:Recieve() [user: user2 message: hi, I'm user1. from: user1]
 MemberUser:Recieve() [user: user3 message: hi, I'm user1. from: user1]
 CommonUser:SendTo() [user: user2 message: haha.]
->>GeneralRoom::SendTo() [from: user2 message: haha. to: user3]
+GeneralRoom::SendTo() [from: user2 message: haha. to: user3]
 MemberUser:Recieve() [user: user3 message: haha. from: user2]
 */

@@ -34,7 +34,7 @@ def test():
     # user1 发送给全体
     user1.send("hi, I'm " + user1.get_name() + '.')
     # user2 发送给 user3
-    user2.send_to(user3.get_name(), 'haha.')
+    user2.send_to(user3, 'haha.')
 
 
 if __name__ == '__main__':
@@ -48,11 +48,11 @@ Python 2.7.16
 jarry@jarrys-MacBook-Pro python % python test/test.py
 test start:
 CommonUser:send() [user: user1 message: hi, I'm user1.]
->>GeneralRoom:send() [from: user1 message: hi, I'm user1.]
+GeneralRoom:send() [from: user1 message: hi, I'm user1.]
 CommonUser:recieve() [user: user1 message: hi, I'm user1. from: user1]
 CommonUser:recieve() [user: user2 message: hi, I'm user1. from: user1]
 MemberUser:recieve() [user: user3 message: hi, I'm user1. from: user1]
 CommonUser:send_to() [user: user2 message: haha. to: user3]
->>GeneralRoom:send_to() [from: user2 message: haha. to: user3]        
+GeneralRoom:send_to() [from: user2 message: haha. to: user3]
 MemberUser:recieve() [user: user3 message: haha. from: user2]
 '''

@@ -25,7 +25,7 @@ public class Test {
     // user1 发送给全体
     user1.send("hi, I'm " + user1.getName() + ".");
     // user2 发送给 user3
-    user2.sendTo(user3.getName(), "haha.");
+    user2.sendTo(user3, "haha.");
 
   }
 
@@ -42,11 +42,11 @@ public class Test {
  * D:\design-pattern\bridge-pattern\java> java test/Test
  * test start:
  * CommonUser:send() [user: user1 message:hi, I'm user1.]
- * >>GeneralRoom:send() [from: user1 message: hi, I'm user1.]
+ * GeneralRoom:send() [from: user1 message: hi, I'm user1.]
  * CommonUser:recieve() [user: user1 message: hi, I'm user1. from:user1]
  * CommonUser:recieve() [user: user2 message: hi, I'm user1. from:user1]
  * MemberUser:recieve() [user: user3 message: hi, I'm user1. from user:user1]
  * CommonUser:sendTo() [user: user2 message:haha. to: user3]
- * >>GeneralRoom:sendTo() [from: user2 message: haha. to: user3 ]
+ * GeneralRoom:sendTo() [from: user2 message: haha. to: user3 ]
  * MemberUser:recieve() [user: user3 message: haha. from user:user2]
  */

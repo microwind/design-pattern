@@ -15,22 +15,22 @@ export class GeneralRoom implements RoomMediator {
   }
 
   // 作为中介者通知给某个用户
-  sendTo(from: string, to: string, message: string) {
+  sendTo(from: AbstractUser, to: AbstractUser, message: string) {
     console.log(
-      `>>${this.constructor.name}:sendTo() [from: ${from} message: ${message} to:${to}]`
+      `${
+        this.constructor.name
+      }:sendTo() [from: ${from.getName()} message: ${message} to:${to.getName()}]`
     )
-    this.users.forEach((user) => {
-      // 定向发送
-      if (user.getName() === to) {
-        user.recieve(from, message)
-      }
-    })
+    // 定向发送给指定用户
+    to.recieve(from, message)
   }
 
   // 作为中介者通知给全体用户
-  send(from: string, message: string) {
+  send(from: AbstractUser, message: string) {
     console.log(
-      `>>${this.constructor.name}:send() [from: ${from} message: ${message} ]`
+      `${
+        this.constructor.name
+      }:send() [from: ${from.getName()} message: ${message} ]`
     )
     for (const user of this.users) {
       user.recieve(from, message)

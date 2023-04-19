@@ -15,20 +15,17 @@ public class GeneralRoom implements RoomMediator {
 
    // 作为中介者通知给某个用户
    @Override
-   public void sendTo(String from, String to, String message) {
-      System.out.println(">>GeneralRoom:sendTo() [from: " + from + " message: " + message + " to: " + to + " ]");
-      for (AbstractUser user : users) {
-         // 定向发送
-         if (user.getName().equals(to)) {
-            user.recieve(from, message);
-         }
-      }
+   public void sendTo(AbstractUser from, AbstractUser to, String message) {
+      System.out.println(
+            "GeneralRoom:sendTo() [from: " + from.getName() + " message: " + message + " to: " + to.getName() + " ]");
+      // 根据用户名称定向发送
+      to.recieve(from, message);
    }
 
    // 作为中介者通知给全体用户
    @Override
-   public void send(String from, String message) {
-      System.out.println(">>GeneralRoom:send() [from: " + from + " message: " + message + "]");
+   public void send(AbstractUser from, String message) {
+      System.out.println("GeneralRoom:send() [from: " + from.getName() + " message: " + message + "]");
       for (AbstractUser user : users) {
          user.recieve(from, message);
       }
