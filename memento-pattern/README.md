@@ -1,4 +1,4 @@
-# 【备忘录设计模式详解】Java/JS/Go/Python/TS不同语言实现
+# 【备忘录设计模式详解】C/Java/JS/Go/Python/TS不同语言实现
 
 # 简介
 备忘录模式（Memento Pattern）是一种结构型设计模式。这种模式就是在不破坏封装的条件下，将一个对象的状态捕捉(Capture)住，并放在外部存储起来，从而可以在将来合适的时候把这个对象还原到存储起来的状态。备忘录模式常常与命令模式和迭代子模式一同使用。
@@ -23,7 +23,7 @@
 # UML
 <img src="../docs/uml/memento-pattern.png">
 
-# 代码
+# Java代码
 
 ## 具体备忘录
 ```java
@@ -135,5 +135,142 @@ public class Caretaker {
       System.out.println("state: " + i + ")" + originator.getState());
     }
 ```
+
+# JavaScript代码
+
+## 具体备忘录
+```js
+// Memento.js 备忘录(Memento)角色，负责存储发起人传入的状态
+// 备忘录(Memento)角色，负责存储发起人传入的状态
+export class Memento {
+  constructor(state) {
+    console.log(this.constructor.name + '::Memento() [state = ' + state + ']')
+    this.state = state
+  }
+
+  getState() {
+    return this.state
+  }
+
+  setState(state) {
+    this.state = state
+  }
+}
+
+```
+
+## 发起人
+```js
+// Originator.js 发起人(Originator)负责生成状态快照，即利用一个新备忘录对象将自己的内部状态存储起来
+import { Memento } from './Memento.js'
+
+export class Originator {
+  constructor() {
+    this.state = undefined
+  }
+
+  // 每次创建一个新备忘录来保存状态
+  saveMemento() {
+    console.log(
+      this.constructor.name + '::saveMemento() [state = ' + this.state + ']'
+    )
+    return new Memento(this.state)
+  }
+
+  // 从备忘录中恢复状态
+  restoreMemento(memento) {
+    this.state = memento.getState()
+  }
+
+  getState() {
+    return this.state
+  }
+
+  setState(state) {
+    this.state = state
+  }
+}
+```
+
+## 负责人类
+```js
+// Caretaker.js 负责人(Caretaker)角色，只负责保存备忘录记录，不能修改备忘录对象的内容
+export class Caretaker {
+  constructor() {
+    // 备忘录可以是一个记录，也可以就是一个对象，根据业务场景设置
+    this.mementoList = []
+  }
+
+  add(memento) {
+    console.log(
+      this.constructor.name +
+        '::add() [memento = ' +
+        memento.constructor.name +
+        ']'
+    )
+    this.mementoList.push(memento)
+  }
+
+  get(index) {
+    return this.mementoList[index]
+  }
+
+  getMementoList() {
+    return this.mementoList
+  }
+}
+```
+
+## 测试调用
+```js
+import { Originator } from '../src/Originator.js'
+import { Caretaker } from '../src/Caretaker.js'
+
+export function test() {
+  /*
+   * 备忘录模式是在不暴露对象实现细节的情况下保存和恢复对象之前的状态。
+   * 先声明发起人Originator，再声明负责人Caretaker，发起人生成备忘录Memento
+   * 通过负责人则保存备忘录历史记录，读取备忘录由负责人来完成。
+   */
+  const originator = new Originator()
+  const careTaker = new Caretaker()
+  // 发起人产生一个状态
+  originator.setState('state1')
+  // 覆盖了状态，那么前面的状态未保存
+  originator.setState('state2')
+  // 发起人生成备忘录，一般添加时直接保存即可
+  const memento = originator.saveMemento()
+  // 负责人保添加备忘录历史记录
+  careTaker.add(memento)
+
+  // 直接生成备忘录并添加到负责人的备忘录列表
+  originator.setState('state3')
+  careTaker.add(originator.saveMemento())
+  originator.setState('state4')
+  careTaker.add(originator.saveMemento())
+
+  console.log('发起人当前的状态: ' + originator.getState())
+
+  // 发起人通过负责人那里取出状态
+  originator.restoreMemento(careTaker.get(0))
+  console.log('第一个保存的状态: ' + originator.getState())
+  originator.restoreMemento(careTaker.get(1))
+  console.log('第二个保存的状态: ' + originator.getState())
+
+  // 遍历全部备忘录
+  for (let i = 0; i < careTaker.getMementoList().length; i++) {
+    // 外部一般不直接访问备忘录里面的状态，而是逐个恢复备忘录，再取出状态来
+    originator.restoreMemento(careTaker.get(i))
+    console.log('state: ' + i + ')' + originator.getState())
+  }
+}
+
+// 执行测试
+;(function () {
+  console.log('test start:')
+  test()
+})()
+```
+
 ## 更多语言版本
 不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
