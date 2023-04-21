@@ -1,4 +1,4 @@
-# 【观察者设计模式详解】Java/JS/Go/Python/TS不同语言实现
+# 【观察者设计模式详解】C/Java/JS/Go/Python/TS不同语言实现
 
 # 简介
 观察者模式（Observer Pattern）是一种行为型模式。它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。
@@ -23,7 +23,7 @@
 <img src="../docs/uml/observer-pattern.png">
 
 
-# 代码
+# Java代码
 
 ## 观察者接口
 ```java
@@ -149,5 +149,156 @@ public class ConcreteSubject extends Subject {
     concreteSubject.notify("hello, this is broadcast.");
 
 ```
+
+# Python代码
+
+## 观察者接口
+```py
+# ObserverAPI.py 观察者抽象父类，定义一些公共方法
+class ObserverAPI:
+
+    def __init__(self, name):
+        self.name = name
+
+    # 观察者发出更新通知，观察者自行监听
+    def update(self, content):
+        print(self.__class__.__name__ + '::update() [content = ' + content + ']')
+
+    def set_name(self, name):
+        self.name = name
+```
+
+## 具体观察者
+```py
+# ConcreteObserver.py 具体的观察者实现类，也可以看成订阅者，关联对应的主题类。
+# 不同的观察者也可以对应多个主题
+from src.ObserverAPI import ObserverAPI
+
+# 具体的观察者实现类，也可以看成订阅者，关联对应的主题类。
+# 不同的观察者也可以对应多个主题
+
+
+class ConcreteObserver(ObserverAPI):
+    # 给观察者绑定主题，同时把观察者添加到主题列表
+    def __init__(self, subject, name):
+        ObserverAPI.__init__(self, name)
+        
+        # python3支持的父类调用
+        # super(ConcreteObserver, self).__init__(name)
+        # super().__init__(name)
+
+        self.subject = subject
+        subject.register(self)
+
+    # 观察者发出更新通知，不用单独告诉订阅者，由订阅者自行监听
+    def update(self, content):
+        print(self.__class__.__name__ + '::update() [subject.name = ' +
+              self.subject.name + ' content = ' + content + ']')
+```
+
+```py
+# ConcreteObserver2.py 具体的观察者实现类，也可以看成订阅者，关联对应的主题类。
+# 不同的观察者可以对应不同的主题。
+from src.ObserverAPI import ObserverAPI
+
+
+# 具体的观察者实现类，也可以看成订阅者，关联对应的主题类。
+# 不同的观察者可以对应不同的主题。
+class ConcreteObserver2(ObserverAPI):
+    # 这里没有在构造器就绑定某个主题，而是从客户角度去注册观察者
+    # 观察者发出更新通知，观察者自行监听
+
+    # def update(self, content):
+    #     print(self.__class__.__name__ + '::update() [content = ' + content +']')
+    
+    pass
+```
+
+## 抽象主题类
+```py
+# Subject.py 定义抽象主题类或者接口，供具体主题类继承
+class Subject:
+
+    def __init__(self, name):
+        self.name = name
+        self.observers = []
+
+    def get_name(self):
+        return self.name
+
+    def set_name(self, name):
+        self.name = name
+
+    def register(self, observer):
+        print(self.__class__.__name__ + '::register() [observer = ' +
+              observer.__class__.__name__ + ']')
+
+        self.observers.append(observer)
+
+    def remove(self, observer):
+        self.observers.remove(observer)
+
+    # 通知由具体类来实现逻辑
+    def notify(self, name):
+        pass
+```
+
+## 具体主题类
+```py
+// ConcreteSubject.py 观察者主题类，也是发布者，重写具体的通知方法。不同主题可以关联不同的观察者。
+from src.Subject import Subject
+
+
+# 观察者主题类，也是发布者，重写具体的通知方法。不同主题可以关联不同的观察者。
+class ConcreteSubject(Subject):
+    # 不同的主题类有自己的通知方法，批量通知绑定的观察者
+    def notify(self, content):
+        print(self.__class__.__name__ + '::notify() [content = ' + content +
+              ']')
+        for observer in self.observers:
+            observer.update(content)
+```
+
+## 测试调用
+```py
+import sys
+import os
+
+os_path = os.getcwd()
+sys.path.append(os_path)
+
+from src.ConcreteSubject import ConcreteSubject
+from src.ConcreteObserver import ConcreteObserver
+from src.ConcreteObserver2 import ConcreteObserver2
+
+
+def test():
+    '''
+    * 观察者模式应用非常广泛，主要是观察者提前绑定到发布者
+    * 当发布者发布消息时，批量广播通知，而无需逐一通知
+    * 观察者监听到消息后自己决定采取哪一种行为
+    '''
+
+    # 定义一个主题，也就是发布者
+    concrete_subject = ConcreteSubject('subject1')
+    # 再声明观察者，通过构造器注册到主题上
+    observer1 = ConcreteObserver(concrete_subject, 'observer1')
+    # 也可以单独给主题注册一个新的观察者
+    observer2 = ConcreteObserver2('observer2')
+    concrete_subject.register(observer2)
+    # 可以移除观察者对象
+    # concrete_subject.remove(observer1)
+
+    # 主题开始发布新通知，各观察者自动更新
+    concrete_subject.notify('hello, this is broadcast.')
+
+
+if __name__ == '__main__':
+    print(__file__)
+    print("test start:")
+    test()
+
+```
+
 ## 更多语言版本
 不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
