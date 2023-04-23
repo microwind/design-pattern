@@ -35,6 +35,7 @@
     "string_view": "c",
     "iosfwd": "c",
     "locale": "c",
-    "*.tcc": "c"
+    "*.tcc": "c",
+    "system_error": "c"
   }
 }
