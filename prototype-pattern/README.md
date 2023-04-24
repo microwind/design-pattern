@@ -212,7 +212,8 @@ public class Application {
 
 ## 基础原型抽象类
 
-```func.h 基础头文件
+```c
+// func.h 基础头文件
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>

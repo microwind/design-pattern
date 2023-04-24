@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 // main包下的main入口方法
@@ -22,7 +22,7 @@ func main() {
   // 代理类执行真实类的能力
   image.Display()
 
-  // 再调用一次，不会重复实例化
+  // 再调用一次，真实类不会重复实例化
   image.Display()
 }
 
