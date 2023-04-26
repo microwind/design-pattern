@@ -1,7 +1,7 @@
-export const SingleObject = (function () {
+export const LazySingletonObject = (function () {
   let instance: any = undefined
 
-  // 对象创建方式，如果已经实例化则直接返回对象，类似一个普通Object
+  // 创建对象，不是class，无需实例化，直接返回对象
   function createInstance(alias: string) {
     if (instance) {
       return instance
@@ -9,7 +9,7 @@ export const SingleObject = (function () {
     instance = Object.create(null)
     instance.alias = alias
     instance.run = function () {
-      console.log('SingleObject::()', instance.alias)
+      console.log('LazySingletonObject::()', instance.alias)
     }
     return instance
   }

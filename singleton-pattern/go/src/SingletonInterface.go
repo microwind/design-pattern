@@ -27,7 +27,7 @@ var (
 	syncOnce sync.Once
 )
 
-// 条用GetInstance返回SingletonInterface对象
+// 利用GetInstance返回SingletonInterface对象
 func GetSingletonInterface(name string) SingletonInterface {
 	// 利用sync.Once来实现一次实例化
 	syncOnce.Do(func() {

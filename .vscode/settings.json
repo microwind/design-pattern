@@ -36,6 +36,8 @@
     "iosfwd": "c",
     "locale": "c",
     "*.tcc": "c",
-    "system_error": "c"
+    "system_error": "c",
+    "__mutex_base": "c",
+    "mutex": "c"
   }
 }

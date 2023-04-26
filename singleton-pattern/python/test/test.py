@@ -7,7 +7,7 @@ import os
 os_path = os.getcwd()
 sys.path.append(os_path)
 
-from src.SingletonStatic import SingletonStatic
+from src.LazySingleton import LazySingleton
 from src.SingletonSimple import SingletonSimple, SingletonSimpleClass
 # 这里导入的是基于元类的单例类
 from src.SingletonType import SingletonTypeClass
@@ -19,10 +19,10 @@ def test():
   * 对于多线程语言需要注意线程安全和性能之间取得一个平衡
   '''
 
-  singleton1 = SingletonStatic.get_instance('singleton1')
+  singleton1 = LazySingleton.get_instance('lazy_singleton1')
   # 获得的是同一个实例，名称相同
   singleton1.run()
-  singleton2 = SingletonStatic.get_instance('singleton2')
+  singleton2 = LazySingleton.get_instance('lazy_singleton2')
   singleton2.run()
 
   # *********************** 分割线 ******************************************/
@@ -59,8 +59,8 @@ if __name__=='__main__':
 jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test/test.py
 test start:
-SingletonStatic::run() singleton1
-SingletonStatic::run() singleton1
+LazySingleton::run() lazy_singleton1
+LazySingleton::run() lazy_singleton1
 SingletonSimple::run() SingletonSimple1
 SingletonSimple::run() SingletonSimple1
 SingletonTypeClass::run() SingletonTypeClass1
