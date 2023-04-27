@@ -1,4 +1,4 @@
-# 【访问者设计模式详解】Java/JS/Go/Python/TS不同语言实现
+# 【访问者设计模式详解】C/Java/JS/Go/Python/TS不同语言实现
 
 # 简介
 访问者模式（Visitor Pattern）是一种行为型模式。它封装一个访问者类，把各元素类的操作集合起来，目的是将数据结构与数据操作分离。在不改变原有元素类数据结构的前提下，改变了元素类的执行算法。
@@ -213,4 +213,4 @@ public class ConcreteElementB extends Element {
     structure.accept(new ConcreteVisitorB());
 ```
 ## 更多语言版本
-不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
+不同语言设计模式源码：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

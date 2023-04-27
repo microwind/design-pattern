@@ -128,4 +128,4 @@ public class VehicleFactory {
 ```
 
 ## 更多语言版本
-不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)s
+不同语言设计模式源码：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)s

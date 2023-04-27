@@ -771,4 +771,4 @@ int add_and_subtract(int one, int two, int three)
 ```
 
 ## 更多语言版本
-不同语言实现设计模式，请关注：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
+不同语言设计模式源码，请关注：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

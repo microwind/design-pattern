@@ -2,7 +2,7 @@ package src
 
 import "fmt"
 
-// 定义具体执行对象，调用依赖Context
+// 定义具体执行对象，Go没有继承，用聚合来调用Context里的函数
 type ContextDog struct {
 	context Context
 }

@@ -1,4 +1,4 @@
-# 【策略设计模式详解】Java/JS/Go/Python/TS不同语言实现
+# 【策略设计模式详解】C/Java/JS/Go/Python/TS不同语言实现
 
 # 简介
 策略模式（Strategy Pattern）属于行为型设计模式。将每一个算法封装到具有共同接口的独立类中，根据需要来绑定策略，使得具体实现和策略解耦。
@@ -21,7 +21,7 @@
 # UML
 <img src="../docs/uml/strategy-pattern.png">
 
-# 代码
+# Java代码
 
 ## 状态基础接口
 ```java
@@ -127,5 +127,160 @@ public class ContextDog extends Context {
     Context contextGog = new ContextDog();
     contextGog.action();
 ```
+
+# Go代码
+
+## 状态基础接口
+```go
+// Strategy.go 基础策略接口
+// 定义一个策略接口，注意go语言数据类型即接口
+type Strategy interface {
+    Run()
+}
+
+// 写在接口文件的其他全局方法
+func Init() {
+    fmt.Println("strategy init!")
+}
+```
+
+## 策略实现类 
+```go
+// StrategyA.go 策略A
+type StrategyA struct {
+}
+
+// 实现策略接口的对应方法
+func (s *StrategyA) Run() {
+    fmt.Println("StrategyA::Run")
+}
+```
+
+```go
+// StrategyB.go 策略B
+type StrategyB struct {
+}
+
+// 实现策略接口的对应方法
+func (s *StrategyB) Run() {
+    fmt.Println("StrategyB::Run")
+}
+
+```
+
+```go
+// StrategyC.go 策略C
+type StrategyC struct {
+}
+
+// 实现策略接口的对应方法
+func (s *StrategyC) Run() {
+    fmt.Println("StrategyC::Run")
+}
+```
+
+## 抽象业务类
+```go
+// Context.go 抽象业务类，聚合策略对象
+type Context struct {
+    strategy Strategy
+}
+
+// 设置不同strategy，方法名首字母大写
+func (c *Context) SetStrategy(s Strategy) {
+    c.strategy = s
+}
+
+// 执行策略接口里面的方法
+func (c *Context) Run() {
+    c.strategy.Run()
+}
+```
+
+## 具体业务类
+```go
+// ContextCat.go 业务类构造器聚合了某策略
+// 定义具体执行对象，Go没有继承，用聚合来调用Context里的函数
+type ContextCat struct {
+    context Context
+}
+
+// 可提前绑定具体的策略
+func (c *ContextCat) Init() {
+    c.context.SetStrategy(&StrategyC{})
+    fmt.Println("ContextCat::init. setStrategy(StrategyC)")
+}
+
+// 调用策略方法
+func (c *ContextCat) Run() {
+    fmt.Println("ContextCat::run")
+    c.context.Run()
+}
+
+```
+
+```go
+// ContextDog.go 业务类构造器聚合了某策略
+type ContextDog struct {
+    context Context
+}
+
+// 可提前绑定具体的策略
+func (c *ContextDog) Init() {
+    c.context.SetStrategy(&StrategyB{})
+    fmt.Println("ContextDog::init. setStrategy(StrategyB)")
+}
+
+// 调用策略方法
+func (c *ContextDog) Run() {
+    fmt.Println("ContextDog::run")
+    c.context.Run()
+}
+```
+
+## 测试调用
+```go
+func main() {
+    fmt.Println("test start:")
+    // 这里src.Init来自strategy.go文件
+    src.Init()
+
+    /**
+     * 策略模式就是根据需要给对象绑定具体策略，使得具体实现和策略可以灵活搭配。
+     * 先声明某个具体Context对象，该对象已经绑定了具体策略，同时还可以更改策略。
+     */
+
+    // 声明策略执行对象
+    context := src.Context{}
+
+    // 设置策略A
+    context.SetStrategy(&src.StrategyA{})
+
+    // 执行策略A，打印StrategyA
+    context.Run()
+
+    // 设置策略B
+    context.SetStrategy(&src.StrategyB{})
+    // 执行策略B，打印StrategyB
+    context.Run()
+
+    // 执行策略C，打印StrategyC
+    context.SetStrategy(&src.StrategyC{})
+    context.Run()
+
+    // /*********************** 分割线 ******************************************/
+
+    // 直接实例化具体执行对象，策略已经绑定
+    contextCat := src.ContextCat{}
+    contextCat.Init()
+    contextCat.Run()
+
+    // 直接实例化具体执行对象，策略已经绑定
+    contextDog := src.ContextDog{}
+    contextDog.Init()
+    contextDog.Run()
+}
+```
+
 ## 更多语言版本
-不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
+不同语言设计模式源码：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

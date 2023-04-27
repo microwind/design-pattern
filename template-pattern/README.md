@@ -1,4 +1,4 @@
-# 【模板方法设计模式详解】Java/JS/Go/Python/TS不同语言实现
+# 【模板方法设计模式详解】C/Java/JS/Go/Python/TS不同语言实现
 
 # 简介
 模板方法模式（Template Method Pattern）也叫模板模式，是一种行为型模式。它定义了一个抽象公开类，包含基本的算法骨架，而将一些步骤延迟到子类中，模板方法使得子类可以不改变算法的结构，只是重定义该算法的某些特定步骤。不同的子类以不同的方式实现这些抽象方法，从而对剩余的逻辑有不同的实现。以此基于公共的模板，来实现实现不同的功能。
@@ -140,4 +140,4 @@ public class Tennis extends GameTemplate {
     tennis.play();
 ```
 ## 更多语言版本
-不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
+不同语言设计模式源码：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
