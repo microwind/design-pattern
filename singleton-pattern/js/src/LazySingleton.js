@@ -1,4 +1,5 @@
 export class LazySingleton {
+  // 静态变量和静态函数，无需new
   static instance
   constructor(alias) {
     this.alias = alias

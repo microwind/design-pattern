@@ -3,7 +3,7 @@
 # 简介
 单例模式（Singleton Pattern）属于创建型设计模式，这种模式只创建一个单一的类，保证一个类只有一个实例，并提供一个访问该实例的全局节点。
 
-当您想控制实例数目，节省系统资源，并不想混用的时候，可以使用单例模式。
+当您想控制实例数目，节省系统资源，并不想混用的时候，可以使用单例模式。单例有很多种实现方式，主要分为懒汉和饿汉模式，同时要通过加锁来避免线程安全。不同语言的单例实现略有差异，可以通过查看不同版本的源码来深入理解其中的差异。
 
 # 作用
 1. 避免全局使用的类频繁地创建与销毁。
@@ -16,7 +16,7 @@
 # UML
 <img src="../docs/uml/singleton-pattern.png">
 
-# 代码
+# Java代码
 
 单例实现，不同语言有很大不同，跟语言特性有关。请查看其他源码进行比较。
 
@@ -170,6 +170,148 @@ public class SingletonDoubleCheck {
     SingletonInner singletonInner2 = SingletonInner.getInstance("singletonInner2");
     singletonInner1.run();
     singletonInner2.run();
+```
+
+# Go代码
+```go
+// DoubleCheckSingleton.go
+import (
+  "fmt"
+  "sync"
+)
+
+// 安全懒汉模式的升级版，通过sync的Mutex实现双重检验
+type DoubleCheckSingleton struct {
+  name string
+}
+
+func (s *DoubleCheckSingleton) Run() {
+  fmt.Println("DoubleCheckSingleton::run()", s.name)
+}
+
+// 定义私有变量，用来保存实例
+var doubleCheckSingletonInstance *DoubleCheckSingleton
+var lock = &sync.Mutex{}
+
+// 是懒汉模式安升级版，双重检查来来支持延迟实例化单例对象
+func GetDoubleCheckSingletonInstance(name string) *DoubleCheckSingleton {
+  // 未实例化才进行加锁
+  if doubleCheckSingletonInstance == nil {
+    lock.Lock()
+    defer lock.Unlock()
+    // 为了保险，锁住之后再次检查是否已实例化
+    if doubleCheckSingletonInstance == nil {
+      doubleCheckSingletonInstance = &DoubleCheckSingleton{}
+      doubleCheckSingletonInstance.name = name
+    }
+  }
+
+  return doubleCheckSingletonInstance
+}
+
+```
+
+# JS版本
+```js
+// LazySingleton.js
+export class LazySingleton {
+  static instance
+  constructor(alias) {
+    this.alias = alias
+  }
+
+  // 懒汉模式，延迟实例化，请求实例时判断，如果已经实例化过就直接返回
+  // js是单线程语言，无需考虑多线程问题
+  static getInstance(alias) {
+    if (this.instance === undefined) {
+      this.instance = new LazySingleton(alias)
+    }
+    return this.instance
+  }
+
+  run() {
+    console.log('LazySingleton::run()', this.alias)
+  }
+}
+```
+
+# Python语言
+```py
+# SingletonSafe.py
+from threading import Lock, Thread
+
+
+# 加锁的基于元类的单例模式，基于元类type创建的加强版
+class SingletonMeta(type):
+    # 线程安全单例模式，适用python3
+    _instances = {}
+
+    _lock: Lock = Lock()
+
+    def __call__(cls, *args, **kwargs):
+        with cls._lock:
+            if cls not in cls._instances:
+                instance = super().__call__(*args, **kwargs)
+                cls._instances[cls] = instance
+        return cls._instances[cls]
+
+# 继承SingletonMeta就是单例
+class SingletonSafe(metaclass=SingletonMeta):
+    name: str = None
+
+    def __init__(self, name: str) -> None:
+        self.name = name
+
+    def run(self):
+        print('SingletonSafe::run()', self.name)
+
+```
+
+# C语言
+```c
+// lazy_singleton_safe.c
+#include "func.h"
+#include <pthread.h>
+
+// 静态指针，未被创建并分配内存空间，指向唯一实例
+static LazySingletonSafe *lazy_singleton_safe_instance = NULL;
+
+void lazy_singleton_safe_run(LazySingletonSafe *singleton)
+{
+  printf("\r\n LazySingletonSafe::run() [name=%s value=%d]", singleton->name, singleton->value);
+}
+
+// 内部私有实例化函数，不公开
+static LazySingletonSafe *new_lazy_singleton_safe(char *name)
+{
+  LazySingletonSafe *singleton = (LazySingletonSafe *)malloc(sizeof(LazySingletonSafe));
+  strcpy(singleton->name, name);
+  singleton->run = &lazy_singleton_safe_run;
+  return singleton;
+}
+
+// 声明锁
+pthread_mutex_t singleton_lock;
+
+// 非线程安全懒汉模式，延迟初始化。多个线程同时调用函数时， 可能会被初始化多次，存在线程不安全问题
+LazySingletonSafe *get_lazy_singleton_safe_instance(char *name)
+{
+  printf("\r\n get_lazy_singleton_safe_instance() [name=%s]", name);
+  if (pthread_mutex_init(&singleton_lock, NULL) != 0)
+  {
+    perror("error init mutext:");
+  }
+
+  // 通过加锁来防止线程并发导致的不安全
+  if (lazy_singleton_safe_instance == NULL)
+  {
+    printf("\r\n new instance [name=%s]", name);
+    pthread_mutex_lock(&singleton_lock);
+    lazy_singleton_safe_instance = new_lazy_singleton_safe(name);
+    pthread_mutex_unlock(&singleton_lock);
+  }
+  return lazy_singleton_safe_instance;
+}
 ```
 ## 更多语言版本
 不同语言实现设计模式：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)
