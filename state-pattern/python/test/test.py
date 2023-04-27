@@ -42,12 +42,12 @@ if __name__ == '__main__':
 jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test/test.py
 test start:
-Context::setState() [state = ConcreteStateOff]
+Context::set_state() [state = ConcreteStateOff]
 ConcreteStateOff::on() [turn ON ok!]
-Context::setState() [state = ConcreteStateOn]
+Context::set_state() [state = ConcreteStateOn]
 ConcreteStateOn::on() [needn't switch, state is ON.]
-ConcreteStateOn::off() [needn't switch, state is OFF.]
-Context::setState() [state = ConcreteStateOff]
+ConcreteStateOn::off() [turn OFF ok!]
+Context::set_state() [state = ConcreteStateOff]
 ConcreteStateOff::off() [needn't switch, state is OFF.]
 context.state: ConcreteStateOff
 '''

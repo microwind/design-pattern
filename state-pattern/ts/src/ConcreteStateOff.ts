@@ -13,7 +13,7 @@ export class ConcreteStateOff implements State {
   off(context: Context) {
     // 当前是off状态，再点击off只是提示，不切换状态类
     console.log(
-      this.constructor.name + "::off() [needn't switch, state is OFF.]"
+      this.constructor.name + '::off() [needn\'t switch, state is OFF.]'
     )
   }
 }

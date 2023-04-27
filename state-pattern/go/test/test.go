@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 // main包下的main入口方法
@@ -38,7 +38,7 @@ Context::SetState() [state = ConcreteStateOff]
 ConcreteStateOff::On() [turn ON ok!]
 Context::SetState() [state = ConcreteStateOn]
 ConcreteStateOn::On() [needn't switch, state is ON.]
-ConcreteStateOn::Off() [needn't switch, state is OFF.]
+ConcreteStateOn::Off() [turn OFF ok!]
 Context::SetState() [state = ConcreteStateOff]
 ConcreteStateOff::Off() [needn't switch, state is OFF.]
 context.state: ConcreteStateOff

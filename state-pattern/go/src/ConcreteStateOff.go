@@ -4,11 +4,14 @@ import "fmt"
 
 // 具体的状态实现者
 type ConcreteStateOff struct {
-  state State
+  Name string
 }
 
 func (c *ConcreteStateOff) GetName() string {
-  return "ConcreteStateOff"
+  if c.Name == "" {
+    c.Name = "ConcreteStateOff"
+  }
+  return c.Name
 }
 
 func (c *ConcreteStateOff) On(context *Context) {
@@ -18,6 +21,6 @@ func (c *ConcreteStateOff) On(context *Context) {
 }
 
 func (c *ConcreteStateOff) Off(context *Context) {
-  // 当前是off状态，再点击off只是提示，不切换状态类s
+  // 当前是off状态，再点击off只是提示，不切换状态类
   fmt.Println("ConcreteStateOff::Off() [needn't switch, state is OFF.]")
 }

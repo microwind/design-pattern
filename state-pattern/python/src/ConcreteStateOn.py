@@ -17,6 +17,6 @@ class ConcreteStateOn(State):
     def off(self, context):
         # 状态变为off后，状态类切换到ConcreteStateOff
         print(self.__class__.__name__ +
-              "::off() [needn't switch, state is OFF.]")
+              "::off() [turn OFF ok!]")
         context.set_state(ConcreteFactory.get('off'))
 

@@ -38,7 +38,7 @@ Context::setState() [state = ConcreteStateOff]
 ConcreteStateOff::on() [turn ON ok!]
 Context::setState() [state = ConcreteStateOn]
 ConcreteStateOn::on() [needn't switch, state is ON.]
-ConcreteStateOn::off() [needn't switch, state is OFF.]
+ConcreteStateOn::off() [turn OFF ok!]
 Context::setState() [state = ConcreteStateOff]
 ConcreteStateOff::off() [needn't switch, state is OFF.]
 context.state: ConcreteStateOff

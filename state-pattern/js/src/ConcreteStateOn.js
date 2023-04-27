@@ -11,7 +11,7 @@ export class ConcreteStateOn extends State {
   off(context) {
     // 状态变为off后，状态类切换到ConcreteStateOff
     console.log(
-      this.constructor.name + "::off() [needn't switch, state is OFF.]"
+      this.constructor.name + '::off() [turn OFF ok!]'
     )
     context.setState(new ConcreteStateOff())
   }
