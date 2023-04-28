@@ -13,14 +13,17 @@ export class PhoneBuilder extends Builder {
 
   setName(name) {
     this.phone.setName(name)
+    return this
   }
 
   setScreen(screen) {
     this.phone.setScreen(screen)
+    return this
   }
 
   setGPU(no) {
     this.phone.setGpuType(no)
+    return this
   }
 
   getProduct() {

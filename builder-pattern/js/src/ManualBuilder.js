@@ -13,14 +13,17 @@ export class ManualBuilder extends Builder {
 
   setName(name) {
     this.manual.setName(name)
+    return this
   }
 
   setScreen(screen) {
     this.manual.setScreen(screen)
+    return this
   }
 
   setGPU(no) {
     this.manual.setGpuType(no)
+    return this
   }
 
   getProduct() {

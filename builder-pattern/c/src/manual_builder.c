@@ -19,12 +19,13 @@ void reset_manual(Builder *builder)
   builder->manual = manual;
 }
 
-void set_manual_name(Builder *builder, char *name)
+Builder * set_manual_name(Builder *builder, char *name)
 {
   char display_name[50] = "Manual:";
   strcat(display_name, name);
 
   strncpy(builder->manual->name, display_name, 50);
+  return builder;
 }
 
 char *get_manual_name(Builder *builder)
@@ -32,15 +33,17 @@ char *get_manual_name(Builder *builder)
   return builder->manual->name;
 }
 
-void set_manual_screen(Builder *builder, int *screen)
+Builder * set_manual_screen(Builder *builder, int *screen)
 {
   int screen_len = (int)sizeof(screen) / sizeof(screen[0]);
   memcpy(builder->manual->screen, screen, screen_len * sizeof(int));
+  return builder;
 }
 
-void set_manual_gpu_type(Builder *builder, int gpu_type)
+Builder * set_manual_gpu_type(Builder *builder, int gpu_type)
 {
   builder->manual->gpu_type = gpu_type;
+  return builder;
 }
 
 Manual *get_manual_product(ManualBuilder *builder)

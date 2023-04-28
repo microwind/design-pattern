@@ -15,9 +15,8 @@ export class Director {
   buildHuaweiPhone(builder: Builder) {
     builder.reset()
     const screen = [140, 600]
-    builder.setName('HuaweiPhone')
-    builder.setScreen(screen)
-    builder.setGPU(102)
+    // 也可链式调用
+    builder.setName('HuaweiPhone').setScreen(screen).setGPU(102)
   }
 
   // 建造phone3

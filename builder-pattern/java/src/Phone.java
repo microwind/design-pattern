@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Arrays;
+
 // 产品类
 public class Phone {
   private String name = "PhoneName";
@@ -31,7 +33,7 @@ public class Phone {
   }
 
   public String toString() {
-    return "[name=" + name + ", screen=" + screen.toString() + ", gpuType=" + gpuType + "]";
+    return "[name=" + name + ", screen=" + Arrays.toString(screen) + ", gpuType=" + gpuType + "]";
   }
 
 }

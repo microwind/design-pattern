@@ -7,6 +7,7 @@ import os
 os_path = os.getcwd()
 sys.path.append(os_path)
 
+import json
 from src.Application import Application
 from src.Director import Director
 from src.PhoneBuilder import PhoneBuilder
@@ -31,12 +32,12 @@ def test():
   phoneBuilder = PhoneBuilder()
   director.buildMiPhone(phoneBuilder)
   miPhone = phoneBuilder.getProduct()
-  print('miPhone:' + miPhone.getName() + ' | ', miPhone)
+  print('miPhone:' + miPhone.getName() + ' | ', json.dumps(miPhone.__dict__))
   # 创建手册
   manualBuilder = ManualBuilder()
   director.buildMiPhone(manualBuilder)
   manual = manualBuilder.getProduct()
-  print('manual:' + manual.getName() + ' | ', manual)
+  print('manual:' + manual.getName() + ' | ', json.dumps(manual.__dict__))
 
 if __name__=='__main__':
   print(__file__)
@@ -50,12 +51,12 @@ Python 2.7.16
 jarry@jarrys-MacBook-Pro python % python test/test.py
 test/test.py
 test start:
-('iPhone:iPhone | ', <src.Phone.Phone instance at 0x106432680>)
-('manual:iPhone | ', <src.Manual.Manual instance at 0x106432710>)
-('huaweiPhone:HuaweiPhone | ', <src.Phone.Phone instance at 0x106432680>)
-('manual:HuaweiPhone | ', <src.Manual.Manual instance at 0x1064325f0>)
-('miPhone:MiPhone | ', <src.Phone.Phone instance at 0x106432680>)
-('manual:MiPhone | ', <src.Manual.Manual instance at 0x106432710>)
+('iPhone:iPhone | ', '{"screen": [120, 500], "name": "iPhone", "gpuType": 100}')
+('manual:iPhone | ', '{"screen": [120, 500], "name": "iPhone", "gpuType": 100}')
+('huaweiPhone:HuaweiPhone | ', '{"screen": [140, 600], "name": "HuaweiPhone", "gpuType": 102}')
+('manual:HuaweiPhone | ', '{"screen": [140, 600], "name": "HuaweiPhone", "gpuType": 102}')
+('miPhone:MiPhone | ', '{"screen": [130, 550], "name": "MiPhone", "gpuType": 103}')
+('manual:MiPhone | ', '{"screen": [130, 550], "name": "MiPhone", "gpuType": 103}')
 
 
 jarry@jarrys-MacBook-Pro python % python3 -V
@@ -63,10 +64,10 @@ Python 3.8.10
 jarry@jarrys-MacBook-Pro python % python3 test/test.py
 test/test.py
 test start:
-iPhone:iPhone |  <src.Phone.Phone object at 0x10ff38280>
-manual:iPhone |  <src.Manual.Manual object at 0x10ff38b80>
-huaweiPhone:HuaweiPhone |  <src.Phone.Phone object at 0x10ff38310>
-manual:HuaweiPhone |  <src.Manual.Manual object at 0x10ff5a070>
-miPhone:MiPhone |  <src.Phone.Phone object at 0x10ff38310>
-manual:MiPhone |  <src.Manual.Manual object at 0x10fecc7f0>
+iPhone:iPhone |  {"name": "iPhone", "screen": [120, 500], "gpuType": 100}
+manual:iPhone |  {"name": "iPhone", "screen": [120, 500], "gpuType": 100}
+huaweiPhone:HuaweiPhone |  {"name": "HuaweiPhone", "screen": [140, 600], "gpuType": 102}
+manual:HuaweiPhone |  {"name": "HuaweiPhone", "screen": [140, 600], "gpuType": 102}
+miPhone:MiPhone |  {"name": "MiPhone", "screen": [130, 550], "gpuType": 103}
+manual:MiPhone |  {"name": "MiPhone", "screen": [130, 550], "gpuType": 103}
 '''

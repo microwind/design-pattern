@@ -16,9 +16,10 @@ public class Director {
   public void buildHuaweiPhone(Builder builder) {
     builder.reset();
     Integer[] screen = { 130, 600 };
-    builder.setName("HuaweiPhone");
-    builder.setScreen(screen);
-    builder.setGPU(102);
+    // 也可以链式调用
+    builder.setName("HuaweiPhone")
+    .setScreen(screen)
+    .setGPU(102);
   }
 
   // 建造phone3

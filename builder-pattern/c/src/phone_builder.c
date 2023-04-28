@@ -19,12 +19,13 @@ void reset_phone(Builder *builder)
   builder->phone = phone;
 }
 
-void set_phone_name(Builder *builder, char *name)
+Builder *set_phone_name(Builder *builder, char *name)
 {
   char display_name[50] = "Phone:";
   strcat(display_name, name);
 
   strncpy(builder->phone->name, display_name, 50);
+  return builder;
 }
 
 char *get_phone_name(Builder *builder)
@@ -32,15 +33,17 @@ char *get_phone_name(Builder *builder)
   return builder->phone->name;
 }
 
-void set_phone_screen(Builder *builder, int *screen)
+Builder *set_phone_screen(Builder *builder, int *screen)
 {
   int screen_len = (int)sizeof(screen) / sizeof(screen[0]);
   memcpy(builder->phone->screen, screen, screen_len * sizeof(int));
+  return builder;
 }
 
-void set_phone_gpu_type(Builder *builder, int gpu_type)
+Builder *set_phone_gpu_type(Builder *builder, int gpu_type)
 {
   builder->phone->gpu_type = gpu_type;
+  return builder;
 }
 
 Phone *get_phone_product(PhoneBuilder *builder)

@@ -8,16 +8,19 @@ public class ManualBuilder implements Builder {
     this.manual = new Manual();
   }
 
-  public void setName(String name) {
+  public Builder setName(String name) {
     this.manual.setName(name);
+    return this;
   }
 
-  public void setScreen(Integer[] screen) {
+  public Builder setScreen(Integer[] screen) {
     this.manual.setScreen(screen);
+    return this;
   }
 
-  public void setGPU(Integer no) {
+  public Builder setGPU(Integer no) {
     this.manual.setGpuType(no);
+    return this;
   }
 
   public Manual getProduct() {

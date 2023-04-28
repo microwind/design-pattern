@@ -17,9 +17,8 @@ func (c *Director) BuildIPhone(builder Builder) {
 func (c *Director) BuildHuaweiPhone(builder Builder) {
   builder.Reset()
   var screen = []int{140, 600}
-  builder.SetName("HuaweiPhone")
-  builder.SetScreen(screen)
-  builder.SetGPU(102)
+  // 链式调用
+  builder.SetName("HuaweiPhone").SetScreen(screen).SetGPU(102)
 }
 
 // 建造phone3

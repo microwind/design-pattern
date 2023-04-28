@@ -11,16 +11,19 @@ export class ManualBuilder implements Builder {
     this.manual = new Manual()
   }
 
-  setName(name: string) {
+  setName(name: string): ManualBuilder {
     this.manual.setName(name)
+    return this
   }
 
-  setScreen(screen: []) {
+  setScreen(screen: []): ManualBuilder {
     this.manual.setScreen(screen)
+    return this
   }
 
-  setGPU(no: number) {
+  setGPU(no: number): ManualBuilder {
     this.manual.setGpuType(no)
+    return this
   }
 
   getProduct() {

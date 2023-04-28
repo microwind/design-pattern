@@ -27,9 +27,10 @@ void build_huawei_phone(Builder *builder)
 {
   builder->reset(builder);
   int screen[2] = {140, 600};
-  builder->set_name(builder, "HuaweiPhone");
-  builder->set_screen(builder, screen);
-  builder->set_gpu_type(builder, 102);
+  // 也可以链式调用
+  builder->set_name(builder, "HuaweiPhone")
+      ->set_screen(builder, screen)
+      ->set_gpu_type(builder, 102);
   printf("build_huawei_phone:[name=%s]", builder->get_name(builder));
 }
 

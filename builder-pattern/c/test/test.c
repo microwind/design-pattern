@@ -43,7 +43,7 @@ int main()
 }
 
 /**
-jarry@jarrys-MacBook-Pro c % gcc src/*.c test/test.c
+jarry@jarrys-MacBook-Pro c % gcc src/全部.c test/test.c
 jarry@jarrys-MacBook-Pro c % ./a.out s
 test start:
 build_iphone:[name=Phone:iPhone]

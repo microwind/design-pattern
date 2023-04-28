@@ -8,16 +8,19 @@ public class PhoneBuilder implements Builder {
     this.phone = new Phone();
   }
 
-  public void setName(String name) {
+  public Builder setName(String name) {
     this.phone.setName(name);
+    return this;
   }
 
-  public void setScreen(Integer[] screen) {
+  public Builder setScreen(Integer[] screen) {
     this.phone.setScreen(screen);
+    return this;
   }
 
-  public void setGPU(Integer no) {
+  public Builder setGPU(Integer no) {
     this.phone.setGpuType(no);
+    return this;
   }
 
   public Phone getProduct() {

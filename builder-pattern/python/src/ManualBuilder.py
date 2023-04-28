@@ -17,12 +17,15 @@ class ManualBuilder(Builder):
 
   def setName(self, name):
     self.manual.setName(name)
+    return self
 
   def setScreen(self, screen):
     self.manual.setScreen(screen)
+    return self
 
   def setGPU(self, no):
     self.manual.setGpuType(no)
+    return self
 
   def getProduct(self):
     return self.manual

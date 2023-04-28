@@ -1,6 +1,6 @@
 export interface Builder {
   reset(): void
-  setName(name: string): void
-  setScreen(size: number[]): void
-  setGPU(no: number): void
+  setName(name: string): Builder
+  setScreen(size: number[]): Builder
+  setGPU(no: number): Builder
 }

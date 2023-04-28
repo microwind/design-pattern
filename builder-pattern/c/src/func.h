@@ -1,3 +1,9 @@
+typedef struct Builder Builder;
+typedef struct PhoneBuilder PhoneBuilder;
+typedef struct ManualBuilder ManualBuilder;
+typedef struct Phone Phone;
+typedef struct Manual Manual;
+
 // 定义手机创建者结构体，用来创建Phone对象
 typedef struct Phone
 {
@@ -20,10 +26,10 @@ typedef struct Builder
   struct Phone *phone;
   struct Manual *manual;
   void (*reset)(struct Builder *);
-  void (*set_name)(struct Builder *, char *);
+  Builder *(*set_name)(struct Builder *, char *);
   char *(*get_name)(struct Builder *);
-  void (*set_screen)(struct Builder *, int *);
-  void (*set_gpu_type)(struct Builder *, int);
+  Builder *(*set_screen)(struct Builder *, int *);
+  Builder *(*set_gpu_type)(struct Builder *, int);
 } Builder;
 
 // 定义手机创建者结构体，与Builder对齐
@@ -32,10 +38,10 @@ typedef struct PhoneBuilder
   struct Phone *phone;
   struct Manual *manual;
   void (*reset)(struct Builder *);
-  void (*set_name)(struct Builder *, char *);
+  Builder *(*set_name)(struct Builder *, char *);
   char *(*get_name)(struct Builder *);
-  void (*set_screen)(struct Builder *, int *);
-  void (*set_gpu_type)(struct Builder *, int);
+  Builder *(*set_screen)(struct Builder *, int *);
+  Builder *(*set_gpu_type)(struct Builder *, int);
   struct Phone *(*get_product)(struct PhoneBuilder *);
 } PhoneBuilder;
 
@@ -45,10 +51,10 @@ typedef struct ManualBuilder
   struct Phone *phone;
   struct Manual *manual;
   void (*reset)(struct Builder *);
-  void (*set_name)(struct Builder *, char *);
+  Builder *(*set_name)(struct Builder *, char *);
   char *(*get_name)(struct Builder *);
-  void (*set_screen)(struct Builder *, int *);
-  void (*set_gpu_type)(struct Builder *, int);
+  Builder *(*set_screen)(struct Builder *, int *);
+  Builder *(*set_gpu_type)(struct Builder *, int);
   struct Manual *(*get_product)(struct ManualBuilder *);
 } ManualBuilder;
 

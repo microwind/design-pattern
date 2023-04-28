@@ -17,12 +17,15 @@ class PhoneBuilder(Builder):
 
   def setName(self, name):
     self.phone.setName(name)
+    return self
 
   def setScreen(self, screen):
     self.phone.setScreen(screen)
+    return self
 
   def setGPU(self, no):
     self.phone.setGpuType(no)
+    return self
 
   def getProduct(self):
     return self.phone

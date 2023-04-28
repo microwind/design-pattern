@@ -22,8 +22,9 @@ export class Director {
   buildMiPhone(builder) {
     builder.reset()
     const screen = [130, 550]
+    // 链式调用
     builder.setName('MiPhone')
-    builder.setScreen(screen)
-    builder.setGPU(103)
+      .setScreen(screen)
+      .setGPU(103)
   }
 }

@@ -11,16 +11,19 @@ export class PhoneBuilder implements Builder {
     this.phone = new Phone()
   }
 
-  setName(name: string) {
+  setName(name: string): PhoneBuilder {
     this.phone.setName(name)
+    return this
   }
 
-  setScreen(screen: []) {
+  setScreen(screen: []): PhoneBuilder {
     this.phone.setScreen(screen)
+    return this
   }
 
-  setGPU(no: number) {
+  setGPU(no: number): PhoneBuilder {
     this.phone.setGpuType(no)
+    return this
   }
 
   getProduct() {
