@@ -7,9 +7,11 @@ type GameTemplate struct {
 }
 
 // 抽象方法待子类来实现
-// func (g *GameTemplate) Init() {}
-// func (g *GameTemplate) Start() {}
-// func (g *GameTemplate) End() {}
+func (g *GameTemplate) Init() {}
+func (g *GameTemplate) Start() {
+  fmt.Println("GameTemplate::play() [GameTemplate Game Initialized! Start playing.]")
+}
+func (g *GameTemplate) End() {}
 
 // 可复用的算法流程
 func (g *GameTemplate) Play(t TemplateInterface) {

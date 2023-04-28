@@ -8,9 +8,20 @@ export class ConcreteVisitorB extends Visitor {
     this.name = 'Apple Visitor'
   }
 
-  visit(concreteElement) {
+  visitA(concreteElement) {
     console.log(
-      'ConcreteVisitorB::visit() [Element.class = ' +
+      'ConcreteVisitorB::visitA() [Element.class = ' +
+        concreteElement.constructor.name +
+        ' Element.name = ' +
+        concreteElement.getName() +
+        ']'
+    )
+    concreteElement.operate()
+  }
+
+  visitB(concreteElement) {
+    console.log(
+      'ConcreteVisitorB::visitB() [Element.class = ' +
         concreteElement.constructor.name +
         ' Element.name = ' +
         concreteElement.getName() +

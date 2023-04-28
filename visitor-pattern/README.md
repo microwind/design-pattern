@@ -27,7 +27,7 @@
 # UML
 <img src="../docs/uml/visitor-pattern.png">
 
-# 代码
+# Java代码
 
 ## 结构对象
 ```java
@@ -212,5 +212,190 @@ public class ConcreteElementB extends Element {
     // 接受访问者B，把访问者传递给具体元素
     structure.accept(new ConcreteVisitorB());
 ```
+
+# Go代码
+
+## 结构对象
+```go
+// ObjectStructure.go 结构对象(ObjectStructure)
+type ObjectStructure struct {
+  name     string
+  elements []Element
+}
+
+func (o *ObjectStructure) AddElement(e Element) {
+  o.elements = append(o.elements, e)
+}
+
+// 传入访问者分发给其他元素
+func (o *ObjectStructure) Accept(v Visitor) {
+  fmt.Println(
+    "ObjectStructure::Accept() [Visitor.name = " +
+      v.GetName() + "]")
+
+  // 通知全部元素成员接受访问者
+  for i := 0; i < len(o.elements); i++ {
+    o.elements[i].Accept(v)
+  }
+
+  // for _, ele := range o.elements {
+  //   ele.Accept(v)
+  // }
+}
+
+func (o *ObjectStructure) GetName() string {
+  o.name = "Computer Structure"
+  return o.name
+}
+
+// 结构对象的初始化函数
+func (o *ObjectStructure) Init() {
+  // 可以想象为一台电脑，聚合了各种设备元素
+  fmt.Println("ObjectStructure::Init() ", o.GetName())
+  // 定义一个对象数组，长度可选
+  o.elements = make([]Element, 0, 100)
+
+  // 结构对象初始化聚合了其他元素
+  o.AddElement(&ConcreteElementA{})
+  o.AddElement(&ConcreteElementB{})
+}
+```
+
+## 抽象访问者类
+```go
+// Visitor.go 访问者Visitor抽象接口，定义不同的visit方法
+type Visitor interface {
+  VisitA(e *ConcreteElementA)
+  VisitB(e *ConcreteElementB)
+  GetName() string
+}
+```
+
+## 具体访问者
+```go
+// ConcreteVisitorA.go 具体访问者A
+type ConcreteVisitorA struct {
+  name string
+}
+
+func (v *ConcreteVisitorA) GetName() string {
+  v.name = "Google Visitor(struct=ConcreteVisitorA)"
+  return v.name
+}
+
+func (v *ConcreteVisitorA) VisitA(e *ConcreteElementA) {
+  fmt.Println(
+    "ConcreteVisitorA::VisitA() [Element.name = " + e.GetName() + "]")
+  e.Operate()
+}
+
+func (v *ConcreteVisitorA) VisitB(e *ConcreteElementB) {
+  fmt.Println(
+    "ConcreteVisitorA::VisitB() [Element.name = " + e.GetName() + "]")
+  e.Operate()
+}
+```
+
+```go
+// ConcreteVisitorB.go 具体访问者B
+type ConcreteVisitorB struct {
+  name string
+}
+
+func (v *ConcreteVisitorB) GetName() string {
+  v.name = "Apple Visitor(struct=ConcreteVisitorB)"
+  return v.name
+}
+
+func (v *ConcreteVisitorB) VisitB(e *ConcreteElementB) {
+  fmt.Println(
+    "ConcreteVisitorB::VisitB() [Element.name = " + e.GetName() + "]")
+  e.Operate()
+}
+
+func (v *ConcreteVisitorB) VisitA(e *ConcreteElementA) {
+  fmt.Println(
+    "ConcreteVisitorB::VisitA() [Element.name = " + e.GetName() + "]")
+  e.Operate()
+}
+```
+
+## 抽象元素类
+```go
+// Element.go 抽象元素(Element)，定义accept方法，传入抽象访问者
+// go无抽象类，用interface替代
+type Element interface {
+  Accept(v Visitor)
+  Operate()
+  GetName() string
+}
+```
+
+## 具体元素实现类
+```go
+// ConcreteElementA.go 具体的元素实现者A
+type ConcreteElementA struct {
+  name string
+}
+
+func (c *ConcreteElementA) GetName() string {
+  c.name = `Monitor Element(struct=ConcreteElementA)`
+  return c.name
+}
+
+func (e *ConcreteElementA) Accept(v Visitor) {
+  fmt.Println(
+    "ConcreteElementA::Accept() [Visitor.name = " + v.GetName() + "]")
+  v.VisitA(e)
+}
+
+func (e *ConcreteElementA) Operate() {
+  fmt.Println("ConcreteElementA::Operate() [" + e.GetName() + "]")
+}
+```
+
+```go
+// ConcreteElementB.go 具体的元素实现者B
+type ConcreteElementB struct {
+  name string
+}
+
+func (c *ConcreteElementB) GetName() string {
+  c.name = "Keyboard Element(struct=ConcreteElementB)"
+  return c.name
+}
+
+func (e *ConcreteElementB) Accept(v Visitor) {
+  fmt.Println(
+    "ConcreteElementB::Accept() [Visitor.name = " + v.GetName() + "]")
+  v.VisitB(e)
+}
+
+func (e *ConcreteElementB) Operate() {
+  fmt.Println("ConcreteElementB::Operate() [" + e.GetName() + "]")
+}
+```
+
+## 测试调用
+```go
+func main() {
+  fmt.Println("test start:")
+
+  /**
+   * 访问者模式是当客户需要访问具体各元素Element时，先建立一个访问者Visitor作为媒介
+   * 客户基于对象结构ObjectStructure，调用Accept()，接受传入的访问者
+   * 对象结构向其他元素负责分发访问者，元素对象接受之后会将自己回传给访问者，从而访问者可以访问具体元素
+   */
+  structure := src.ObjectStructure{}
+  structure.Init()
+  // 接受访问者A，把访问者传递给具体元素
+  structure.Accept(&src.ConcreteVisitorA{})
+
+  fmt.Println("====")
+  // 接受访问者B，把访问者传递给具体元素
+  structure.Accept(&src.ConcreteVisitorB{})
+}
+```
+
 ## 更多语言版本
 不同语言设计模式源码：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

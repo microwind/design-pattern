@@ -30,17 +30,17 @@ jarry@jarrys-MacBook-Pro js % node test/test.js
 test start:
 ObjectStructure::accept() [visitor.class = ConcreteVisitorA visitor.name = Google Visitor]
 ConcreteElementA::accept() [visitor.class = ConcreteVisitorA visitor.name = Google Visitor]
-ConcreteVisitorA::visit() [Element.class = ConcreteElementA Element.name = Monitor Element]
+ConcreteVisitorA::visitA() [Element.class = ConcreteElementA Element.name = Monitor Element]
 ConcreteElementA::operate() [Monitor Element]
 ConcreteElementB::accept() [visitor.class = ConcreteVisitorA visitor.name = Google Visitor]
-ConcreteVisitorA::visit() [Element.class = ConcreteElementB Element.name = Keyboard Element]
+ConcreteVisitorA::visitB() [Element.class = ConcreteElementB Element.name = Keyboard Element]
 ConcreteElementB::operate() [Keyboard Element]
 ====
 ObjectStructure::accept() [visitor.class = ConcreteVisitorB visitor.name = Apple Visitor]
 ConcreteElementA::accept() [visitor.class = ConcreteVisitorB visitor.name = Apple Visitor]
-ConcreteVisitorB::visit() [Element.class = ConcreteElementA Element.name = Monitor Element]
+ConcreteVisitorB::visitA() [Element.class = ConcreteElementA Element.name = Monitor Element]
 ConcreteElementA::operate() [Monitor Element]
 ConcreteElementB::accept() [visitor.class = ConcreteVisitorB visitor.name = Apple Visitor]
-ConcreteVisitorB::visit() [Element.class = ConcreteElementB Element.name = Keyboard Element]
+ConcreteVisitorB::visitB() [Element.class = ConcreteElementB Element.name = Keyboard Element]
 ConcreteElementB::operate() [Keyboard Element]
 */

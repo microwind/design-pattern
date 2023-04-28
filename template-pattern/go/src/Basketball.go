@@ -16,9 +16,10 @@ func (b *Basketball) Init() {
   fmt.Println("Basketball::Init() [Basketball Game Initialized! Start playing.]")
 }
 
-func (b *Basketball) Start() {
-  fmt.Println("Basketball::Start() [Basketball Game Started. Enjoy the game!]")
-}
+// 复用父类的Start函数
+// func (b *Basketball) Start() {
+//   fmt.Println("Basketball::Start() [Basketball Game Started. Enjoy the game!]")
+// }
 
 func (b *Basketball) End() {
   fmt.Println("Basketball::End() [Basketball Game Finished!]")

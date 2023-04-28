@@ -16,7 +16,7 @@
 # UML
 <img src="../docs/uml/template-pattern.png">
 
-# 代码
+# Java代码
 
 ## 抽象模板类
 ```java
@@ -139,5 +139,244 @@ public class Tennis extends GameTemplate {
     GameTemplate tennis = new Tennis();
     tennis.play();
 ```
+
+# C语言代码
+
+## 头文件
+// func.h
+```c
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+typedef struct GameTemplate GameTemplate;
+typedef struct Football Football;
+typedef struct Basketball Basketball;
+typedef struct Tennis Tennis;
+
+// 定义抽象模板，包括各种动作和公共流程
+typedef struct GameTemplate
+{
+  char name[50];
+  void (*init)(GameTemplate *game);
+  void (*start)(GameTemplate *game);
+  void (*end)(GameTemplate *game);
+  void (*play)(GameTemplate *game);
+} GameTemplate;
+void template_play(GameTemplate *game);
+GameTemplate *game_template_constructor(char *name);
+
+// 定义子类覆写父类抽象方法
+typedef struct Football
+{
+  char name[50];
+  void (*init)(Football *game);
+  void (*start)(Football *game);
+  void (*end)(Football *game);
+  void (*play)(Football *game);
+} Football;
+Football *football_constructor(char *name);
+
+// 定义子类覆写父类抽象方法
+typedef struct Basketball
+{
+  char name[50];
+  void (*init)(Basketball *game);
+  void (*start)(Basketball *game);
+  void (*end)(Basketball *game);
+  void (*play)(Basketball *game);
+} Basketball;
+Basketball *basketball_constructor(char *name);
+
+// 定义子类覆写父类抽象方法
+typedef struct Tennis
+{
+  char name[50];
+  void (*init)(Tennis *game);
+  void (*start)(Tennis *game);
+  void (*end)(Tennis *game);
+  void (*play)(Tennis *game);
+} Tennis;
+Tennis *tennis_constructor(char *name);
+
+```
+
+## 抽象模板类
+```c
+// game_template.c 定义抽象模板类，有抽象方法和具体方法
+#include "func.h"
+
+// 定义抽象模板类的公共部分，这里用struct替代
+
+// 抽象方法待子类来实现
+void template_init(GameTemplate *game) {}
+void template_start(GameTemplate *game)
+{
+  printf("\r\n GameTemplate::start() [GameTemplate Initialized! Start playing.]");
+}
+void template_end(GameTemplate *game) {}
+
+// 可复用的算法流程
+void template_play(GameTemplate *game)
+{
+  printf("\r\n GameTemplate::play() [name=%s]", game->name);
+
+  // 初始化游戏
+  game->init(game);
+
+  // 开始游戏
+  game->start(game);
+
+  // 结束游戏
+  game->end(game);
+}
+
+GameTemplate *game_template_constructor(char *name)
+{
+  // printf("\r\n game_template_constructor() [构建GameTemplate]");
+  GameTemplate *game = (GameTemplate *)malloc(sizeof(GameTemplate));
+  strcpy(game->name, name);
+  game->init = &template_init;
+  game->start = &template_start;
+  game->end = &template_end;
+  game->play = &template_play;
+  return game;
+}
+```
+
+## 具体业务类，继承抽象模板
+```c
+// basketball.c  定义子类覆写父类抽象方法
+#include "func.h"
+
+// 定义子类覆写父类抽象方法
+void basketball_init(Basketball *game)
+{
+  printf("\r\n Basketball::init() [Basketball Game Initialized! Start playing.]");
+}
+
+void basketball_start(Basketball *game)
+{
+  printf("\r\n Basketball::start() [Basketball Game Started. Enjoy the game!]");
+}
+
+void basketball_end(Basketball *game)
+{
+  printf("\r\n Basketball::end() [Basketball Game Finished!]");
+}
+
+Basketball *basketball_constructor(char *name)
+{
+  printf("\r\n basketball_constructor() [构建Basketball]");
+  GameTemplate *template = game_template_constructor(name);
+  Basketball *game = (Basketball *)template;
+  game->init = &basketball_init;
+  // 如果不覆盖则使用基类的函数
+  // game->start = &basketball_start;
+  game->end = &basketball_end;
+  return game;
+}
+```
+
+```c
+// football.c 定义子类覆写父类抽象方法
+#include "func.h"
+
+// 定义子类覆写父类抽象方法
+void football_init(Football *game)
+{
+  printf("\r\n Football::init() [Football Game Initialized! Start playing.]");
+}
+
+void football_start(Football *game)
+{
+  printf("\r\n Football::start() [Football Game Started. Enjoy the game!]");
+}
+
+void football_end(Football *game)
+{
+  printf("\r\n Football::end() [Football Game Finished!]");
+}
+
+Football *football_constructor(char *name)
+{
+  printf("\r\n football_constructor() [构建Football]");
+  GameTemplate *template = game_template_constructor(name);
+  Football *game = (Football *)template;
+  game->init = &football_init;
+  game->start = &football_start;
+  game->end = &football_end;
+  return game;
+}
+```
+
+```c
+// tennis.c 定义子类覆写父类抽象方法
+#include "func.h"
+
+// 定义子类覆写父类抽象方法
+void tennis_init(Tennis *game)
+{
+  printf("\r\n Tennis::init() [Tennis Game Initialized! Start playing.]");
+}
+
+void tennis_start(Tennis *game)
+{
+  printf("\r\n Tennis::start() [Tennis Game Started. Enjoy the game!]");
+}
+
+void tennis_end(Tennis *game)
+{
+  printf("\r\n Tennis::end() [Tennis Game Finished!]");
+}
+
+// 在调用父类play之前，如果要执行自己的行为，也可以覆盖父类方法
+void tennis_play(Tennis *game)
+{
+  // 先执行自己的内容，再调用基类的函数
+  printf("\r\n Tennis::play() [Tennis Game Play!]");
+  template_play((GameTemplate *)game);
+}
+
+Tennis *tennis_constructor(char *name)
+{
+  printf("\r\n tennis_constructor() [构建Tennis]");
+  GameTemplate *template = game_template_constructor(name);
+  Tennis *game = (Tennis *)template;
+  game->init = &tennis_init;
+  game->start = &tennis_start;
+  game->end = &tennis_end;
+  game->play = &tennis_play;
+  return game;
+}
+```
+
+## 测试调用
+```c
+#include "../src/func.h"
+
+int main(void)
+{
+  printf("test start:\r\n");
+  /**
+   * 模板方法模式就是当子类具备类似行为的时候，让子类共用一套流程
+   * 创建一个公共模板，确定公用流程和操作动作，子类覆盖具体的动作
+   */
+  Football *football = football_constructor("football");
+  football->play(football);
+
+  printf("\r\n ===");
+  Basketball *basketball = basketball_constructor("basketball");
+  basketball->play(basketball);
+
+  printf("\r\n ===");
+  Tennis *tennis = tennis_constructor("basketball");
+  tennis->play(tennis);
+}
+
+```
+
 ## 更多语言版本
 不同语言设计模式源码：[https://github.com/microwind/design-pattern](https://github.com/microwind/design-pattern)

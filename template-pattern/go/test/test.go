@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"microwind/src"
+  "microwind/src"
 )
 
 // main包下的main入口方法
@@ -37,7 +37,7 @@ Football::End() [Football Game Finished!]
 ===
 GameTemplate::play() [Basketball]
 Basketball::Init() [Basketball Game Initialized! Start playing.]
-Basketball::Start() [Basketball Game Started. Enjoy the game!]
+GameTemplate::play() [GameTemplate Game Initialized! Start playing.]
 Basketball::End() [Basketball Game Finished!]
 ===
 Tennis::Play() [Tennis Game Play!]

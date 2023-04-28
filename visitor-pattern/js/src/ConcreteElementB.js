@@ -15,7 +15,7 @@ export class ConcreteElementB extends Element {
         visitor.getName() +
         ']'
     )
-    visitor.visit(this)
+    visitor.visitB(this)
   }
 
   operate() {
