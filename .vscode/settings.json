@@ -1,4 +1,5 @@
 {
+  // "java.project.sourcePaths": ["src"],
   "files.associations": {
     "stdlib.h": "c",
     "stdio.h": "c",

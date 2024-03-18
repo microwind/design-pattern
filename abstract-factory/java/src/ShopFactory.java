@@ -19,7 +19,7 @@ public class ShopFactory extends AbstractFactory {
   }
 
   @Override
-  public Vehicle getVehicle(VehicleType type) {
+  public AbstractVehicle getVehicle(VehicleType type) {
     return null;
   }
 }
