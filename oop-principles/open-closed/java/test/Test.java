@@ -41,7 +41,6 @@ public class Test {
  * jarry@jarrys-MacBook-Pro java % javac -encoding utf-8 test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:
- * test start:
  * car has been produced: 1 car1 2500
  * car1
  * bus has been produced: 2 bus1 15000

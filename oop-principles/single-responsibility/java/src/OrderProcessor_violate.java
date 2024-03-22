@@ -3,7 +3,7 @@ package src;
 /**
  * 这个例子违反了单一职责原则。
  * 1. 订单处理类实现了订单校验以及保存数据库的两种逻辑。
- * 2. 一旦订单条件有修改或保存数据库方式有变更都需要此类。
+ * 2. 一旦订单条件有修改或保存数据库方式有变更都需要改动此类。
  */
 public class OrderProcessor_violate {
     public OrderProcessor_violate() {
