@@ -9,11 +9,11 @@ public class Test {
     /**
      * 测试不符合单一职责的例子
      */
-    VehicleFactory_violate vehicle_violate = new VehicleFactory_violate();
-    VehicleFactory_violate.VehicleFactory vehicleFactory = vehicle_violate.new VehicleFactory();
-    VehicleFactory_violate.Vehicle car1 = vehicleFactory.createVehicle(vehicle_violate.new Car("car1"));
+    OpenClosed_counter vehicle_counter = new OpenClosed_counter();
+    OpenClosed_counter.VehicleFactory vehicleFactory = vehicle_counter.new VehicleFactory();
+    OpenClosed_counter.Vehicle car1 = vehicleFactory.createVehicle(vehicle_counter.new Car("car1"));
     System.out.println(car1.getName());
-    VehicleFactory_violate.Vehicle bus1 = vehicleFactory.createVehicle(vehicle_violate.new Bus("bus1"));
+    OpenClosed_counter.Vehicle bus1 = vehicleFactory.createVehicle(vehicle_counter.new Bus("bus1"));
     System.out.println(bus1.getName());
 
     // *********************** 分割线 ******************************************/

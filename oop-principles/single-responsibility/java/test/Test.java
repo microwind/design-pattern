@@ -9,9 +9,9 @@ public class Test {
     /**
      * 测试不符合单一职责的例子
      */
-    OrderProcessor_violate orderProcessorViolate = new OrderProcessor_violate();
-    orderProcessorViolate.processOrder(1001L);
-    orderProcessorViolate.processOrder(1002L);
+    SingleResponsibility_counter orderProcessorCounter = new SingleResponsibility_counter();
+    orderProcessorCounter.processOrder(1001L);
+    orderProcessorCounter.processOrder(1002L);
 
     // *********************** 分割线 ******************************************/
     System.out.println("***********************");

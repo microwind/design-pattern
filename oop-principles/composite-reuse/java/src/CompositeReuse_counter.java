@@ -5,8 +5,8 @@ package src;
  * 1. 人的身份会有多重角色，不是适合继承人，如果是物种角度可以是继承，比如男、女继承人。
  * 2. 采用继承会使得不够灵活，修改起来很麻烦，例如一个人既是经理也是雇员。
  */
-public class Employee_violate {
-    public Employee_violate() {
+public class CompositeReuse_counter {
+    public CompositeReuse_counter() {
         return;
     }
 

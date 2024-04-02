@@ -97,8 +97,8 @@ public class VehicleFactory {
  * 1. 车辆制造类将具体创建方法放在了一起，不利于扩展。
  * 2. 一旦有新的车辆类型加入就需要不断修改车辆建造类。
  */
-public class VehicleFactory_violate {
-    public VehicleFactory_violate() {
+public class OpenClosed_counter {
+    public OpenClosed_counter() {
         return;
     }
 

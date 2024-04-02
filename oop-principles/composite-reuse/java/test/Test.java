@@ -9,10 +9,10 @@ public class Test {
     /**
      * 测试不符合组合复用的例子
      */
-    Employee_violate employee = new Employee_violate();
-    Employee_violate.Employee engineer = employee.new Engineer("Tom", 25, 1001, "senior engineer");
+    CompositeReuse_counter employee = new CompositeReuse_counter();
+    CompositeReuse_counter.Employee engineer = employee.new Engineer("Tom", 25, 1001, "senior engineer");
     engineer.work();
-    Employee_violate.Employee manager = employee.new Manager("Jerry", 45, 2002, "advanced director");
+    CompositeReuse_counter.Employee manager = employee.new Manager("Jerry", 45, 2002, "advanced director");
     manager.work();
 
     // *********************** 分割线 ******************************************/
