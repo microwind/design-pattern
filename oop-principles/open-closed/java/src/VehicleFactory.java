@@ -11,7 +11,7 @@ public class VehicleFactory {
         // 当增加其他具体对象时不用修改这里的逻辑，
         // 而是通过扩展新增对象来实现。因此对修改关闭，对扩展开放。
         vehicle.create();
-        // 可以返回具体对象或者调用基础方法
+        // 执行创建方法再返回具体对象
         return vehicle;
     }
 }
