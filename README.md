@@ -1,12 +1,12 @@
-# Design Pattern 23种经典设计模式不同语言源码详解
+# Design Pattern 23种经典设计模式多种语言详解
 
-超过23种经典设计模式源码详解，结合实际场景，充分注释说明，每一行代码都经过检验，确保可靠。
-
-用不同语言来实现，包括C/Java/JS/Python/TypeScript/Go等。
+- 包括23种经典设计模式不同语言详解，结合实际场景，详细说明设计模式的作用和使用方式。增加充分注释，便于理解。每一行代码都经过检验，确保可靠。
+- 采用最经典也是最流行的语言来实现，包括C/Java/JavaScript/Python/TypeScript/Go等，通过这些例子可以看出不同语言的差异，在设计模式的使用上要遵循语言特色。
+- 同时包含各种架构与设计思想，不断完善和补充，期望打造一个关于编程思想与代码设计的资源库。
     
-Including over 23 source code examples of classic design patterns, which are fully annotated in combination with actual scenarios. Every line of code has been verified to ensure reliability.
-
-Implemented in different languages, including Java/JS/Python/TypeScript/Go, etc.
+- Includes detailed explanations of 23 classic design patterns in different languages, combined with practical scenarios, to illustrate the role and usage of design patterns. Full annotations are added for ease of understanding. Every line of code is verified to ensure reliability.
+- Using the most classic and popular languages, including C/Java/JavaScript/Python/TypeScript/Go, etc., we can see the differences between different languages. When using design patterns, we should follow the characteristics of the language.
+- At the same time, it contains various architectures and design ideas, which are constantly improved and supplemented, in the hope of creating a resource library for programming ideas and code design.
 
 ## 设计模式结构图
 
@@ -124,3 +124,4 @@ Implemented in different languages, including Java/JS/Python/TypeScript/Go, etc.
 欢迎共建 Welcome to join
 - Wechat:  **springbuild**
 - QQ: **12263539**
+- Mail: lichunping@buaa.edu.cn
