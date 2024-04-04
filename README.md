@@ -10,9 +10,9 @@ Implemented in different languages, including Java/JS/Python/TypeScript/Go, etc.
 
 ## 设计模式结构图
 
-<img src="./docs/design-pattern.png">
+<img src="https://pic2.zhimg.com/80/v2-93c9d173e41a204ae8bb8b391cbbe9b5_1440w.webp">
 
-## 源码例子
+## 设计模式源码例子
 
 ### 创建型
 - **[工厂模式（Factory Pattern） ](./factory-pattern)**，由工厂类提供统一的创建对象的方法。
@@ -88,6 +88,29 @@ Implemented in different languages, including Java/JS/Python/TypeScript/Go, etc.
 
 - **[解释器模式（Interpreter Pattern） ](./interpreter-pattern)**，实现了一个表达式接口，并能解释特定的上下文里面的变量和语句。
 [C](./interpreter-pattern/c) [Java](./interpreter-pattern/java) | [JavaScript](./interpreter-pattern/js) | [Python](./interpreter-pattern/python) | [TypeScript](./interpreter-pattern/ts)  | [Go](./interpreter-pattern/go)
+
+## 面向对象设计原则
+
+### 1. 开闭原则(Open Closed Principle，OCP)
+- 对扩展开放，对修改关闭。希望程序扩展功能的时候，通过开放的接口来实现，而不是修改代码。[例子](./oop-principles/open-closed) | [反例](./oop-principles/open-closed/java/src/OpenClosed_counter.java)
+
+### 2. 单一职责原则(Single Responsibility Principle，缩写为SRP)
+- 对一个类来说的，职责应该单一，只做一件或一类具体的事情。 [例子](./oop-principles/single-responsibility) | [反例](./oop-principles/single-responsibility/java/src/SingleResponsibility_counter.java)
+
+### 3. 依赖倒置（也叫依赖反转）原则（Dependency inversion principle，DIP）
+- 是开闭原则的基础。指针对接口编程，高层模块不应该依赖低层模块，二者都依赖于抽象而不依赖于具体实现编程。[例子](./oop-principles/dependency-inversion) | [反例](./oop-principles/dependency-inversion/java/src/DependencyInversion_counter.java)
+
+### 4. 接口隔离原则（Interface Segregation Principle, 简称ISP）
+- 一个类对另一个类的依赖应该建立在最小的接口上，不依赖不需要的接口。尽量强调降低依赖，降低耦合。[例子](./oop-principles/interface-segregation) | [反例](./oop-principles/interface-segregation/java/src/InterfaceSegregation_counter.java)
+
+### 5. 组合/聚合复用原则（Composite/Aggregate Reuse Principle，CARP）
+- 写代码会涉及到代码复用，尽量使用组合而少使用继承。大多数情况下组合可以替代继承。[例子](./oop-principles/composite-reuse) | [反例](./oop-principles/composite-reuse/java/src/CompositeReuse_counter.java)
+
+### 6. 迪米特法则（Law of Demeter，LoD）
+- 又称最少知道原则，一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。[例子](./oop-principles/law-of-demeter) | [反例](./oop-principles/law-of-demeter/java/src/LawDemeter_counter.java)
+
+### 7. 里氏代换原则（Liskov Substitution Principle，LSP）
+- 任何父类出现的地方，子类也可以出现。子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。[例子](./oop-principles/liskov-substitution) | [反例](./oop-principles/liskov-substitution/java/src/LiskovSubstitution_counter.java)
 
 ### 设计思想
 - MVC  [演示例子](./mvx/mvc)
