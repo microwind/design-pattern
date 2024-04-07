@@ -27,7 +27,7 @@ func (c *ConcreteObserver) GetName() string {
   return c.name
 }
 
-// 观察者发出更新通知，不用单独告诉订阅者，由订阅者自行监听
+// 发布者(主题)发出更新通知后，观察者(订阅者)自行监听和实现动作
 func (c *ConcreteObserver) Update(content string) {
   fmt.Println("ConcreteObserver::Update() [subject.name = " + c.subject.GetName() + " content = " + content + "]")
 }
