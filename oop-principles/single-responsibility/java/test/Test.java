@@ -9,7 +9,8 @@ public class Test {
     /**
      * 测试不符合单一职责的例子
      */
-    SingleResponsibility_counter orderProcessorCounter = new SingleResponsibility_counter();
+    SingleResponsibility_counter singleResponsibility_counter = new SingleResponsibility_counter();
+    SingleResponsibility_counter.OrderProcessor orderProcessorCounter = singleResponsibility_counter.new OrderProcessor();
     orderProcessorCounter.processOrder(1001L);
     orderProcessorCounter.processOrder(1002L);
 
@@ -35,16 +36,16 @@ public class Test {
  * jarry@jarrys-MacBook-Pro java % javac -encoding utf-8 test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:
- * order ID: 1001
- * order validate failed.
- * order ID: 1002
+ * oder ID：1001
+ * order validate id failed.
+ * oder ID：1002
  * order data processing.
- * order info save to DB.
+ * order save to DB.
  * order saving.
  * order save done.
  ***********************
  * oder ID：1001
- * order validate failed.
+ * order validate id failed.
  * oder ID：1002
  * order data processing.
  * order save to DB.

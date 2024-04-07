@@ -20,7 +20,8 @@
 ```java
 /**
  * 这个例子符合单一职责原则。
- * 1. 分别建立三个类，一个负责订单业务处理(OrderProcessor)，一个负责校验订单(OrderValidator)，一个负责保存数据(OrderDao)，各司其职。
+ * 1.
+ * 分别建立三个类，一个负责订单业务处理(OrderProcessor)，一个负责校验订单(OrderValidator)，一个负责保存数据(OrderDao)，各司其职。
  * 2. 由处理订单来负责调用工具类，订单业务逻辑修改不会影响到工具类。
  * 3. 工具类修改也不会影响到订单业务处理。
  * 4. 职责是否足够单一，要根据具体场景而异，不同情形下采用不同的设计，主要的目标是便于理解、扩展和维护。
@@ -28,32 +29,41 @@
 public class OrderProcessor {
     private OrderValidator orderValidator = new OrderValidator();
     private OrderDao orderDao = new OrderDao();
+
     public OrderProcessor() {
         return;
     }
 
-    // 订单处理逻辑
+    // 订单处理逻辑方法
     public Object processOrder(Long orderId) {
-        System.out.println("订单号：" + orderId);
-        // 1. 先验证订单
+        System.out.println("oder ID：" + orderId);
+        // 1. 先验证订单，调用校验类
         if (!orderValidator.validateId(orderId)) {
-            System.out.println("订单校验失败。");
+            System.out.println("order validate id failed.");
             return false;
         }
 
-        // 2. 将订单数据逻辑处理
-        if (orderId % 2 == 0) {
-            System.out.println("订单数据加工。");
+        if (!orderValidator.validateTime(System.currentTimeMillis())) {
+            System.out.println("order validate time failed.");
+            return false;
         }
 
-        // 3. 再保存订单到数据库
-        System.out.println("订单保存到数据库。");
+        // 2. 订单数据其他逻辑处理
+        if (orderId % 2 == 0) {
+            System.out.println("order data processing.");
+        }
+
+        // 3. 再保存订单到数据库，调用数据库类
+        System.out.println("order save to DB.");
         orderDao.saveOrder(orderId);
+        // 或则删除订单
+        // orderDao.deleteOrder(orderId);
 
         return true;
     }
 }
 ```
+
 ```java
 /**
  * 订单校验类，校验订单的合法性和有效性等
@@ -71,7 +81,7 @@ public class OrderValidator {
 
     public boolean validateTime(Long time) {
         // doSomething
-        return false;
+        return true;
     }
 }
 ```
@@ -92,9 +102,9 @@ public class OrderDao {
     // 保存订单到数据库
     protected boolean saveOrder(Long orderId) {
         if (orderId % 2 == 0) {
-            System.out.println("保存逻辑处理。");
+            System.out.println("data saving.");
         }
-        System.out.println("保存完成。");
+        System.out.println("data save done.");
         return true;
     }
 
@@ -113,43 +123,65 @@ public class SingleResponsibility_counter {
         return;
     }
 
-    // 订单处理逻辑
-    public Object processOrder(Long orderId) {
-        System.out.println("订单号：" + orderId);
-        // 1. 先验证订单
-        if (!this.validateOrder(orderId)) {
-            System.out.println("订单校验失败。");
-            return false;
+    // 一个类负责订单处理、校验以及保存多重职责
+    public class OrderProcessor {
+
+        // 订单处理逻辑方法
+        public Object processOrder(Long orderId) {
+            System.out.println("oder ID：" + orderId);
+            // 1. 先验证订单
+            if (!this.validateId(orderId)) {
+                System.out.println("order validate id failed.");
+                return false;
+            }
+
+            if (!this.validateTime(System.currentTimeMillis())) {
+                System.out.println("order validate time failed.");
+                return false;
+            }
+
+            // 2. 订单数据其他逻辑处理
+            if (orderId % 2 == 0) {
+                System.out.println("order data processing.");
+            }
+
+            // 3. 再保存订单到数据库
+            System.out.println("order save to DB.");
+            this.saveOrder(orderId);
+            // 或则删除订单
+            // orderDao.deleteOrder(orderId);
+
+            return true;
         }
 
-        // 2. 将订单数据逻辑处理
-        if (orderId % 2 == 0) {
-            System.out.println("订单数据加工。");
+        // 校验订单逻辑，最好别放在订单处理类中
+        private boolean validateId(Long orderId) {
+            // doSomething
+            if (orderId % 2 == 1) {
+                return false;
+            }
+            return true;
         }
 
-        // 3. 再保存订单到数据库
-        System.out.println("订单保存到数据库。");
-        this.saveOrderToDatabase(orderId);
-
-        return true;
-    }
-
-    // 校验订单逻辑，最好别放在订单处理类中
-    private boolean validateOrder(Long orderId) {
-        // doSomething
-        if (orderId % 2 == 1) {
-            return false;
+        public boolean validateTime(Long time) {
+            // doSomething
+            return true;
         }
-        return true;
-    }
 
-    // 保存订单到数据库逻辑，不应该放在订单处理类中
-    private boolean saveOrderToDatabase(Long orderId) {
-        if (orderId % 2 == 0) {
-            System.out.println("保存逻辑处理。");
+        // 保存订单到数据库逻辑，不应该放在订单处理类中
+        private boolean saveOrder(Long orderId) {
+            if (orderId % 2 == 0) {
+                System.out.println("order saving.");
+            }
+            System.out.println("order save done.");
+            return true;
         }
-        System.out.println("保存完成。");
-        return true;
+
+        // 删除订单，也不要直接放在订单处理类
+        protected boolean deleteOrder(Long orderId) {
+            // doSomething
+            return true;
+        }
     }
 }
 ```

@@ -37,8 +37,6 @@ public class CompositeReuse_counter {
 
     // 具体职位类
     public class Engineer extends Employee {
-        public int id;
-        public String title;
 
         public Engineer(String name, int age, int id, String title) {
             this.name = name;
@@ -57,8 +55,6 @@ public class CompositeReuse_counter {
 
     // 具体职位类
     public class Manager extends Employee {
-        public int id;
-        public String title;
 
         public Manager(String name, int age, int id, String title) {
             this.name = name;

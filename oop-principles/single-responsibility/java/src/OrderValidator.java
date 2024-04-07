@@ -16,6 +16,6 @@ public class OrderValidator {
 
     public boolean validateTime(Long time) {
         // doSomething
-        return false;
+        return true;
     }
 }
