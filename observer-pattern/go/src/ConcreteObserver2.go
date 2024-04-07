@@ -27,7 +27,7 @@ func (c *ConcreteObserver2) GetSubjectName() string {
   return "unknow"
 }
 
-// 观察者发出更新通知，观察者自行监听
+// 发布者(主题)发出更新通知后，观察者(订阅者)自行监听和实现动作
 func (c *ConcreteObserver2) Update(content string) {
   fmt.Println("ConcreteObserver2::Update() [subject.name = " + c.GetSubjectName() + " content = " + content + "]")
 }
