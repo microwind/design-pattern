@@ -1,18 +1,14 @@
-# Design Pattern 23种经典设计模式多种语言详解
+# 经典设计模式Design Pattern，不同语言实现
 
-- 包括23种经典设计模式不同语言详解，结合实际场景，详细说明设计模式的作用和使用方式。增加充分注释，便于理解。每一行代码都经过检验，确保可靠。
-- 采用最经典也是最流行的语言来实现，包括C/Java/JavaScript/Python/TypeScript/Go等，通过这些例子可以看出不同语言的差异，在设计模式的使用上要遵循语言特色。
-- 同时包含各种架构与设计思想，不断完善和补充，期望打造一个关于编程思想与代码设计的资源库。
-    
-- Includes detailed explanations of 23 classic design patterns in different languages, combined with practical scenarios, to illustrate the role and usage of design patterns. Full annotations are added for ease of understanding. Every line of code is verified to ensure reliability.
-- Using the most classic and popular languages, including C/Java/JavaScript/Python/TypeScript/Go, etc., we can see the differences between different languages. When using design patterns, we should follow the characteristics of the language.
-- At the same time, it contains various architectures and design ideas, which are constantly improved and supplemented, in the hope of creating a resource library for programming ideas and code design.
+- 包括23种经典设计模式不同语言详解，结合实际场景，详细注释说明。每一行代码都经过检验，确保可靠。
+- 采用流行的语言，包括C/Java/JavaScript/Python/TypeScript/Go等，尊重语言特性。
+- 包含各种架构与设计思想，不断完善和补充，打造编程思想与架构设计的资源库。
 
 ## 设计模式结构图
 
 <img src="https://pic2.zhimg.com/80/v2-93c9d173e41a204ae8bb8b391cbbe9b5_1440w.webp">
 
-## 设计模式源码例子
+## 设计模式源码
 
 ### 创建型
 - **[工厂模式（Factory Pattern） ](./factory-pattern)**，由工厂类提供统一的创建对象的方法。
@@ -112,7 +108,7 @@
 ### 7. 里氏代换原则（Liskov Substitution Principle，LSP）
 - 任何父类出现的地方，子类也可以出现。子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。[例子](./oop-principles/liskov-substitution) | [反例](./oop-principles/liskov-substitution/java/src/LiskovSubstitution_counter.java)
 
-### 设计思想
+## 编程设计思想
 - MVC  [演示例子](./mvx/mvc)
 - MVP  [演示例子](./mvx/mvp)
 - MVVM [演示例子](./mvx/mvvm)
