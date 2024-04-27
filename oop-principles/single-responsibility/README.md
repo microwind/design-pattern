@@ -57,7 +57,7 @@ public class OrderProcessor {
         System.out.println("order save to DB.");
         orderDao.saveOrder(orderId);
         // 或则删除订单
-        // orderDao.deleteOrder(orderId);
+        // this.deleteOrder(orderId);
 
         return true;
     }
