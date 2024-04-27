@@ -36,7 +36,7 @@ public class SingleResponsibility_counter {
             System.out.println("order save to DB.");
             this.saveOrder(orderId);
             // 或则删除订单
-            // orderDao.deleteOrder(orderId);
+            // this.deleteOrder(orderId);
 
             return true;
         }
