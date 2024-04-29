@@ -6,7 +6,7 @@ import src.shop.*;
  */
 public class VehicleFactory extends AbstractFactory {
   @Override
-  public AbstractVehicle getVehicle(VehicleType type) {
+  public Vehicle getVehicle(VehicleType type) {
     switch (type) {
       case BUS:
         return new Bus();

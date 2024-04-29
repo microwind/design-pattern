@@ -103,9 +103,10 @@ int main(void)
     return 0;
 }
 
+
+// jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 创建handler:
  request_handler_01 user_handler_02 auth_handler_03
 建立职责链:

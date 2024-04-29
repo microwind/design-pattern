@@ -44,9 +44,9 @@ int main(void)
   return 0;
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc src/*.c test/test.c
+// jarry@jarrys-MacBook-Pro c % ./a.out 
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out 
 test start:
 
  player_adapter_constructor() [name=adapter1]

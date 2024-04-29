@@ -2,7 +2,7 @@
 
 // 定义策略执行对象context
 
-// 设置不同strategy，方法名首字母大写
+// 设置不同strategy
 void context_set_strategy(Context *context, Strategy *strategy)
 {
   context->strategy = strategy;

@@ -42,9 +42,9 @@ int main()
   free(manual_builder);
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc src/*.c test/test.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc src/全部.c test/test.c
-jarry@jarrys-MacBook-Pro c % ./a.out s
 test start:
 build_iphone:[name=Phone:iPhone]
  get_product: Phone:iPhone | { name: "Phone:iPhone", screen: [120, 500], gpu_type: 100 }

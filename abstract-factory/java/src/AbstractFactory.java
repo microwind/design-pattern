@@ -10,6 +10,6 @@ import src.shop.*;
   如何解决：在一个产品系列里面，定义多个产品对象。由抽象类来负责创建产品工厂。
  */
 public abstract class AbstractFactory {
-  public abstract AbstractVehicle getVehicle(VehicleType type);
+  public abstract Vehicle getVehicle(VehicleType type);
   public abstract Shop getShop(String name);
 }

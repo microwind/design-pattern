@@ -42,9 +42,9 @@ int main(void)
   return 0;
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  ConcreteFlyweight::concrete_flyweight_constructor() 创建具体享元对象[name=piano1]

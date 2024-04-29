@@ -38,9 +38,9 @@ int main(void)
   free(container);
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c src*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  object_list_constructor() [构建数据容器对象]

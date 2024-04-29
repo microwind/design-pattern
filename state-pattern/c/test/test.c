@@ -23,9 +23,9 @@ int main(void)
   printf("\r\n context.state: %s", context->get_state(context)->name);
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  context_constructor() [构建Context]

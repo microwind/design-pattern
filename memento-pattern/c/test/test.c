@@ -42,9 +42,9 @@ int main(void)
   }
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  originator_constructor() [构建通用聊天室]

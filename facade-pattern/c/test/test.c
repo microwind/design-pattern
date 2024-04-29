@@ -17,9 +17,9 @@ int main(void)
   return 0;
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out 
 test start:
 
  Facade::encoding() [name=facade1, id=123456]

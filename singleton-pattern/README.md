@@ -293,7 +293,7 @@ static LazySingletonSafe *new_lazy_singleton_safe(char *name)
 // 声明锁
 pthread_mutex_t singleton_lock;
 
-// 非线程安全懒汉模式，延迟初始化。多个线程同时调用函数时， 可能会被初始化多次，存在线程不安全问题
+// 线程安全懒汉模式，延迟初始化。多个线程同时调用函数时，以动态方式创建互斥锁，防止线程并发导致的不安全
 LazySingletonSafe *get_lazy_singleton_safe_instance(char *name)
 {
   printf("\r\n get_lazy_singleton_safe_instance() [name=%s]", name);

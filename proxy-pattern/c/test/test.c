@@ -20,9 +20,9 @@ int main(void)
   image->display(image);
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  proxy_image_constructor() [构建ProxyImage]

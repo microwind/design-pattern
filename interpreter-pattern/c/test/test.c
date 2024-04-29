@@ -20,9 +20,10 @@ int main(void)
   return 0;
 }
 
+
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c src*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  context_constructor() 构建执行上下文

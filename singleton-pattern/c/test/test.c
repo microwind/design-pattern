@@ -40,9 +40,9 @@ int main(void)
   eager_singleton2->run(eager_singleton2);
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  proxy_image_constructor() [构建ProxyImage]

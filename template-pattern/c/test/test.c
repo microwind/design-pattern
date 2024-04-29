@@ -19,9 +19,9 @@ int main(void)
   tennis->play(tennis);
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  football_constructor() [构建Football]

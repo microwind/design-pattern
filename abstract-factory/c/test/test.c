@@ -69,10 +69,9 @@ int main(void)
     return 0;
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc src/**/*.c test/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-// 注释编译告警，请先删除`/*`等注释 within block comment [-Wcomment]
-jarry@jarrys-MacBook-Pro c % gcc src/**/*.c test /*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
 bus_run() [name=bus_01]

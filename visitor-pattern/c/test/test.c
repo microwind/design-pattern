@@ -17,9 +17,9 @@ int main(void)
   structure->accept(structure, (Visitor *)concrete_visitor_b_constructor());
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  object_structure_constructor() [构建ObjectStructure]

@@ -39,9 +39,10 @@ int main(void)
     return 0;
 }
 
+
+// jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/*.c src/*.c
-jarry@jarrys-MacBook-Pro c % ./a.out 
 test start:
 bus_run(). 
 car_run().

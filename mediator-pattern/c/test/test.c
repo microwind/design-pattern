@@ -30,9 +30,9 @@ int main(void)
   user2->send_to(user2, (AbstractUser *)user3, "Hello, haha.");
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  general_room_constructor() [构建通用聊天室]

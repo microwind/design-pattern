@@ -32,9 +32,9 @@ int main(void)
   concrete_subject->notify(concrete_subject, "hello, this is broadcast.");
 }
 
+// jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src/*.c
+// jarry@jarrys-MacBook-Pro c % ./a.out
 /**
-jarry@jarrys-MacBook-Pro c % gcc test/test.c ./src下*.c
-jarry@jarrys-MacBook-Pro c % ./a.out
 test start:
 
  concrete_subject_constructor() [构建订阅主题]
