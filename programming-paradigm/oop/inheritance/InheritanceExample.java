@@ -24,7 +24,7 @@ class Employee {
     }
 
     // 基类中的方法，计算年薪
-    public double getAnnual薪水() {
+    public double getAnnualSalary() {
         return salary * 12; // 一年12个月的工资
     }
 }

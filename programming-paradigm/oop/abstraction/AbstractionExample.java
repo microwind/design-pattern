@@ -76,8 +76,8 @@ public class AbstractionExample {
     double circleArea = circle.calculateArea();
     System.out.println("圆形面积: " + circleArea); // 输出：Circle Area: 78.53981633974483
 
-    // 创建矩形对象并计算面积
-    Rectangle rectangle = new Rectangle(4, 6);
+    // 创建矩形对象并计算面积，这里也可以使用抽象类声明
+    Shape rectangle = new Rectangle(4, 6);
     double rectangleArea = rectangle.calculateArea();
     System.out.println("矩形面积: " + rectangleArea); // 输出：Rectangle Area: 24.0
 

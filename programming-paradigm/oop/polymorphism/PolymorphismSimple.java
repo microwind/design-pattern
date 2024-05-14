@@ -41,7 +41,7 @@ class D extends B {
 }
 
 // 测试验证
-public class PolymorphicNormal {
+public class PolymorphismSimple {
     public static void main(String[] args) {
         A a = new A();
         A ab = new B();
@@ -66,8 +66,8 @@ public class PolymorphicNormal {
 
 /**
  * 测试
- * jarry@jarrys-MacBook-Pro polymorphism % javac PolymorphicNormal.java
- * jarry@jarrys-MacBook-Pro polymorphism % java PolymorphicNormal
+ * jarry@jarrys-MacBook-Pro polymorphism % javac PolymorphismSimple.java
+ * jarry@jarrys-MacBook-Pro polymorphism % java PolymorphismSimple
  * 1--A and B
  * 2--A and B
  * 3--A and D
