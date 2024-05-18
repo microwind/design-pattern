@@ -17,9 +17,9 @@ public class Customer {
         if (shoppingCart.validateProduct(product)) {
             shoppingCart.addProduct(product);
             double totalPrice = shoppingCart.calculateTotalPrice();
-            System.out.println(name + " purchased " + product.getName() + " for " + totalPrice);
+            System.out.println(name + " 购买了 " + product.getName() + " 价格为 " + totalPrice);
         } else {
-            System.out.println(product.getName() + "'s price exceeds range：" + product.getPrice());
+            System.out.println(product.getName() + "的价格超出范围：" + product.getPrice());
         }
     }
 }

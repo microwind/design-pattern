@@ -37,7 +37,7 @@ public class Test {
 }
 
 /**
- * 测试
+ * 测试验证
  * jarry@jarrys-MacBook-Pro java % javac -encoding utf-8 test/Test.java
  * jarry@jarrys-MacBook-Pro java % java test/Test
  * test start:

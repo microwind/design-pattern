@@ -27,6 +27,6 @@ class ShoppingCart {
 
   public boolean validateProduct(Product product) {
     double price = product.getPrice();
-    return price > 1000;
+    return price < 1000;
   }
 }

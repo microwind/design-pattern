@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+/**
+ * 通过组合来替代继承进行组合/聚合复用，将有关联的类聚合到业务类中。
+ * 组合，相对紧密，表示为组成部件与物体的关系
+ * 聚合，相对松散，表示为个体与整体/模块的关系
+ */
 // Person 类表示人物
 type Person struct {
   name string
@@ -83,3 +88,9 @@ func main() {
   manager := NewManager(2002, "advanced director", &Person{name: "Jerry", age: 45})
   manager.Work()
 }
+
+/**
+jarry@jarrys-MBP composite-reuse % go run go/CompositeReuse.go
+Engineer is working. id = 1001, title = senior engineer, name = Tom, age = 25
+Manager is working. id = 2002, title = advanced director, name = Jerry, age = 45
+*/

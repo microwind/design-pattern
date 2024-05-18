@@ -1,5 +1,5 @@
 /**
- * 通过组合来替代继承进行组合/聚合复用，将该类聚合到雇员类中。
+ * 通过组合来替代继承进行组合/聚合复用，将有关联的类聚合到业务类中。
  * 组合：相对紧密，表示组成部件与物体的关系。
  * 聚合：相对松散，表示个体与整体/模块的关系。
  */
@@ -69,3 +69,9 @@ const engineer = new Engineer(1001, "senior engineer", new Person("Tom", 25));
 engineer.work();
 const manager = new Manager(2002, "advanced director", new Person("Jerry", 45));
 manager.work();
+
+/** 
+jarry@jarrys-MBP composite-reuse % node js/CompositeReuse.js 
+Engineer is working. id = 1001, title = senior engineer, name = Tom, age = 25
+Manager is working. id = 2002, title = advanced director, name = Jerry, age = 45
+ */

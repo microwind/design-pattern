@@ -21,7 +21,8 @@ public class Test {
     /**
      * 测试符合组合复用原则的例子
      */
-    Employee engineer2 = new Engineer(1001, "senior engineer", new Person("Tom", 25));
+    Person tom = new Person("Tom", 25);
+    Employee engineer2 = new Engineer(1001, "senior engineer", tom);
     engineer2.work();
     Employee manager2 = new Manager(2002, "advanced director", new Person("Jerry", 45));
     manager2.work();

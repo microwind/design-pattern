@@ -37,7 +37,6 @@ public class Test {
     square3.drawSquare();
     // 不会出现不符合父类预期的行为
     square4.draw();
-    ;
 
     rectangle3.draw();
     rectangle4.draw();

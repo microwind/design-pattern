@@ -121,3 +121,16 @@ public class OpenClosed_example {
 
   }
 }
+
+/** 测试验证
+jarry@jarrys-MacBook-Pro open-closed % cd java
+jarry@jarrys-MacBook-Pro java % javac src/OpenClosed_example.java 
+jarry@jarrys-MacBook-Pro java % java src/OpenClosed_example 
+Book final price: 270.0
+Clothing final price: 800.0
+Electronic final price: 1600.0
+***********************
+Book final price: 270.0
+Clothing final price: 800.0
+Electronic final price: 1600.0
+ */

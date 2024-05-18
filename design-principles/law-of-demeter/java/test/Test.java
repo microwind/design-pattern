@@ -44,6 +44,6 @@ public class Test {
  * Jimmy purchased Book for 200.0
  * Total price: $200.0
  ***********************
- * Jimmy purchased Computer for 5000.0
- * Book's price exceeds range：200.0
+ * Jimmy 购买了 Computer 价格为 5000.0
+ * Book的价格超出范围：200.0
  */
