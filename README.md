@@ -109,17 +109,24 @@
 - 任何父类出现的地方，子类也可以出现。子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。[例子](./design-principles/liskov-substitution) | [反例](./design-principles/liskov-substitution/java/src/LiskovSubstitution_counter.java)
 
 ## 编程范式
-- 面向过程编程[(Procedural Programming, PP)](./programming-paradigm/pp)
+### 面向过程编程[(Procedural Programming, PP)](./programming-paradigm/pp)
+  是一种以事物为中心的编程思想，描述程序的每个步骤。主要关注“怎么做”。
 
-- 面向对象编程[(Object-Oriented Programming, OOP)](./programming-paradigm/oop)
+### 面向对象编程[(Object-Oriented Programming, OOP)](./programming-paradigm/oop)
+  是一种以对象为基础的编程思想，万物以类聚，确定每个类的职责。主要关注“谁来做”。
+  [封装（Encapsulation）](./programming-paradigm/oop/encapsulation/) | [继承（Inheritance）](./programming-paradigm/oop/inheritance/) | [组合（Composition）](./programming-paradigm/oop/composition/) | [多态（Polymorphism）](./programming-paradigm/oop/polymorphism/)
 
-- 函数式编程[(Functional programming, FP)](./programming-paradigm/fp)
+### 函数式编程[(Functional programming, FP)](./programming-paradigm/fp)
+  以函数作为一等公民的编程思想，通过纯函数和函数组合来构建程序。描述”做什么”，而不是“怎么做”。
 
-- 面向切面编程[(Aspect-Oriented Programming, AOP)](./programming-paradigm/aop)
+### 面向切面编程[(Aspect-Oriented Programming, AOP)](./programming-paradigm/aop)
+  通过预编译和动态插入，将代码挂载到类的指定方法、指定位置上，以便实现业务与基础功能的解耦。
 
-- 事件驱动编程[(Event-Driven Programming, EDP)](./programming-paradigm/edp)
+### 事件驱动编程[(Event-Driven Programming, EDP)](./programming-paradigm/edp)
+  核心思想是程序的执行流程由事件来驱动，即程序通过监听和响应事件来执行每一个步骤。
 
-- 响应式编程[(Reactive Programming, RP)](./programming-paradigm/rp)
+### 响应式编程[(Reactive Programming, RP)](./programming-paradigm/rp)
+  是一种面向数据流和变化传播的编程范式。响应式编程通常会用在事件流相场景中，一旦触发一个事件，后续的事件会被依次触发。
 
 ## 编程设计思想
 - MVC  [演示例子](./mvx/mvc)
