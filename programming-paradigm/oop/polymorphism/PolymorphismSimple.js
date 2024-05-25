@@ -41,3 +41,17 @@ console.log("7--" + b.show(b)); // 输出：B and B
 console.log("8--" + b.show(c)); // 输出：B and B
 console.log("9--" + b.show(d)); // 输出：B and B
 console.log("10--" + ab.show(a)); // 输出：B and A
+
+/*
+jarry@jarrys-MBP polymorphism % node PolymorphismSimple.js 
+1--A and A
+2--A and A
+3--A and D
+4--B and B
+5--B and B
+6--B and B
+7--B and B
+8--B and B
+9--B and B
+10--B and A
+*/
