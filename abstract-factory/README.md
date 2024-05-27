@@ -12,17 +12,17 @@
 3. 采用统一的方式来实例化，还可以防止内存中实例对象不断增多。
 
 # 实现步骤
-1. 建立抽象工厂类，用于创建产品工厂类。
-2. 建立系列产品工厂类，继承自抽象工厂类，负责具体产品的创建。
-3. 新建不同系列具体产品类，实现具体产品的接口类。
-4. 想要获取具体产品对象时，先生成产品工厂，再实例化产品对象。
+1. 建立一个抽象工厂类，再建立一系列具体工厂类，继承自抽象工厂，负责具体产品的制造。
+2. 建立工厂创建类，负责具体工厂的创建。返回抽象工厂类型。
+3. 新建不同系列具体产品的接口，再新建不同系列具体的产品类，实现具体产品的接口。
+4. 当要制造具体产品时，通过获得具体工厂，再实例化产品对象。
 
 # UML
 <img src="../docs/uml/abstract-factory.png">
 
 # 代码
 
-## 基础工厂类
+## 基础工厂抽象类/接口，定义工厂的基本方法
 ```java
 // AbstractFactory.java 定义工厂基本规范，抽象类或是接口
 public abstract class AbstractFactory {
@@ -31,7 +31,7 @@ public abstract class AbstractFactory {
 }
 ```
 
-## 具体工厂类，可以多个，继承或实现基础工厂类
+## 具体工厂类，可以有多个，不同产品由不同的工厂生产，继承或实现基础工厂类
 ```java
 // VehicleFactory.java，车辆创建类，继承自抽象工厂基类
 public class VehicleFactory extends AbstractFactory {
@@ -82,9 +82,9 @@ public class ShopFactory extends AbstractFactory {
 }
 ```
 
-## 工厂创建者类
+## 工厂创建者类，只有一个，根据不同工厂类型来返回具体某个工厂
 ```java
-// AbstractFactory.java，工厂创建者，用来创建不同的工厂
+// FactoryCreator.java，工厂创建者，用来创建不同的工厂
 public class FactoryCreator {
   public static AbstractFactory getFactory(String name) {
     switch (name) {
@@ -102,7 +102,7 @@ public class FactoryCreator {
 ```
 
 
-## 具体产品类接口，分为shop和vehicle两类
+## 具体产品类接口，可以多个。这里分为Shop和Vehicle两大类
 ```java
 // Shop.java，商店类接口，约束具体产品的行为
 public interface Shop {
@@ -117,9 +117,9 @@ public interface Vehicle {
 }
 ```
 
-## 具体产品类，分为shop和vehicle两种
+## 具体产品类，可以多个。这里分为Shop和Vehicle两种
 ```java
-// SupermarketShop.java，具体某个商店，存在多个不同类型
+// SupermarketShop.java 具体产品类
 public class SupermarketShop implements Shop {
   @Override
   public void greetings() {
@@ -129,12 +129,69 @@ public class SupermarketShop implements Shop {
 ```
 
 ```java
-// Bus.java，具体某个车辆，存在多个同步类型
+// DirectSaleShop.java 具体产品类
+public class DirectSaleShop implements Shop {
+  @Override
+  public void greetings() {
+     System.out.println("DirectSaleShop::greetings().");
+  }
+
+  public void welcome() {
+     System.out.println("DirectSaleShop::welcome().");
+  }
+}
+```
+
+```java
+// AgencyShop.java 具体产品类
+public class AgencyShop implements Shop {
+  @Override
+  public void greetings() {
+    System.out.println("AgencyShop::greetings().");
+  }
+}
+```
+
+```java
+// Bus.java 具体产品类
 public class Bus implements Vehicle {
  
   @Override
   public void run() {
      System.out.println("Bus::run().");
+  }
+}
+```
+
+```java
+// Van.java 具体产品类
+public class Van implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Van::run().");
+  }
+}
+```
+
+```java
+// Car.java 具体产品类
+public class Car implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Car::run().");
+  }
+}
+```
+
+```java
+// Motorcycle.java 具体产品类
+public class Motorcycle implements Vehicle {
+ 
+  @Override
+  public void run() {
+     System.out.println("Motorcycle::run().");
   }
 }
 ```
