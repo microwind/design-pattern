@@ -153,7 +153,7 @@ func main() {
   // 分割线
   fmt.Println("*** 分割线 ***")
 
-  // 向上转型示例
+  // 接口断言，接口声明struct实例
   var dog Animal = &Dog{AnimalBase{Name: "Dog"}}
   var cat Animal = &Cat{AnimalBase{Name: "Cat"}}
   var pig Animal = &Pig{AnimalBase{Name: "Pig"}}
@@ -194,4 +194,4 @@ Cat is eating...
 Cat is meowing...
 Pig is eating...
 Pig is oinking...
-/*
+*/

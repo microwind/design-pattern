@@ -2,57 +2,107 @@ package main
 
 import "fmt"
 
-// 定义父类 A
+// Base 接口定义
+type Base interface {
+  Show(base Base) string
+}
+
+// A 类型，当做父类，实现Base接口
 type A struct{}
 
-// A 类的 show 方法
-func (a A) show(obj interface{}) string {
-  switch obj.(type) {
-  // case B:
-  //   return "A and B"
-  case D:
+// B 类型
+type B struct {
+  A // 嵌入 A 类型，实现继承
+}
+
+// C 类型
+type C struct {
+  B // 嵌入 B 类型，实现继承
+}
+
+// D 类型
+type D struct {
+  B // 嵌入 B 类型，实现继承
+}
+
+// A的Show 方法实现，没有重载，根据类型判断
+func (a A) Show(base Base) string {
+  switch base.(type) {
+  case *A:
+    return "A and A"
+  case *D:
     return "A and D"
   default:
-    return "A and A"
+    return "A and default"
   }
 }
 
-// 定义子类 B，继承自 A
-type B struct{ A }
-
-// B 类的 show 方法
-func (b B) show(obj interface{}) string {
-  switch obj.(type) {
-  case B:
-    return "B and B"
-  case A:
+// B的Show 方法实现，没有重载，根据类型判断
+func (b B) Show(base Base) string {
+  switch base.(type) {
+  case *A:
     return "B and A"
+  case *B:
+    return "B and B"
   default:
-    return b.A.show(obj)
+    return "B and default"
   }
 }
-
-// 定义子类 C，继承自 B
-type C struct{ B }
-
-// 定义子类 D，继承自 B
-type D struct{ B }
 
 func main() {
-  a := A{}
-  ab := B{}
-  b := B{}
-  c := C{}
-  d := D{}
+  //直接声明
+  a := &A{}
+  b := &B{}
 
-  fmt.Println("1--" + a.show(b))   // 输出：A and A
-  fmt.Println("2--" + a.show(c))   // 输出：A and A
-  fmt.Println("3--" + a.show(d))   // 输出：A and D
-  fmt.Println("4--" + ab.show(b))  // 输出：B and B
-  fmt.Println("5--" + ab.show(c))  // 输出：A and A
-  fmt.Println("6--" + ab.show(d))  // 输出：A and D
-  fmt.Println("7--" + b.show(b))   // 输出：B and B
-  fmt.Println("8--" + b.show(c))   // 输出：A and A
-  fmt.Println("9--" + b.show(d))   // 输出：A and D
-  fmt.Println("10--" + ab.show(a)) // 输出：B and A
+  // A 不是接口，不能用父类定义子类
+  // var ab A = &B{}
+
+  // 用Base接口声明子类
+  var ab Base = &B{}
+  c := &C{}
+  var d Base = &D{}
+
+  // 1) A and A。A类型，调用时传递b.A。
+  fmt.Println("1) " + a.Show(&b.A))
+
+  // 2) A and A。A类型，传递c.B.A。
+  fmt.Println("2) " + a.Show(&c.B.A))
+
+  // 3) A and D。A类型，进入D类型判断。
+  fmt.Println("3) " + a.Show(d))
+
+  // 4) B and A。ab是Base接口，B类型，传递b.A。
+  fmt.Println("4) " + ab.Show(&b.A))
+
+  // 5) B and A。ab是Base接口，B类型，传递c.B.A。
+  fmt.Println("5) " + ab.Show(&c.B.A))
+
+  // 6) B and default。ab是Base接口，B类型，B.show没有D打印。
+  fmt.Println("6) " + ab.Show(d))
+
+  // 7) B and B。B类型，B.show有B分支打印。
+  fmt.Println("7) " + b.Show(b))
+
+  // 8) B and B。B类型，传递c.B。
+  fmt.Println("8) " + b.Show(&c.B))
+
+  // 9) B and default。B类型，B.Show没有D分支打印。
+  fmt.Println("9) " + b.Show(d))
+
+  // 10) B and A。B类型，B.Show分支打印A。
+  fmt.Println("10) " + ab.Show(a))
 }
+
+/**
+jarry@jarrys-MacBook-Pro polymorphism % go run PolymorphismSimple.go
+1) A and A
+2) A and A
+3) A and D
+4) B and A
+5) B and A
+6) B and default
+7) B and B
+8) B and B
+9) B and default
+10) B and A
+*/
