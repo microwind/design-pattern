@@ -1,3 +1,5 @@
+/*Java实现多态的例子 */
+
 // 定义一个通用Animal类
 class Animal {
   void makeSound() {
@@ -24,6 +26,11 @@ class Cat extends Animal {
   void makeSound() {
     System.out.println("Cat meows");
   }
+
+  // Cat自有方法
+  void meow() {
+    System.out.println("Cat is meowing...");
+  }
 }
 
 // 定义一个动物园类，管理不同的动物
@@ -47,6 +54,7 @@ public class AnimalExample {
 
     Animal myDog = new Dog(); // 向上转型
     Animal myCat = new Cat(); // 向上转型
+    ((Cat)myCat).meow(); // 向下强转，打印自有方法
     Animal myBird = new Bird(); // 向上转型
 
     // 通过多态性，动物园可以使用相同的方法处理不同种类的动物

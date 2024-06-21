@@ -28,10 +28,10 @@ type D struct {
 // A的Show 方法实现，没有重载，根据类型判断
 func (a A) Show(base Base) string {
   switch base.(type) {
-  case *A:
-    return "A and A"
   case *D:
     return "A and D"
+  case *A:
+    return "A and A"
   default:
     return "A and default"
   }
@@ -40,10 +40,10 @@ func (a A) Show(base Base) string {
 // B的Show 方法实现，没有重载，根据类型判断
 func (b B) Show(base Base) string {
   switch base.(type) {
-  case *A:
-    return "B and A"
   case *B:
     return "B and B"
+  case *A:
+    return "B and A"
   default:
     return "B and default"
   }
@@ -52,13 +52,14 @@ func (b B) Show(base Base) string {
 func main() {
   //直接声明
   a := &A{}
-  b := &B{}
 
   // A 不是接口，不能用父类定义子类
   // var ab A = &B{}
 
   // 用Base接口声明子类
   var ab Base = &B{}
+
+  b := &B{}
   c := &C{}
   var d Base = &D{}
 

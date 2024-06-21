@@ -110,7 +110,7 @@ class Pig extends Animal {
 
 // 测试验证
 const dog = new Dog()
-const cat = new Cat()
+const cat: Animal = new Cat()
 const pig = new Pig()
 
 // 创建动物数组，无需转型，都是成员
