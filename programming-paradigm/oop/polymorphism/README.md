@@ -1,4 +1,6 @@
-# 什么是多态
+# 一文搞懂什么是多态
+
+# 概念
 
 面向对象程序设计有三要素：封装、继承（或组合）、多态，前两者较好理解，多态总让人困惑，不知道具体有什么作用，更不知道为什么要用多态。今天就来详细分析下什么是多态，以及多态有哪些好处，为什么要用多态？
 
@@ -271,7 +273,7 @@ public class AnimalExample {
 }
 ```
 
-这种设计：
+这种设计的好处：
 - 允许新增 Animal 的子类，保持对扩展开放；
 - 无需修改依赖 Zoo 的 letAnimalMakeSound 方法，实现对修改封闭。
 
@@ -493,7 +495,7 @@ Python是一种动态语言，它使用 self 参数来引用实例，无需像�
 
 ## Java多态实例详解
 
-理解Java多态的实例可以帮助澄清其原理和执行过程。以下是一个简单而详尽的例子，帮助你全面理解Java中多态的工作机制。
+以下是一个简单而详尽的例子，帮助你全面理解Java中多态的工作机制。
 
 ```java
 // PolymorphismSimple.java
@@ -560,8 +562,7 @@ public class PolymorphismSimple {
         // 虽然B中有show(B)方法，但是因为ab的类型是A，编译时根据类型定位到A的方法，而不是B。
 
         // 以下几种可开关打开/注释代码测试下。
-        // -
-        // 若A里有show(A)和show(B)，B里有show(B)有show(A)，则编译时关联到A.show(B)，因B覆盖了A.show(B)，动态绑定到B.show(B)。
+        // - 若A里有show(A)和show(B)，B里有show(B)有show(A)，则编译时关联到A.show(B)，因B覆盖了A.show(B)，动态绑定到B.show(B)。
         // -
         // 若A里有show(A)和show(B)，B里无show(B)有show(A)，则编译时关联到A.show(B)，因B无覆盖，则直接调用A.show(B)。
         // -
