@@ -50,7 +50,9 @@ func (b Bird) MakeSound() {
 func main() {
   zoo := Zoo{}
   myDog := Dog{}
+  // 接口断言。用接口来声明结构体，类似父类声明子类
   var myCat Animal = &Cat{}
+  // 类型断言。将接口转为子类类型，打印自有方法
   (myCat.(*Cat)).Meow()
   myBird := Bird{}
 
