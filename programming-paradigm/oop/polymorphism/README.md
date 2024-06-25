@@ -156,7 +156,7 @@ public class Test {
     public static void main(String[] args) {
          // 父类引用声明子类
         Animal myAnimal = new Dog();
-         // 运行时对象为子类，故输出"Dog barks"
+         // 运行时子类覆盖了父类方法，故输出"Dog barks"
         myAnimal.makeSound();
     }
 }
@@ -336,9 +336,9 @@ func (z Zoo) LetAnimalMakeSound(a Animal) {
 func main() {
   zoo := Zoo{}
   myDog := Dog{}
-  // 接口断言
+  // 接口断言。用接口来声明结构体，类似父类声明子类
   var myCat Animal = &Cat{}
-  // 类型断言，打印自有方法
+  // 类型断言。将接口转为子类类型，打印自有方法
   (myCat.(*Cat)).Meow()
 
   // 使用多态性，通过接口类型处理不同的具体类型
@@ -565,15 +565,11 @@ public class PolymorphismSimple {
         // A类中没有show(B)方法，但有show(A)方法，因为A是B的父类，ab也是A的实例，于是定位到A.show(A)方法。
         // 由于B是A的子类，且B重写了A的show(A)，A的方法被覆盖了，于是定位到B.show(A)，这就是动态绑定。
         // 虽然B中有show(B)方法，但是因为ab的类型是A，编译时根据类型定位到A的方法，而不是B。
-
         // 以下几种可开关打开/注释代码测试下。
         // - 若A里有show(A)和show(B)，B里有show(B)有show(A)，则编译时关联到A.show(B)，因B覆盖了A.show(B)，动态绑定到B.show(B)。
-        // -
-        // 若A里有show(A)和show(B)，B里无show(B)有show(A)，则编译时关联到A.show(B)，因B无覆盖，则直接调用A.show(B)。
-        // -
-        // 若A里有show(A)无show(B)，B里无show(B)有show(A)，则编译时关联到A.show(A)，因B覆盖了A.show(A)，动态绑定到B.show(A)。
-        // -
-        // 若A里有show(A)无show(B)，B里无show(A)有show(B)，则编译时关联到A.show(A)，因B无覆盖，则直接调用A.show(A)。
+        // - 若A里有show(A)和show(B)，B里无show(B)有show(A)，则编译时关联到A.show(B)，因B无覆盖，则直接调用A.show(B)。
+        // - 若A里有show(A)无show(B)，B里无show(B)有show(A)，则编译时关联到A.show(A)，因B覆盖了A.show(A)，动态绑定到B.show(A)。
+        // - 若A里有show(A)无show(B)，B里无show(A)有show(B)，则编译时关联到A.show(A)，因B无覆盖，则直接调用A.show(A)。
         // 查找顺序为：编译时根据引用类型确定所属类 -> 根据重载参数类型定位（类型按子->父->祖逐级往上查找）到类的具体方法（包括继承的方法） ->
         // 运行时实例对象覆盖（覆盖只有子->父一层）了引用类型的同名方法 -> 定位到实例对象的方法。
         System.out.println("4) " + ab.show(b));
@@ -612,20 +608,20 @@ Go语言、Python和JavaScript不完全符合严格意义上的多态，但具�
 
 https://github.com/microwind/design-pattern/tree/main/programming-paradigm/oop/polymorphism
 
-[PolymorphismExample.java](./PolymorphismExample.java)
-[PolymorphismExample.go](./PolymorphismExample.go)
-[polymorphism_example.c](./polymorphism_example.c)
-[PolymorphismExample.cpp](./PolymorphismExample.cpp)
-[PolymorphismExample.js](./PolymorphismExample.js)
-[PolymorphismExample.py](./PolymorphismExample.py)
-[PolymorphismExample.ts](./PolymorphismExample.ts)
+[PolymorphismExample.java](./PolymorphismExample.java) 
+[PolymorphismExample.go](./PolymorphismExample.go) 
+[polymorphism_example.c](./polymorphism_example.c) 
+[PolymorphismExample.cpp](./PolymorphismExample.cpp) 
+[PolymorphismExample.js](./PolymorphismExample.js) 
+[PolymorphismExample.py](./PolymorphismExample.py) 
+[PolymorphismExample.ts](./PolymorphismExample.ts) 
 
 ## 简单示例
 
-[PolymorphismSimple.java](./PolymorphismSimple.java)
-[PolymorphismSimple.go](./PolymorphismSimple.go)
-[polymorphism_simple.c](./polymorphism_simple.c)
-[PolymorphismSimple.cpp](./PolymorphismSimple.cpp)
-[PolymorphismSimple.js](./PolymorphismSimple.js)
-[PolymorphismSimple.py](./PolymorphismSimple.py)
-[PolymorphismSimple.ts](./PolymorphismSimple.ts)
+[PolymorphismSimple.java](./PolymorphismSimple.java) 
+[PolymorphismSimple.go](./PolymorphismSimple.go) 
+[polymorphism_simple.c](./polymorphism_simple.c) 
+[PolymorphismSimple.cpp](./PolymorphismSimple.cpp) 
+[PolymorphismSimple.js](./PolymorphismSimple.js) 
+[PolymorphismSimple.py](./PolymorphismSimple.py) 
+[PolymorphismSimple.ts](./PolymorphismSimple.ts) 
