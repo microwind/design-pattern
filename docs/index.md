@@ -1,8 +1,24 @@
-# design-pattern
+# design-patterns 概述
 
-## MVC
+**欢迎来到设计模式与编程范式站点，这里专门探索基于各种语言的设计模式与编程范式，力求打造最佳编程实践。**
 
-  [mvc+mvp+mvvp DEMO例子](./mvc_mvp_mvvm.html)
+# 目录结构
+## 23种经典设计模式源码实例
+https://github.com/microwind/design-patterns
+
+## 设计模式7大原则源码实例
+https://github.com/microwind/design-patterns/tree/main/design-principles
+
+## 几种编程范式实例详解
+https://github.com/microwind/design-patterns/tree/main/programming-paradigm
+
+## 分层架构设计模式实例详解
+https://github.com/microwind/design-patterns/tree/main/mvx
+
+---
+
+# MVC例子
+ [mvc+mvp+mvvp DEMO例子](./mvc_mvp_mvvm.html)
 
 ## Java 版本
 ###  Java servlet MVC 版本，这里采用最基本的原理来测试，Spring或Struts道理类似
