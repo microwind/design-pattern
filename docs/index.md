@@ -4,16 +4,16 @@
 
 # 目录结构
 ## 23种经典设计模式源码实例
-https://github.com/microwind/design-patterns
+[https://github.com/microwind/design-patterns](https://github.com/microwind/design-patterns)
 
 ## 设计模式7大原则源码实例
-https://github.com/microwind/design-patterns/tree/main/design-principles
+[https://github.com/microwind/design-patterns/tree/main/design-principles](https://github.com/microwind/design-patterns/tree/main/design-principles)
 
 ## 几种编程范式实例详解
-https://github.com/microwind/design-patterns/tree/main/programming-paradigm
+[https://github.com/microwind/design-patterns/tree/main/programming-paradigm](https://github.com/microwind/design-patterns/tree/main/programming-paradigm)
 
 ## 分层架构设计模式实例详解
-https://github.com/microwind/design-patterns/tree/main/mvx
+[https://github.com/microwind/design-patterns/tree/main/mvx](https://github.com/microwind/design-patterns/tree/main/mvx)
 
 ---
 
