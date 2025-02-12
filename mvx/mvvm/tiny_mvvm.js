@@ -1,153 +1,177 @@
- // 7. 前端MVVM最简版框架模式，增加事件标记提取绑定和Watch行为变化，通过观察者模式将数据与视图进行双向绑定，然后由数据驱动更改
-  !(function(win, doc) {
-    class Observer {
-      constructor(vm) {
-        this.vm = vm
-        this.observers = []
-      }
-      register(callback) {
-        this.observers.push(callback)
-      }
-      notify(args) {
-        for (let i = 0, l = this.observers.length; i < l; i++) {
-          this.observers[i](args)
-        }
-      }
+(function (win, doc) {
+  /** 观察者类（订阅-发布模式） */
+  class Observer {
+    constructor() {
+      this.observers = [] // 订阅者列表
     }
-    class Watcher {
-      constructor(vm, cb) {
-        this.vm = vm
-        this.cb = cb
-        return this.run.bind(this)
-      }
-      run(obj, prop, value) {
-        console.log('watch:', arguments)
-        if (this.vm.watch[prop]) {
-          (this.vm.watch[prop]).call(this.vm.data, value, this.vm)
-        }
-        this.cb.call(this.vm, obj, prop, value, this)
-      }
+    /** 注册订阅者 */
+    register(callback) {
+      this.observers.push(callback)
     }
-    class Agent {
-      constructor(target, observer) {
-        const handle = {
-          set(obj, prop, value) {
-           if (obj[prop] !== value && obj.hasOwnProperty(prop)) {
-             obj[prop] = value
-             observer && observer.notify(obj, prop, value)
-           }
-           return Reflect.set(obj, prop, value)
-          },
-          get(obj, prop) {
-            if (typeof obj[prop] === 'object' && obj[prop] !== null) {
-              return new Proxy(obj[prop], handle)
-            } else {
-              return Reflect.get(obj, prop)
-            }
-          }
-        }
-        return new Proxy(target, handle)
-      }
+    /** 通知所有订阅者 */
+    notify(...args) {
+      this.observers.forEach(callback => callback(...args))
     }
-    function template(strings, ...keys) {
-      return function(...values) {
-        const dict = values[values.length - 1] || {}
-        const result = [strings[0]]
-        keys.forEach((key, i) => {
-          let value = dict[key]
-          result.push(value, strings[i + 1])
-        })
-        return result.join('')
-      }
-    }
+  }
 
-    // View
-    class View {
-      constructor($el, tpl) {
-        this.$el = $el
-        this.tpl = tpl
-        this.events = []
-      }
-      compile(data) {
-        const content = this.tpl(data)
-        let reg = new RegExp('e-([a-z]+)\=\"([a-z0-9]+)' + '\"', 'igm')
-        const result = content.match(reg) || []
-        result.forEach((item) => {
-          const [evt, fn] = item.split('=')
-          this.events.push([evt.substr(2), fn.substr(0, fn.length - 1).substr(1)])
-        })
-        return content
-      }
-      render(data) {
-        this.$el.innerHTML = this.compile(data)
-      }
+  /** 观察数据变动的 Watcher */
+  class Watcher {
+    constructor(vm, cb) {
+      this.vm = vm
+      this.cb = cb
+      return this.run.bind(this)
     }
-    const Model = { name: 'Tiny MVVM Framework', num: 1 }
-    // ViewModel
-    class TinyMVVM {
-      constructor({ $el, tpl, data, methods = {}, watch = {}, computed = {} }) {
-        this.view = new View($el, tpl)
-        this.observer = new Observer(this)
-        this.watcher = new Watcher(this, (obj, prop, value) => {
-          this.render()
-        })
-        this.observer.register(this.watcher)
-        this.data = new Agent(data(), this.observer)
-        this.methods = methods
-        this.watch = watch
-        this.computed = computed
-        this.init()
+    run(obj, prop, value) {
+      console.log('watch:', obj, prop, value)
+      if (this.vm.watch[prop]) {
+        this.vm.watch[prop].call(this.vm.data, value, this.vm)
       }
-      render() {
-        const data = Object.assign({}, this.data)
-        for (let attr in this.computed) {
-          data[attr] = (this.computed[attr]).call(this.data, this)
+      this.cb.call(this.vm, obj, prop, value, this)
+    }
+  }
+
+  /** 数据代理（使用 Proxy 监听变化） */
+  class Agent {
+    constructor(target, observer, vm) {
+      const proxyCache = new WeakMap()
+      const handle = {
+        set(obj, prop, value) {
+          if (obj[prop] !== value && obj.hasOwnProperty(prop)) {
+            obj[prop] = value
+            observer.notify(obj, prop, value)
+
+            // 计算属性自动更新
+            Object.keys(vm.computed).forEach(attr => {
+              obj[attr] = vm.computed[attr].call(obj, vm)
+            })
+          }
+          return Reflect.set(obj, prop, value)
+        },
+        get(obj, prop) {
+          if (typeof obj[prop] === 'object' && obj[prop] !== null) {
+            if (!proxyCache.has(obj[prop])) {
+              proxyCache.set(obj[prop], new Proxy(obj[prop], handle))
+            }
+            return proxyCache.get(obj[prop])
+          }
+          return Reflect.get(obj, prop)
         }
-        this.view.render(data)
       }
-      init() {
-        this.render()
-        this.mount()
-      }
-      mount() {
-        this.view.events.forEach((item) => {
-          this.view.$el.addEventListener(item[0], (evt) => (this.methods[item[1]].bind(this))(evt))
-        })
+      return new Proxy(target, handle)
+    }
+  }
+
+  /** 模板解析 */
+  function template(strings, ...keys) {
+    return function (...values) {
+      const dict = values[values.length - 1] || {}
+      return strings.reduce((result, str, i) => result + (dict[keys[i - 1]] || '') + str)
+    }
+  }
+
+  /** 视图层处理 */
+  class View {
+    constructor($el, tpl) {
+      this.$el = $el
+      this.tpl = tpl
+      this.events = []
+    }
+    compile(data) {
+      const content = this.tpl(data)
+      const reg = /e-([a-z]+)="([a-zA-Z0-9_]+)"/igm
+      const matches = [...content.matchAll(reg)]
+      this.events = matches.map(match => [match[1], match[2]])
+      return content
+    }
+    render(data) {
+      if (this.$el.innerHTML) {
+        this.$el.innerHTML = this.compile(data)
+      } else {
+        console.error('render failed:', this.$el, data)
       }
     }
+  }
+
+  /** MVVM 入口类 */
+  class TinyMVVM {
+    constructor({
+      $el,
+      tpl,
+      data,
+      methods = {},
+      watch = {},
+      computed = {}
+    }) {
+      this.view = new View($el, tpl)
+      this.observer = new Observer()
+      this.watcher = new Watcher(this, () => this.render())
+      this.observer.register(this.watcher)
+      this.data = new Agent(data(), this.observer, this)
+      this.methods = methods
+      this.watch = watch
+      this.computed = computed
+      this.render()
+      this.mount()
+    }
+    render() {
+      const data = {
+        ...this.data
+      }
+      Object.keys(this.computed).forEach(attr => {
+        data[attr] = this.computed[attr].call(this.data, this)
+      })
+      this.view.render(data)
+    }
+    mount() {
+      this.view.$el.addEventListener('click', evt => {
+        let target = evt.target
+        while (target && target !== this.view.$el) {
+          const methodName = target.getAttribute('e-click')
+          if (methodName && this.methods[methodName]) {
+            this.methods[methodName].call(this, evt)
+            break
+          }
+          target = target.parentNode
+        }
+      })
+    }
+  }
+
+  win.onload = () => {
+    /** 初始化 MVVM 实例 */
     new TinyMVVM({
       $el: doc.querySelector('#mvvm-watch-view'),
-      tpl: template`
-         <div e-click="add" e-mouseout="change"><b>${'name'}</b>
-         <em>${'num'}</em> | ${'computedProp'}</div>`,
+      tpl: template `<div e-click="add"><b>${'name'}</b> <em style="color:red">${'num'}</em> | ${'computedProp'}</div>`,
       data() {
-        return Model
+        return {
+          name: 'Tiny MVVM, click me',
+          num: 1
+        }
       },
       methods: {
-        fetch(value) {
-          const fn = (res) => {
+        async fetch(value) {
+          try {
+            // await fetch('./')
             this.data.num += value
-            return this.data
+          } catch (error) {
+            console.error('Fetch error:', error)
           }
-          return fetch('./').then(fn).catch(fn)
         },
-        change(evt) {
-          this.data.name = 'Click to add'
-        },
-        add(evt) {
-          this.data.name = 'Click to add:Watch data.'
-          this.methods.fetch.bind(this)(1)
+        add() {
+          this.data.name = 'Updated Name'
+          this.methods.fetch.call(this, 1)
         }
       },
       computed: {
-        computedProp: function(vm) {
+        computedProp() {
           return this.name + ' computed.'
         }
       },
       watch: {
-        num(value, vm) {
-          this.name = 'Click to add:Watch data.'
+        num(value) {
+          this.name = 'Num changed!'
         }
       }
     })
-  })(window, document)
+  }
+})(window, document)
