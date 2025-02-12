@@ -1,4 +1,4 @@
-(function (win, doc) {
+(function (global) {
   /** 观察者类（订阅-发布模式） */
   class Observer {
     constructor() {
@@ -137,41 +137,47 @@
     }
   }
 
-  win.onload = () => {
-    /** 初始化 MVVM 实例 */
-    new TinyMVVM({
-      $el: doc.querySelector('#mvvm-watch-view'),
-      tpl: template `<div e-click="add"><b>${'name'}</b> <em style="color:red">${'num'}</em> | ${'computedProp'}</div>`,
-      data() {
-        return {
-          name: 'Tiny MVVM, click me',
-          num: 1
-        }
-      },
-      methods: {
-        async fetch(value) {
-          try {
-            // await fetch('./')
-            this.data.num += value
-          } catch (error) {
-            console.error('Fetch error:', error)
-          }
-        },
-        add() {
-          this.data.name = 'Updated Name'
-          this.methods.fetch.call(this, 1)
-        }
-      },
-      computed: {
-        computedProp() {
-          return this.name + ' computed.'
-        }
-      },
-      watch: {
-        num(value) {
-          this.name = 'Num changed!'
-        }
+  // Expose TinyMVVM to the global object
+  TinyMVVM.template = template
+  global.TinyMVVM = TinyMVVM
+
+
+})(this || window)
+
+/*
+// 用例:
+new TinyMVVM({
+  $el: document.querySelector('#mvvm-watch-view'),
+  tpl: TinyMVVM.template`<div e-click="add"><b>${'name'}</b> <em style="color:red">${'num'}</em> | ${'computedProp'}</div>`,
+  data() {
+    return {
+      name: 'Tiny MVVM, click me',
+      num: 1
+    }
+  },
+  methods: {
+    async fetch(value) {
+      try {
+        // await fetch('./')
+        this.data.num += value
+      } catch (error) {
+        console.error('Fetch error:', error)
       }
-    })
+    },
+    add() {
+      this.data.name = 'Updated Name'
+      this.methods.fetch.call(this, 1)
+    }
+  },
+  computed: {
+    computedProp() {
+      return this.name + ' computed.'
+    }
+  },
+  watch: {
+    num(value) {
+      this.name = 'Num changed!'
+    }
   }
-})(window, document)
+})
+*/

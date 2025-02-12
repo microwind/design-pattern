@@ -12,6 +12,46 @@
       th { background-color: #f4f4f4; }
   </style>
   <script src="./tiny_mvvm.js"></script>
+  <script>
+    const template = TinyMVVM.template
+    window.onload = () => {
+        /** 初始化 MVVM 实例 */
+        new TinyMVVM({
+          $el: document.querySelector('#mvvm-watch-view'),
+          tpl: template`<div e-click="add"><b>${'name'}</b> <em style="color:red">${'num'}</em> | ${'computedProp'}</div>`,
+          data() {
+            return {
+              name: 'Tiny MVVM, click me',
+              num: 1
+            }
+          },
+          methods: {
+            async fetch(value) {
+              try {
+                // await fetch('./')
+                this.data.num += value
+              } catch (error) {
+                console.error('Fetch error:', error)
+              }
+            },
+            add() {
+              this.data.name = 'Updated Name'
+              this.methods.fetch.call(this, 1)
+            }
+          },
+          computed: {
+            computedProp() {
+              return this.name + ' computed.'
+            }
+          },
+          watch: {
+            num(value) {
+              this.name = 'Num changed!'
+            }
+          }
+        })
+      }
+  </script>
 </head>
 <body>
   <h1>Tiny MVVM Patterns example | 最精简 MVVM 框架原理例子</h1>
