@@ -1,8 +1,8 @@
 # 设计模式Design Patterns与编程范式Programming Paradigms [English](./README_en.md)
 
-- 经典设计模式与编程范式详解，结合实际场景，充分注释说明。
-- 不同语言实现语言，包括`C` `Java` `JavaScript` `Python` `Go`等，体现语言特性。
-- 不断补充和完善，打造设计模式与编程思想资源库。
+- 经典设计模式与编程范式等详解，结合实际场景，充分注释说明。
+- 不同语言实现语言，包括`C` `Java` `JavaScript` `Python` `Go`等，体现不同语言特性。
+- 不断补充和完善，打造设计模式与编程思想的资源库。
 
 ## 设计模式结构图 Design-patterns structure
 
@@ -76,7 +76,7 @@
 | **[响应式编程 (Reactive Programming, RP)](./programming-paradigm/rp)** | 以数据流和变化传播为核心，通过异步数据流实现响应式操作，自动响应数据变化。 | 用于处理实时数据流、UI更新和异步操作，常见于实时监控系统和流式数据处理应用。 |
 
 
-## 编程设计思想
+## 设计思想与分层架构设计
 | **设计思想** | **描述** | **应用场景** | **示例代码** |
 | --- | --- | --- | --- |
 | **[MVC (Model-View-Controller)](./mvx/mvc)** | MVC是一种常见的设计模式，旨在将应用程序分为三个部分：模型（Model）处理数据、视图（View）展示用户界面、控制器（Controller）处理用户输入并更新模型和视图。 | 适用于需要分离表示层和业务逻辑的应用，例如Web开发、桌面应用等。通过分离关注点，提高系统的可维护性和可扩展性。 | [演示例子](./mvx/mvc) |Update 2019-05-23-programming-paradigm.md---
@@ -84,7 +84,7 @@
 | **[MVVM (Model-View-ViewModel)](./mvx/mvvm)** | MVVM是一种设计模式，它将视图与视图的状态和业务逻辑分开。通过引入视图模型（ViewModel），将视图的显示逻辑与业务逻辑分离，ViewModel负责为视图提供数据并响应用户操作。 | 适用于需要响应式数据绑定的应用，例如现代的前端开发框架（如Angular、Vue.js）和桌面应用程序（如WPF）。 | [演示例子](./mvx/mvvm) |
 
 
-### [查看全部源码](https://microwind.github.io/design-pattern/)
+### [查看全部源码](https://microwind.github.io/design-patterns/)
 
 ### 联系 Contact
 欢迎共建 Welcome to join
