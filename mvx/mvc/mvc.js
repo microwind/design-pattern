@@ -1,4 +1,11 @@
-// Model
+/*
+MVC 模式
+- Model：负责业务逻辑和数据处理，直接与数据库或数据源交互。
+- View：负责渲染用户界面，显示数据给用户。View可与Model绑定。
+- Controller：作为用户输入的中介，接收用户的输入并更新 Model 或 View。
+*/
+
+// Model (数据模型)
 class Model {
     constructor() {
         this.name = "MVC Basic";
@@ -9,27 +16,37 @@ class Model {
         return this.name;
     }
 
-    getNum() {
-        return this.num;
+    setNum(num) {
+        this.num = num;
     }
 
-    setName(name) {
-        this.name = name;
+    getNum() {
+        return this.num;
     }
 
     incrementNum(value) {
         this.num += value;
     }
-}
 
-// View
-class View {
-    display(name, num) {
-        console.log(`<div><b>${name}</b><em>${num}</em></div>`);
+    setName(name) {
+        this.name = name;
     }
 }
 
-// Controller
+// View (视图层)
+class View {
+    // 关联 Model
+    constructor(model) {
+        this.model = model;
+    }
+
+    // 更新视图显示，直接从 Model 获取数据
+    updateView() {
+        console.log(`<div><b>${this.model.getName()}</b><em>${this.model.getNum()}</em></div>`);
+    }
+}
+
+// Controller (控制器)
 class Controller {
     constructor(model, view) {
         this.model = model;
@@ -37,35 +54,39 @@ class Controller {
     }
 
     onButtonClick() {
+        this.model.setName("onButtonClick");
         this.model.incrementNum(1);
-        this.view.display(this.model.getName(), this.model.getNum());
+        this.updateView();
     }
 
     onMouseOut() {
-        this.model.setName("Click to add");
-        this.view.display(this.model.getName(), this.model.getNum());
+        this.model.setName("onMouseOut");
+        this.model.setNum(0);
+        this.updateView();
+    }
+
+    // 由 Controller 调用更新 View
+    updateView() {
+        this.view.updateView();
     }
 }
 
 // Test
-function test() {
-    const model = new Model();
-    const view = new View();
-    const controller = new Controller(model, view);
+const model = new Model();
+// View 可以持有 Model，或在更新视图时传递Model
+const view = new View(model);
+const controller = new Controller(model, view);
 
-    console.log("Test 1: Button Click");
-    controller.onButtonClick();  // simulate button click
+console.log("Test 1: Button Click");
+controller.onButtonClick();
 
-    console.log("Test 2: Mouse Out");
-    controller.onMouseOut();     // simulate mouse out
-}
-
-test();
+console.log("Test 2: Mouse Out");
+controller.onMouseOut();
 
 /*
-jarry@MacBook-Pro mvc % node mvc.js 
+jarry@MacBook-Pro mvc % node mvc.js
 Test 1: Button Click
-<div><b>MVC Basic</b><em>2</em></div>
+<div><b>onButtonClick</b><em>2</em></div>
 Test 2: Mouse Out
-<div><b>Click to add</b><em>2</em></div>
+<div><b>onMouseOut</b><em>0</em></div>
 */

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>基础MVVM例子</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+      }
+      p {
+        padding: 10px;
+        border-radius: 5px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+    </style>
+    <script src="./mvvm.js"></script>
+  </head>
+  <body>
+    <h1>Basic MVVM Patterns example | 基础 MVVM 框架原理例子</h1>
+    <hr />
+    <div class="wrapper">
+      <h3>MVVM Framework:</h3>
+      <a href="./mvvm.js">mvvm.js源码</a>
+      <p id="mvvm-view" style="background: rgb(5, 197, 81)">&nbsp;</p>
+    </div>
+
+    <h2>什么是 MVVM？</h2>
+    <p>
+      MVVM（Model-View-ViewModel）是一种软件架构模式，主要用于前端开发，特别是在构建现代化的单页面应用（SPA）时。它将应用的界面（View）和业务逻辑（Model）分离，借助
+      ViewModel 作为中间层实现数据绑定，提高可维护性和可测试性。
+    </p>
+
+    <h2>MVVM 组成部分</h2>
+
+    <h3>1. Model（模型）</h3>
+    <ul>
+      <li>代表应用的数据层，通常与后端 API 交互。</li>
+      <li>负责数据的获取、存储和业务逻辑。</li>
+      <li>例如，在 Vue.js 中，Model 可以是 Vue 组件的 <code>data</code>。</li>
+    </ul>
+
+    <h3>2. View（视图）</h3>
+    <ul>
+      <li>负责 UI 展示。</li>
+      <li>由 HTML + CSS 组成，在 Vue.js 中，通常是模板（template）。</li>
+      <li>通过数据绑定机制，视图会自动更新 Model 的变化。</li>
+    </ul>
+
+    <h3>3. ViewModel（视图模型）</h3>
+    <ul>
+      <li>作为 View 和 Model 之间的桥梁。</li>
+      <li>负责处理 UI 逻辑，监听 Model 的变化并更新 View。</li>
+      <li>
+        在 Vue.js 中，ViewModel 通常是 Vue 实例（<code>new Vue({...})</code>）。
+      </li>
+    </ul>
+
+    <h2>MVVM 的特点</h2>
+    <ul>
+      <li>
+        <strong>数据双向绑定</strong>：View 和 Model
+        之间的同步更新机制减少了手动 DOM 操作。
+      </li>
+      <li>
+        <strong>关注点分离</strong>：UI 逻辑和业务逻辑解耦，提高代码的可维护性。
+      </li>
+      <li>
+        <strong>可测试性增强</strong>：由于 ViewModel 独立于
+        UI，单元测试更容易进行。
+      </li>
+    </ul>
+
+  </body>
+</html>
