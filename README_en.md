@@ -83,7 +83,7 @@
 | **[MVVM (Model-View-ViewModel)](./mvx/mvvm)** | MVVM is a design pattern that separates the view from its state and business logic. By introducing the ViewModel, it separates display logic from business logic, with the ViewModel providing data to the view and responding to user actions. | Suitable for applications requiring responsive data binding, such as modern front-end frameworks (like Angular, Vue.js) and desktop applications (like WPF). | [Example](./mvx/mvvm) |
 
 
-### [View All Source Code](https://microwind.github.io/design-pattern/)
+### [View All Source Code](https://microwind.github.io/design-patterns/)
 
 ### Contact
 Welcome to Join
