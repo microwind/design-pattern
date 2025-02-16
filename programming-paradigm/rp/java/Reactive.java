@@ -46,7 +46,7 @@ class Subject {
     }
 }
 
-public class ReactiveExample {
+public class Reactive {
     // 测试验证
     public static void main(String[] args) {
         // 创建主题对象和观察者对象
@@ -69,8 +69,7 @@ public class ReactiveExample {
 }
 
 /**
- * jarry@jarrys-MacBook-Pro java % javac ReactiveExample.java
- * jarry@jarrys-MacBook-Pro java % java ReactiveExample
+ * jarry@Mac java % java Reactive.java
  * Observer1 接到新消息: 发布消息
  * Observer2 接到新消息: 发布消息
  * Observer2 接到新消息: 再次发布消息

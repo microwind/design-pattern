@@ -64,7 +64,7 @@ class Observer {
 })();
 
 /**
-jarry@jarrys-MacBook-Pro js % node ReactiveExample.js
+jarry@jarrys-MacBook-Pro js % node reactive.js
 Observer1 收到数据更新: 发布消息
 Observer2 收到数据更新: 发布消息
 Observer2 收到数据更新: 再次发布消息
