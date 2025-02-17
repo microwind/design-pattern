@@ -9,6 +9,7 @@
 class EventManager {
   constructor() {
     // 用于存储事件及其对应的回调函数列表
+    // this.events = {"event1":[func1, func2]};
     this.events = {};
   }
 
@@ -55,22 +56,22 @@ function handleMessage(message) {
   // 第一次测试：注册并触发事件
   console.log("第一次测试：");
   // 注册事件监听器
-  eventManager.on('message', handleMessage);
+  eventManager.on('event1', handleMessage);
   // 触发事件
-  eventManager.emit('message', '第一次发送的消息');
+  eventManager.emit('event1', '第一次发送的消息');
 
   // 第二次测试：再次触发事件
   console.log("\n第二次测试：");
-  eventManager.emit('message', '第二次发送的消息');
+  eventManager.emit('event1', '第二次发送的消息');
 
   // 第三次测试：移除监听器后重新注册并触发事件
   console.log("\n第三次测试：");
   // 移除事件监听器
-  eventManager.off('message', handleMessage);
+  eventManager.off('event1', handleMessage);
   // 重新注册事件监听器
-  eventManager.on('message', handleMessage);
+  eventManager.on('event1', handleMessage);
   // 触发事件
-  eventManager.emit('message', '第三次发送的消息');
+  eventManager.emit('event1', '第三次发送的消息');
 })()
 
 /*

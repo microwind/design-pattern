@@ -2,15 +2,14 @@ package main
 
 import (
   "fmt"
+  "reflect"
 )
 
 /*
 AOP（面向切面编程）是一种编程范式，通过分离横切关注点来提高模块性。
 横切关注点是跨越应用程序多个部分的功能，比如日志记录、事务管理等。
-Go语言没有直接的动态代理机制，但可以通过接口和函数包装实现AOP。
-Go这种机构相比动态代理更加巧妙和高性能，但代码会比较啰嗦，每个类都要单独写
+Go语言没有直接的动态代理机制，但可以反射来达成动态代理。
 */
-
 // 1. 定义业务接口
 type UserService interface {
   AddUser(username string)
@@ -39,32 +38,48 @@ func (l *LoggingAspect) After() {
   fmt.Println("后置通知: 操作执行完成")
 }
 
-// 4. 创建动态代理类
-type UserServiceProxy struct {
-  target UserService
+// 通用代理函数
+func createProxy(target interface{}, aspect *LoggingAspect, methodName string, args ...interface{}) {
+  // 前置通知
+  aspect.Before()
+
+  // 获取目标对象的反射值
+  targetValue := reflect.ValueOf(target)
+
+  // 获取目标方法
+  method := targetValue.MethodByName(methodName)
+
+  if method.IsValid() {
+    // 准备参数
+    in := make([]reflect.Value, len(args))
+    for i, arg := range args {
+      in[i] = reflect.ValueOf(arg)
+    }
+
+    // 调用目标方法
+    method.Call(in)
+  }
+
+  // 后置通知
+  aspect.After()
+}
+
+// 4. 创建动态代理结构体
+type DynamicServiceProxy struct {
+  target interface{}
   aspect *LoggingAspect
 }
 
-// 代理类构造函数，传入目标对象和切面对象
-func NewUserServiceProxy(target UserService, aspect *LoggingAspect) UserService {
-  return &UserServiceProxy{target: target, aspect: aspect}
+// 代理结构体构造函数
+func NewDynamicServiceProxy(target interface{}, aspect *LoggingAspect) *DynamicServiceProxy {
+  return &DynamicServiceProxy{target: target, aspect: aspect}
 }
 
-// 每个函数都实现相一遍，增加前后调用
-func (p *UserServiceProxy) AddUser(username string) {
-  p.aspect.Before()
-  p.target.AddUser(username)
-  p.aspect.After()
+// 通用方法调用代理
+func (p *DynamicServiceProxy) Call(methodName string, args ...interface{}) {
+  createProxy(p.target, p.aspect, methodName, args...)
 }
 
-// 每个函数都实现相一遍，增加前后调用
-func (p *UserServiceProxy) DeleteUser(userId int) {
-  p.aspect.Before()
-  p.target.DeleteUser(userId)
-  p.aspect.After()
-}
-
-// 5. 测试AOP
 func main() {
   // 创建目标对象
   userService := &UserServiceImpl{}
@@ -73,11 +88,11 @@ func main() {
   aspect := &LoggingAspect{}
 
   // 创建代理对象
-  proxy := NewUserServiceProxy(userService, aspect)
+  proxyService := NewDynamicServiceProxy(userService, aspect)
 
   // 通过代理对象调用方法
-  proxy.AddUser("张三")
-  proxy.DeleteUser(101)
+  proxyService.Call("AddUser", "张三")
+  proxyService.Call("DeleteUser", 101)
 }
 
 /*

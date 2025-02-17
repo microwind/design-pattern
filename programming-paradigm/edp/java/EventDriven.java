@@ -9,10 +9,11 @@ import java.util.Map;
 触发事件：遍历对应事件的回调函数列表并依次调用。
 移除事件：从对应事件的回调函数列表中移除指定的回调函数。
 */
+
 // 事件管理器类
 class EventManager {
   // 存储事件及其对应的回调函数列表
-  private Map<Integer, List<Callback>> events;
+  private Map<String, List<Callback>> events;
 
   // 构造函数，初始化事件映射
   public EventManager() {
@@ -20,12 +21,12 @@ class EventManager {
   }
 
   // 注册事件监听器
-  public void on(int eventName, Callback callback) {
+  public void on(String eventName, Callback callback) {
     events.computeIfAbsent(eventName, k -> new ArrayList<>()).add(callback);
   }
 
   // 触发事件
-  public void emit(int eventName, String message) {
+  public void emit(String eventName, String message) {
     List<Callback> callbacks = events.get(eventName);
     if (callbacks != null) {
       for (Callback callback : callbacks) {
@@ -35,7 +36,7 @@ class EventManager {
   }
 
   // 移除事件监听器
-  public void off(int eventName, Callback callback) {
+  public void off(String eventName, Callback callback) {
     List<Callback> callbacks = events.get(eventName);
     if (callbacks != null) {
       callbacks.remove(callback);
@@ -63,23 +64,18 @@ public class EventDriven {
 
     // 第一次测试：注册并触发事件
     System.out.println("第一次测试：");
-    // 注册事件监听器
-    eventManager.on(0, messageHandler);
-    // 触发事件
-    eventManager.emit(0, "第一次发送的消息");
+    eventManager.on("event1", messageHandler);
+    eventManager.emit("event1", "第一次发送的消息");
 
     // 第二次测试：再次触发事件
     System.out.println("\n第二次测试：");
-    eventManager.emit(0, "第二次发送的消息");
+    eventManager.emit("event1", "第二次发送的消息");
 
     // 第三次测试：移除监听器后重新注册并触发事件
     System.out.println("\n第三次测试：");
-    // 移除事件监听器
-    eventManager.off(0, messageHandler);
-    // 重新注册事件监听器
-    eventManager.on(0, messageHandler);
-    // 触发事件
-    eventManager.emit(0, "第三次发送的消息");
+    eventManager.off("event1", messageHandler);
+    eventManager.on("event1", messageHandler);
+    eventManager.emit("event1", "第三次发送的消息");
   }
 }
 

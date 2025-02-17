@@ -1,40 +1,48 @@
-/** 
- * JavaScript面向对象编程
- * JS是基于对象+函数式的编程语言，没有完全意义上的class那种数据类型。
- * es5没有class关键词，es6起新增了class关键字，但这也是一种语法糖，是通过prototype来模拟class。
- * 虽然没有class，但js中除了原始数据类型(string, number, boolean, undefined, null, symbol)外一切皆是对象(Object)
- * 每个Object都拥有prototype属性，并且可以通过new来实例化Function，从而可以轻松实现面向对象编程。
- * JS因为拥有基于对象和函数式的编程特性，从而使得编程能力非常灵巧而强大。
- */
+# JavaScript 面向对象详解
+## 1. JavaScript 面向对象编程基础
 
-// 以下通过一些实例来展示JS语言的面向对象编程特性，通过实际例子，将加深理解JS对象与原型继承等概念
-
-// 创建类：静态 vs 原型
-
-// 1. static object 静态对象
-var child = (function () {
-  var _private = '_private';
-  var name = 'name';
-  this.name = 'this.name';
+### 1.1 静态对象
+```javascript
+const child = (function () {
+  let _private = '_private';  // 私有变量
+  let name = 'name';          // 闭包中的变量
+  this.name = 'this.name';    // 全局对象的属性
 
   function getName() {
-    return this.name + ',' + name;
+    return this.name + ',' + name;  // 使用闭包中的 name 和 this.name
   }
-  console.log('getName():', getName())
-  return {
-    name: name,
-    thisName: getName(),
-    getName: getName
-  }
-})();
-console.log(child.name, child.thisName, child.getName(), child._private);
 
-// 2. create prototype class 原型对象模拟class
+  /*
+  直接调用 getName()：此时 this 指向全局对象（window），this.name 是 'this.name'。
+  name 是闭包中的变量，值为 'name'。
+  因此，这里输出: this.name,name。
+  */
+  console.log('getName():', getName())
+
+  return {
+    name: name,          // 公开的属性
+    thisName: getName(), // 直接调用 getName()，返回 'this.name,name'
+    getName: getName     // 公开的方法
+  };
+})();
+
+// 输出：name this.name,name name,name undefined
+console.log(child.name, child.thisName, child.getName(), child._private);
+/* 分析：
+child.name：返回child的 name，值为 'name'。
+child.thisName：返回child的 thisName 属性，返回时已经执行了，值为 'this.name,name'。
+child.getName()：调用child的 getName 方法。这时 getName() 里的 this 指向 child 对象，child的name已被设置为'name'。name 是闭包中的变量，值为 'name'。因此，执行child.getName() 得到 'name,name'。
+child._private：_private 是函数内部的局部变量，外部无法访问，因此是 undefined。
+*/
+```
+
+### 1.2 原型对象模拟类
+```js
 function Child() {};
 Child.prototype.name = 'child';
 Child.prototype.getName = function () {
   return 'child:' + this.name;
-}
+};
 var c1 = new Child();
 console.log('c1:', c1.name, c1.getName());
 Child.prototype.name = 'child2';
@@ -42,14 +50,15 @@ var c2 = new Child();
 c1.name = 'child3';
 console.log('c2:', c2.name, c2.getName());
 console.log('c1:', c1.name, c1.getName());
+```
 
-// 3. JavaScript中创建类-构造函数
-// constructor class
+### 1.3 构造函数
+```js
 function Child() {
   this.name = 'child';
   this.getName = function () {
     return 'child:' + this.name;
-  }
+  };
 };
 var c1 = new Child();
 console.log('c1:', c1.name, c1.getName());
@@ -58,12 +67,10 @@ c1.name = 'child3';
 Child.name = 'Child';
 console.log('c2:', c2.name, c2.getName());
 console.log('c1:', c1.name, c1.getName());
-c1.hasOwnProperty('name');
-Child.prototype.hasOwnProperty('name');
-Child.hasOwnProperty('name');
+```
 
-// 4. JavaScript中创建类-原型对象+构造函数
-// create prototype class + constructor
+### 1.4 原型对象 + 构造函数
+```js
 function Child() {
   this._name = '_child';
 };
@@ -71,7 +78,7 @@ Child._name = '_Child';
 Child.prototype.name = 'child';
 Child.prototype.getName = function () {
   return 'child:' + this.name;
-}
+};
 var c1 = new Child();
 console.log('c1:', c1.name, c1.getName());
 Child.prototype.name = 'child2';
@@ -82,10 +89,11 @@ console.log('c1:', c1.name, c1.getName());
 console.log(c1.hasOwnProperty('name'), c1.hasOwnProperty('_name'));
 console.log(c2.hasOwnProperty('name'), c2.hasOwnProperty('_name'));
 console.log(Child.name, Child._name, Child.prototype.isPrototypeOf(c1));
+```
 
-/** JavaScript中对象继承实现方式 */
-
-// 1. instancing 原型继承
+## 2. JavaScript 中的继承
+### 2.1 原型继承
+```js
 function Parent(name) {
   this.name = name;
 };
@@ -105,31 +113,33 @@ var c3 = Object.create(Parent.prototype, {
 console.log(c1, c1.getName(), c1 instanceof Parent, Parent.prototype.isPrototypeOf(c1), c1.constructor);
 console.log(c2, c2.getName(), c2 instanceof Parent, Parent.prototype.isPrototypeOf(c2), c2.constructor);
 console.log(c3, c3.getName(), c3 instanceof Parent, Parent.prototype.isPrototypeOf(c3), c3.constructor);
+```
 
-// 2. JavaScript构造函数继承
-// constructor inherits
+### 2.2 构造函数继承
+```js
 function Parent(name, age) {
   this.name = name;
   this.age = age;
   this.getName = function () {
     return 'parent:' + this.name;
-  }
+  };
   this.getAge = function () {
     return 'parent:' + this.age;
-  }
+  };
 };
 
 function Child() {
   Parent.apply(this, arguments);
   this.getAge = function () {
     return 'child:' + this.age;
-  }
+  };
 };
 var child1 = new Child('child1', 10);
-console.log(child.getName(), child.getAge());
+console.log(child1.getName(), child1.getAge());
+```
 
-// 3. JavaScript对象扩展继承
-// extend
+### 2.3 对象扩展继承
+```js
 function extend(to, from, deep) {
   function isObjectOrArray(obj) {
     var toString = Object.prototype.toString;
@@ -158,73 +168,12 @@ var b = {
     "key2": "key2"
   }
 };
-// extend(a, b);
 extend(a, b, true);
+console.log(a);
+```
 
-// 4. JavaScript原型继承
-// inherits new
-function Parent(name) {
-  this.name = name;
-}
-Parent.prototype.getName = function () {
-  return 'parent:' + this.name;
-}
-Parent.prototype.getAge = function () {
-  return 'parent:' + this.age;
-}
-
-function Child(name) {
-  // Parent.apply(this, arguments);
-  this.age = '20';
-}
-Child = Parent.prototype.constructor;
-Child.prototype = new Parent();
-Child.prototype = Parent.prototype;
-Child.prototype.getName = function () {
-  return 'child:' + this.name;
-}
-var c1 = new Child('child1');
-console.log('c1:', c1.getName(), c1.getAge());
-Child.prototype.name = 'child2';
-var c2 = new Child('child2-b');
-console.log('c2:', c2.getName(),
-  c2.__proto__.getName());
-
-// inherits create
-/*
-var Parent = { name: 'parent', getName: function() {
-     return this.name;
-   }
-};
-var child1 = Object.create(Parent, { name: {value: 'child1'}});
-*/
-function Parent(name) {
-  this.name = name || 'parent';
-};
-Parent.prototype.getName = function () {
-  return 'parent:' + this.name;
-};
-var child1 = Object.create(Parent.prototype, {
-  name: {
-    value: 'child1'
-  }
-});
-console.log(child1.getName(), child1);
-
-function Child(name) {
-  Parent.apply(this, arguments);
-};
-Child.prototype = Object.create(Parent.prototype, {
-  getName: {
-    value: function () {
-      return 'child.prototype:' + this.name;
-    }
-  }
-});
-var child2 = new Child('child2');
-console.log(child2.getName(), child2);
-
-// 5. JavaScript原型继承注意事项
+### 2.4 原型继承注意事项
+```js
 // 1) 改写prototype会更改constructor
 function Parent() {}
 Parent.prototype = {
@@ -240,117 +189,22 @@ Child.prototype.getName = function () {
 var parent = new Parent();
 var child = new Child();
 console.log(parent.constructor, child.constructor);
+```
 
-// 2) prototype追加方法，而不是覆盖全部
-function Parent() {}
-Parent.prototype = {
-  getName: function () {
-    return 'child:' + this.name;
-  }
-};
-
-function Child() {}
-Child.prototype.getName = function () {
-  return 'child:' + this.name;
-};
-var parent = new Parent();
-var child = new Child();
-console.log(parent.constructor, child.constructor);
-Child.prototype = new Parent();
-var child = new Child();
-console.log(parent.constructor, child.constructor);
-
-// 3) 重置constructor的问题
-function Parent() {}
-Parent.prototype.getName = function () {
-  return 'parent:' + this.name;
-};
-
-function Child() {}
-Child.prototype = new Parent();
-Child.prototype.constructor = Child;
-var parent = new Parent();
-var child = new Child();
-console.log(parent.constructor, child.constructor);
-
-// 继承之后要更改prototype
-function Parent(name) {}
-Parent.prototype = {
-  getName: function () {
-    return 'parent:' + this.name;
-  }
-};
-
-function Child() {
-  this.name = name;
-}
-Child.prototype = new Parent();
-var child = new Child();
-console.log(child instanceof Child, child.getName());
-Child.prototype = {
-  getName: function () {
-    return 'child:' + this.name;
-  }
-};
-console.log(child instanceof Child, child.getName());
-
-
-// 4) 新建空function prototype继承
-function extend(Child, Parent) {
-  var F = function () {};
-  F.prototype = Parent.prototype;
-  Child.prototype = new F();
-  Child.prototype.constructor = Child;
-  Child.super = Parent.prototype;
-}
-
-function A(name) {
-  this.name = name;
-};
-
-function B() {};
-B.prototype.getName = function () {
-  return 'B:' + this.name;
-};
-extend(A, B);
-var a = new A('a');
-console.log(a, a.getName(), a.constructor.super);
-console.log(a.constructor, a instanceof A, a instanceof B);
-
-// var Child = {};
-// console.log(A.constructor);  // output:
-// console.log(B.constructor);  // output:
-// var a = new A();           
-// var b = new A();           
-// b.constructor = A.constructor;
-// console.log(a.constructor == A);  // output:
-// console.log(b instanceof a.constructor);     // output:
-// console.log(a.constructor == b.constructor);  // output:
-
-// 6. 原型继承+复制constructor完整例子
+### 2.5 原型继承 + 复制 constructor 完整例子
+```js
 function inherits(Child, Parent) {
   var ChildProto = Child.prototype;
   var ParentProto = Parent.prototype;
 
-  // create a temp clazz, call parent constructor
-  // apply or execute constructor to extend constructor
-  // apply such as copy constructor to Child instance, execution will copy it to Child constructor
-  /* function Super() { Parent.apply(this, arguments); } */
   function Super() {}
-  Super.constructor = ParentProto.constructor();
-
-  // assignment prototype
   Super.prototype = ParentProto;
 
-  // Child = ParentProto.constructor;
-  // instance temp clazz for Child prototype
   Child.prototype = new Super();
-  // copy prototy from th origin Child
   for (var item in ChildProto) {
     Child.prototype[item] = ChildProto[item];
   }
   Child.__super__ = ParentProto;
-  // reset Child constructor
   Child.prototype.constructor = Child;
   return Child;
 }
@@ -374,19 +228,16 @@ Child.prototype.getName = function () {
 Child.prototype.getParentAlias = function () {
   return 'getParentAlias:' + Child.__super__.alias;
 }
-Parent.prototype.getParentName = function () {
-  return 'getParentName:' + Child.__super__.name;
-}
 inherits(Child, Parent);
 var c3 = new Child();
 Parent.prototype.alias = 'FatherChanged';
 console.log(c3, c3.constructor, c3.__proto__, c3.prototype);
 console.log(Child.prototype.isPrototypeOf(c3),
   Parent.prototype.isPrototypeOf(c3), Object.getPrototypeOf(c3));
+```
 
-
-// 7. 来自crockford的原型继承例子
-// http://www.crockford.com/javascript/inheritance.html
+### 2.6 来自 Crockford 的原型继承例子
+```js
 Function.prototype.method = function (name, func) {
   this.prototype[name] = func;
   return this;
@@ -421,43 +272,34 @@ Function.method('inherits', function (parent) {
   });
   return this;
 });
+```
 
-// 8. 来自john的原型继承完整例子
-// http://ejohn.org/blog/simple-javascript-inheritance/
+### 2.7 来自 John 的原型继承完整例子
+```js
 (function () {
   var initializing = false,
     fnTest = /xyz/.test(function () {
       xyz;
     }) ? /\b_super\b/ : /.*/;
 
-  // The base Class implementation (does nothing)
   this.Class = function () {};
 
-  // Create a new Class that inherits from this class
   Class.extend = function (prop) {
     var _super = this.prototype;
 
-    // Instantiate a base class (but only create the instance,
-    // don't run the init constructor)
     initializing = true;
     var prototype = new this();
     initializing = false;
 
-    // Copy the properties over onto the new prototype
     for (var name in prop) {
-      // Check if we're overwriting an existing function
       prototype[name] = typeof prop[name] == "function" &&
         typeof _super[name] == "function" && fnTest.test(prop[name]) ?
         (function (name, fn) {
           return function () {
             var tmp = this._super;
 
-            // Add a new ._super() method that is the same method
-            // but on the super-class
             this._super = _super[name];
 
-            // The method only need to be bound temporarily, so we
-            // remove it when we're done executing
             var ret = fn.apply(this, arguments);
             this._super = tmp;
 
@@ -467,33 +309,28 @@ Function.method('inherits', function (parent) {
         prop[name];
     }
 
-    // The dummy class constructor
     function Class() {
-      // All construction is actually done in the init method
       if (!initializing && this.init)
         this.init.apply(this, arguments);
     }
 
-    // Populate our constructed prototype object
     Class.prototype = prototype;
-
-    // Enforce the constructor to be what we expect
     Class.prototype.constructor = Class;
-
-    // And make this class extendable
     Class.extend = arguments.callee;
 
     return Class;
   };
 })();
+```
 
-// 8. 简单版JS继承例子
-// http://ejohn.org/blog/simple-javascript-inheritance/
+### 2.8 简单版 JS 继承例子
+```js
 (function () {
   var initializing = false,
     fnTest = /xyz/.test(function () {
       xyz;
     }) ? /\b_super\b/ : /.*/;
+
   this.Class = function () {};
   Class.extend = function (prop) {
     var _super = this.prototype;
@@ -525,10 +362,10 @@ Function.method('inherits', function (parent) {
     return Class;
   };
 })();
+```
 
-
-
-// 9. 模拟Object.create函数创建
+### 2.9 模拟 Object.create 函数创建
+```js
 function create(o) {
   function F() {}
   F.prototype = o;
@@ -541,76 +378,10 @@ var a = {
 var b = create(a);
 var c = Object.create(a);
 console.log(b, c);
-// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create
-if (typeof Object.create != 'function') {
-  // Production steps of ECMA-262, Edition 5, 15.2.3.5
-  // Reference: http://es5.github.io/#x15.2.3.5
-  Object.create = (function () {
-    //为了节省内存，使用一个共享的构造器
-    function Temp() {}
+```
 
-    // 使用 Object.prototype.hasOwnProperty 更安全的引用 
-    var hasOwn = Object.prototype.hasOwnProperty;
-
-    return function (O) {
-      // 1. 如果 O 不是 Object 或 null，抛出一个 TypeError 异常。
-      if (typeof O != 'object') {
-        throw TypeError('Object prototype may only be an Object or null');
-      }
-
-      // 2. 使创建的一个新的对象为 obj ，就和通过
-      //    new Object() 表达式创建一个新对象一样，
-      //    Object是标准内置的构造器名
-      // 3. 设置 obj 的内部属性 [[Prototype]] 为 O。
-      Temp.prototype = O;
-      var obj = new Temp();
-      Temp.prototype = null; // 不要保持一个 O 的杂散引用（a stray reference）...
-
-      // 4. 如果存在参数 Properties ，而不是 undefined ，
-      //    那么就把参数的自身属性添加到 obj 上，就像调用
-      //    携带obj ，Properties两个参数的标准内置函数
-      //    Object.defineProperties() 一样。
-      if (arguments.length > 1) {
-        // Object.defineProperties does ToObject on its first argument.
-        var Properties = Object(arguments[1]);
-        for (var prop in Properties) {
-          if (hasOwn.call(Properties, prop)) {
-            obj[prop] = Properties[prop];
-          }
-        }
-      }
-
-      // 5. 返回 obj
-      return obj;
-    };
-  })();
-}
-
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/create
-// Usage:
-// Child.prototype = create(Parent.prototype);
-if (typeof Object.create != 'function') {
-  Object.create = (function () {
-    var Temp = function () {};
-    return function (o) {
-      Temp.prototype = o;
-      var result = new Temp();
-      Temp.prototype = null;
-      return result;
-    };
-  })();
-}
-
-// actually just does
-function Foo() {}
-var o = new Foo();
-var o = new Object();
-o. [
-  [Prototype]
-] = Foo.prototype;
-Foo.call(o);
-
-// 10. ECMAScript6 中的class使用
+### 2.10 ECMAScript6 中的 class 使用
+```js
 class User {
   constructor(firstName, lastName) {
     this.firstName = firstName;
@@ -627,36 +398,10 @@ console.log(user.fullName(), typeof user);
 console.log(user.constructor, user instanceof User);
 console.log(user.hasOwnProperty('firstName'), User.prototype.hasOwnProperty('fullName'));
 console.log(user.__proto__.constructor, user.__proto__.hasOwnProperty('fullName'));
+```
 
-// ECMAScript6 inherits
-class Parent {
-  constructor(name) {
-    this.name = name;
-  }
-  getName() {
-    return `Parent Name:${this.name}`;
-  }
-}
-class Child extends Parent {
-  constructor(name, age) {
-    super(name, age);
-    this.age = age;
-  }
-  getAge() {
-    return `Child Age: ${this.age}`;
-  }
-}
-var child = new Child('Tom', 19);
-console.log(Object.getPrototypeOf(Child) === Parent, child instanceof Parent);
-console.log(child.hasOwnProperty('name'), Child.prototype.hasOwnProperty('name'));
-console.log(child.__proto__.hasOwnProperty('getName'), Child.prototype.hasOwnProperty('getAge'));
-console.log(child, child.getName(), child.getAge());
-console.log(typeof child, child.constructor, child.__proto__.constructor);
-
-
-// 11. JS原型链详解
-// @see
-// http://dmitrysoshnikov.com/ecmascript/javascript-the-core/
+### 2.11 JS 原型链详解
+```js
 function Foo(y) {
   this.y = y;
 }
@@ -676,8 +421,10 @@ console.log(
   b.__proto__.calculate === Foo.prototype.calculate,
   b.calculate(5), c.calculate(5)
 );
+```
 
-// 面向对象里的重写与重载
+### 3. JavaScript 中的多态与重载
+```js
 class Parent {
   constructor(name) {
     this.name = name;
@@ -688,7 +435,7 @@ class Parent {
 }
 class Child extends Parent {
   constructor(name, age) {
-    super(name, age);
+    super(name);
     this.age = age;
   }
   getParentAndChildName() {
@@ -703,10 +450,12 @@ class Child extends Parent {
   }
 }
 var child = new Child('Jack', 20);
-console.log(child.getName())
+console.log(child.getName());
 console.log(child.getName(1));
+```
 
-// 11. 理解this,call,apply,bind
+## 4. JavaScript 中的 this、call、apply、bind
+```js
 // this
 var age = 11;
 
@@ -764,30 +513,10 @@ function bindArrayJoinDot(flag, arr) {
 }
 var joinDot = bindArrayJoinDot.bind([1, 2, 3], null);
 console.log(joinDot([4, 5, 6]));
+```
 
-// 看下java里面interface and abstract
-/*
-public interface Drivable {
-  public void drive();
-  public void sound();
-}
-public abstract class AbstractCar {
-  public abstract Engine getEngine();
-  public abstract Wheel getWheel();
-}
-public class Car extends AbstractCar implements Drivable {
-  public void drive() {
-    throw new UnsupportedOperationException();
-  }
-  public void sound() {}
-  @Override
-  public Engine getWheel() {}
-}
-*/
-
-// 12. 用javascript模拟interface
-// https://ryot.gitbooks.io/pro-javascript-design-patterns/content/chapter2.html
-// http://www.cnblogs.com/softlover/archive/2012/07/20/2601067.html
+## 5. JavaScript 中的接口与抽象类
+```js
 function Interface(name, methods) {
   this.name = name;
   this.methods = [];
@@ -835,10 +564,10 @@ class Car extends AbstractCar {
 };
 var car = new Car('Bird', 'red');
 console.log(DrivableInterface, car, car.getInfo(), car.drive());
+```
 
-
-
-// 13. JavaScript 函数参数传递
+## 6. JavaScript 函数参数传递
+```js
 function add(a, b, process) {
   process = process || function (a, b) {
     return a + b;
@@ -849,8 +578,10 @@ add(5, 5);
 add(4.8, 5.3, function (a, b) {
   return Math.round(a) + Math.floor(b);
 });
+```
 
-// 14. javascript多态之模拟类型
+## 7. JavaScript 多态之模拟类型
+```js
 class Animal {
   constructor(name) {
     this.name = name;
@@ -905,9 +636,11 @@ chicken.setName('chicken1');
 Animal.getName(chicken);
 Animal.makeSound(duck);
 Animal.getName(duck);
+```
 
-// 15. JS里继承与组合对比
-// 继承
+## 8. 继承与组合的对比
+### 8.1 继承
+```js
 class Fruit {
   constructor(name) {
     this.name = name;
@@ -923,7 +656,10 @@ class Banana extends Fruit {
 }
 var banana = new Banana('Banana1');
 banana.peel();
-// 组合
+```
+
+### 8.2 组合
+```js
 class Fruit {
   constructor(name) {
     this.name = name;
@@ -942,8 +678,10 @@ class Banana {
 }
 var banana = new Banana('Banana2');
 banana.peel();
+```
 
-// 组合改变1
+### 8.3 组合改变1
+```js
 class Peeler {
   peel() {
     console.log('peel:' + this.name);
@@ -960,8 +698,10 @@ class Banana {
 }
 var banana = new Banana('Banana3', new Peeler());
 banana.peel();
+```
 
-// 组合改变2
+### 8.4 组合改变2
+```js
 class Peeler {
   constructor(count) {
     this.count = count;
@@ -996,8 +736,10 @@ class Banana {
 }
 var banana = new Banana('Banana3', 33);
 banana.peel();
+```
 
-// 16. 继承与组合联合
+### 8.5 继承与组合联合
+```js
 class Vehicle {
   constructor(options) {
     this.name = options.name;
@@ -1032,12 +774,12 @@ class Car extends Vehicle {
   constructor(options) {
     super(options);
     this.price = options.price;
-    this.engin = options.engin || new Engine();
+    this.engine = options.engine || new Engine();
     this.wheel = options.wheel || new Wheel();
     this.setBrand(options.brand);
   }
   launch() {
-    this.engin.launch.call(this);
+    this.engine.launch.call(this);
   }
   run() {
     this.launch();
@@ -1047,7 +789,7 @@ class Car extends Vehicle {
   setPrice(price) {
     this.price = price;
   }
-  getPrice(price) {
+  getPrice() {
     return this.price;
   }
   setBrand(brand) {
@@ -1086,3 +828,4 @@ var bmw5 = new BMWCar({
 bmw5.setWeight(3000);
 bmw5.setPrice(1520000.00);
 console.log(bmw5, bmw5.getType(), bmw5.run());
+```

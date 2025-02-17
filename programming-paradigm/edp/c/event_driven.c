@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 /*
 一个简单的事件驱动系统，包含事件的注册、触发和移除功能。不同语言的实现方式有所不同，但核心逻辑是一致的：
 事件管理器：负责管理事件及其对应的回调函数列表。
@@ -18,6 +20,7 @@ typedef void (*Callback)(const char *);
 // 事件结构体
 typedef struct
 {
+    char *event_name;
     Callback callbacks[MAX_CALLBACKS];
     int callback_count;
 } Event;
@@ -26,7 +29,6 @@ typedef struct
 typedef struct
 {
     Event events[MAX_EVENTS];
-    // 事件名称假设为简单的整数索引
     int event_count;
 } EventManager;
 
@@ -34,43 +36,69 @@ typedef struct
 void init_event_manager(EventManager *manager)
 {
     manager->event_count = 0;
-    for (int i = 0; i < MAX_EVENTS; i++)
+}
+
+// 查找事件索引
+int find_event_index(EventManager *manager, const char *event_name)
+{
+    for (int i = 0; i < manager->event_count; i++)
     {
-        manager->events[i].callback_count = 0;
+        if (strcmp(manager->events[i].event_name, event_name) == 0)
+        {
+            return i;
+        }
     }
+    return -1;
 }
 
 // 注册事件监听器
-void on(EventManager *manager, int event_name, Callback callback)
+void on(EventManager *manager, const char *event_name, Callback callback)
 {
-    if (manager->events[event_name].callback_count < MAX_CALLBACKS)
+    int index = find_event_index(manager, event_name);
+    if (index == -1)
     {
-        manager->events[event_name].callbacks[manager->events[event_name].callback_count++] = callback;
+        if (manager->event_count >= MAX_EVENTS)
+            return;
+        index = manager->event_count++;
+        manager->events[index].event_name = strdup(event_name);
+        manager->events[index].callback_count = 0;
+    }
+    if (manager->events[index].callback_count < MAX_CALLBACKS)
+    {
+        manager->events[index].callbacks[manager->events[index].callback_count++] = callback;
     }
 }
 
 // 触发事件
-void emit(EventManager *manager, int event_name, const char *message)
+void emit(EventManager *manager, const char *event_name, const char *message)
 {
-    for (int i = 0; i < manager->events[event_name].callback_count; i++)
+    int index = find_event_index(manager, event_name);
+    if (index != -1)
     {
-        manager->events[event_name].callbacks[i](message);
+        for (int i = 0; i < manager->events[index].callback_count; i++)
+        {
+            manager->events[index].callbacks[i](message);
+        }
     }
 }
 
 // 移除事件监听器
-void off(EventManager *manager, int event_name, Callback callback)
+void off(EventManager *manager, const char *event_name, Callback callback)
 {
-    for (int i = 0; i < manager->events[event_name].callback_count; i++)
+    int index = find_event_index(manager, event_name);
+    if (index != -1)
     {
-        if (manager->events[event_name].callbacks[i] == callback)
+        for (int i = 0; i < manager->events[index].callback_count; i++)
         {
-            for (int j = i; j < manager->events[event_name].callback_count - 1; j++)
+            if (manager->events[index].callbacks[i] == callback)
             {
-                manager->events[event_name].callbacks[j] = manager->events[event_name].callbacks[j + 1];
+                for (int j = i; j < manager->events[index].callback_count - 1; j++)
+                {
+                    manager->events[index].callbacks[j] = manager->events[index].callbacks[j + 1];
+                }
+                manager->events[index].callback_count--;
+                break;
             }
-            manager->events[event_name].callback_count--;
-            break;
         }
     }
 }
@@ -88,23 +116,18 @@ int main()
 
     // 第一次测试：注册并触发事件
     printf("第一次测试：\n");
-    // 注册事件监听器
-    on(&eventManager, 0, handleMessage);
-    // 触发事件
-    emit(&eventManager, 0, "第一次发送的消息");
+    on(&eventManager, "event1", handleMessage);
+    emit(&eventManager, "event1", "第一次发送的消息");
 
     // 第二次测试：再次触发事件
     printf("\n第二次测试：\n");
-    emit(&eventManager, 0, "第二次发送的消息");
+    emit(&eventManager, "event1", "第二次发送的消息");
 
     // 第三次测试：移除监听器后重新注册并触发事件
     printf("\n第三次测试：\n");
-    // 移除事件监听器
-    off(&eventManager, 0, handleMessage);
-    // 重新注册事件监听器
-    on(&eventManager, 0, handleMessage);
-    // 触发事件
-    emit(&eventManager, 0, "第三次发送的消息");
+    off(&eventManager, "event1", handleMessage);
+    on(&eventManager, "event1", handleMessage);
+    emit(&eventManager, "event1", "第三次发送的消息");
 
     return 0;
 }
