@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>基础MVP例子</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+      }
+      p {
+        padding: 10px;
+        border-radius: 5px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      em {color: red;}
+    </style>
+    <script src="./mvp.js"></script>
+  </head>
+  <body>
+    <h1>Basic  Patterns example | 基础 MVP 原理例子</h1>
+    <hr />
+    <div class="wrapper">
+      <h3>MVP example:</h3>
+      <a href="./mvp.js">mvp.js源码</a>
+      <script>
+        window.onload = function() {
+          const model = new Model();
+          // View 不直接持有 Model，也不传递Model，view针对数据更新
+          const view = new View();
+          // 绑定DOM
+          view.$el = document.querySelector('#mvp-view');
+          const presenter = new Presenter(model, view);
+          presenter.init();
+        }
+      </script>
+      <p id="mvp-view" style="background: rgb(5, 197, 81)">&nbsp;</p>
+    </div>
+    <h2>什么是 MVP？</h2>
+    <p>
+      MVP（Model-View-Presenter）是一种软件架构模式，常用于前端和移动端应用开发。
+      它将应用分为三个部分：模型 (Model)、视图 (View) 和演示者 (Presenter)，
+      通过将视图与业务逻辑分离，提升应用的可维护性和可测试性。
+    </p>
+    
+    <h2>MVP 组成部分</h2>
+    
+    <h3>1. Model（模型）</h3>
+    <ul>
+      <li>负责数据的获取、存储和业务逻辑。</li>
+      <li>通常与后端 API 或数据库交互，提供应用所需的数据。</li>
+      <li>在前端框架中，Model 可能是数据对象、服务或状态管理工具。</li>
+    </ul>
+    
+    <h3>2. View（视图）</h3>
+    <ul>
+      <li>负责用户界面的展示。</li>
+      <li>通常由 HTML + CSS 组成，仅负责显示数据和接收用户输入。</li>
+      <li>视图通过接口与 Presenter 交互，不直接处理业务逻辑。</li>
+    </ul>
+    
+    <h3>3. Presenter（演示者）</h3>
+    <ul>
+      <li>作为 View 和 Model 之间的桥梁。</li>
+      <li>处理所有的业务逻辑，调用 Model 获取数据，并将数据传递给 View。</li>
+      <li>接收用户输入，通过接口更新 Model 并刷新 View。</li>
+    </ul>
+    
+    <h2>MVP 的特点</h2>
+    <ul>
+      <li>
+        <strong>关注点分离</strong>：View 只负责展示，业务逻辑都集中在 Presenter 中，Model 负责数据处理。
+      </li>
+      <li>
+        <strong>视图无逻辑</strong>：视图通过接口与 Presenter 交互，不包含任何业务逻辑代码。
+      </li>
+      <li>
+        <strong>更好的测试性</strong>：由于 Presenter 独立于 View，可以通过模拟 View 接口轻松进行单元测试。
+      </li>
+    </ul>
+    
+  </body>
+</html>

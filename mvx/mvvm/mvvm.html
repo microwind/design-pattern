@@ -35,8 +35,19 @@
       th {
         background-color: #f4f4f4;
       }
+      em {color: red;}
     </style>
     <script src="./mvvm.js"></script>
+    <script>
+    // 初始化
+    window.onload = function() {
+      const viewModel = new $mvvm.ViewModel({
+        view: new $mvvm.View(document.querySelector('#mvvm-view')),
+        model: new $mvvm.Model()
+      })
+      // viewModel.init()
+    }
+    </script>
   </head>
   <body>
     <h1>Basic MVVM Patterns example | 基础 MVVM 框架原理例子</h1>

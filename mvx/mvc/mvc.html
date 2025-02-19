@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>基础MVC例子</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+      }
+      p {
+        padding: 10px;
+        border-radius: 5px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      em {color: red;}
+    </style>
+    <script src="./mvc.js"></script>
+    <script>
+      window.onload = function() {
+        const model = new Model();
+        // View 可以持有 Model，或在更新视图时传递Model
+        const view = new View(model);
+        // 绑定DOM
+        view.$el = document.querySelector('#mvc-view');
+        const controller = new Controller(model, view);
+        controller.init();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Basic  Patterns example | 基础 MVC 原理例子</h1>
+    <hr />
+    <div class="wrapper">
+      <h3>MVC example:</h3>
+      <a href="./mvc.js">mvc.js源码</a>
+      <p id="mvc-view" style="background: rgb(5, 197, 81)">&nbsp;</p>
+    </div>
+    <h2>什么是 MVC？</h2>
+    <p>
+      MVC（Model-View-Controller）是一种经典的软件架构模式，广泛应用于前后端开发中。
+      它将应用分为三个部分：模型 (Model)、视图 (View) 和控制器 (Controller)，通过清晰的职责分离，
+      提高代码的可维护性、可扩展性和可测试性。
+    </p>
+    
+    <h2>MVC 组成部分</h2>
+    
+    <h3>1. Model（模型）</h3>
+    <ul>
+      <li>负责数据的获取、存储和业务逻辑。</li>
+      <li>通常与后端 API 或数据库交互，提供应用所需的数据。</li>
+      <li>在前端框架中，Model 可能是数据对象或状态管理工具 (如 Vuex、Redux)。</li>
+    </ul>
+    
+    <h3>2. View（视图）</h3>
+    <ul>
+      <li>负责用户界面的展示。</li>
+      <li>通常由 HTML + CSS 组成，提供直观的页面布局和样式。</li>
+      <li>视图仅负责渲染数据，不直接处理业务逻辑。</li>
+    </ul>
+    
+    <h3>3. Controller（控制器）</h3>
+    <ul>
+      <li>作为 View 和 Model 之间的桥梁。</li>
+      <li>接收用户输入，调用 Model 更新数据，并刷新 View。</li>
+      <li>控制器处理业务逻辑，确保数据流动的正确性。</li>
+    </ul>
+    
+    <h2>MVC 的特点</h2>
+    <ul>
+      <li>
+        <strong>关注点分离</strong>：UI 逻辑、业务逻辑和数据逻辑独立，使得代码结构更加清晰。
+      </li>
+      <li>
+        <strong>可维护性强</strong>：由于各个组件的职责单一，修改或扩展功能时影响较小。
+      </li>
+      <li>
+        <strong>增强可测试性</strong>：业务逻辑集中在控制器和模型中，可以轻松进行单元测试。
+      </li>
+    </ul>
+    
+  </body>
+</html>

@@ -13,7 +13,7 @@ MVVM的三大组件
   作用：ViewModel 通过数据绑定向 View 提供数据，并从 View 接收用户输入。它处理UI交互请求，并调用 Model 来获取或修改数据，再通知 View 更新视图。
 */
 
-// 6. 前端MVVM模式，通过观察者模式将数据与视图进行双向绑定，然后由数据驱动更改
+// 前端MVVM模式，通过观察者模式将数据与视图进行双向绑定，然后由数据驱动更改
 !(function (global, doc) {
   // 代理类Agent，采用深度代理
   class Agent {
@@ -53,6 +53,15 @@ MVVM的三大组件
     render(data) {
       this.$el.innerHTML = this.compile(data)
     }
+    // 设置按钮点击事件监听
+    setClickListener(callback) {
+      this.$el.addEventListener('click', callback);
+    }
+
+    // 设置鼠标移出事件监听
+    setMouseOutListener(callback) {
+      this.$el.addEventListener('mouseout', callback);
+    }
   }
 
   // Model - 负责数据和业务逻辑
@@ -73,7 +82,7 @@ MVVM的三大组件
           data.num += 1 // 模拟数据更新
           data.name = name
           resolve(data)
-        }, 500)
+        }, 100)
       })
     }
   }
@@ -87,23 +96,26 @@ MVVM的三大组件
       this.view = view
       this.model = model
 
-      // 使用代理监听数据变化
+      // 使用代理监听数据变化，绑定model.data
       this.data = new Agent(model.data, (obj, prop, value) => {
         this.view.render(this.data) // 数据变化时更新视图
       })
-
+      // init可以放在构造器或外层
       this.init()
     }
 
     // 初始化事件监听
     init() {
-      this.view.$el.addEventListener('click', (evt) => this.onClick(evt))
-      this.view.$el.addEventListener('mouseout', (evt) => this.onMouseOut(evt))
+      // this.view.$el.addEventListener('click', (evt) => this.onButtonClick(evt))
+      // this.view.$el.addEventListener('mouseout', (evt) => this.onMouseOut(evt))
+      // 给view设置事件回调
+      this.view.setClickListener(this.onButtonClick.bind(this));
+      this.view.setMouseOutListener(this.onMouseOut.bind(this));
       this.view.render(this.data)
     }
 
     // 点击事件处理
-    onClick(evt) {
+    onButtonClick(evt) {
       this.data.name = 'Click to add: Watch data.'
       this.model.update(this.data).then(() => {
         console.log('Data updated:', this.data)
@@ -116,11 +128,17 @@ MVVM的三大组件
     }
   }
 
-  // 执行测试
-  global.onload = () => {
-    const viewModel = new ViewModel({
-      view: new View(doc.querySelector('#mvvm-view')),
-      model: new Model()
-    })
+  // 输出到全局
+  global.$mvvm = {
+    ViewModel: ViewModel,
+    View: View,
+    Model: Model
   }
+  // 执行测试
+  // global.onload = () => {
+  //   const viewModel = new ViewModel({
+  //     view: new View(doc.querySelector('#mvvm-view')),
+  //     model: new Model()
+  //   })
+  // }
 })(this || window, document)

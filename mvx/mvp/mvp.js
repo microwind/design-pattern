@@ -35,9 +35,46 @@ class Model {
 
 // View (视图层)
 class View {
-  // View 只负责显示数据，并提供更新界面的接口
+  // MVP模式view不与model关联
+  constructor() {
+    this.$el = {};
+    this.tpl = '<div><b>${ name }</b><em>${ num }</em></div>';
+  }
+
+  compile(data) {
+    return this.tpl.replace(/\$\{([\s\S]+?)\}/g, (_, key) => {
+      const value = data[key.trim()];
+      return value !== undefined && value !== null ? value : '';
+    });
+  }
+
+  // 渲染数据
+  render(data) {
+    this.$el.innerHTML = this.compile(data);
+  }
+
+  // 设置按钮点击事件监听
+  setClickListener(callback) {
+    this.$el.addEventListener('click', callback);
+  }
+
+  // 设置鼠标移出事件监听
+  setMouseOutListener(callback) {
+    this.$el.addEventListener('mouseout', (event) => {
+      if (!this.$el.contains(event.relatedTarget)) {
+        event.stopPropagation(); // 阻止冒泡
+        callback(event);
+      }
+    });
+  }
+
+  // 更新视图显示，传递数据，而不是model
   updateView(name, num) {
-    console.log(`<div><b>${name}</b><em>${num}</em></div>`);
+    // View只针对View需要的数据，而不是特定model，可以增加灵活性
+    this.render({
+      name,
+      num
+    });
   }
 }
 
@@ -46,6 +83,13 @@ class Presenter {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+  }
+
+  init() {
+    // 给view设置事件回调
+    this.view.setClickListener(this.onButtonClick.bind(this));
+    this.view.setMouseOutListener(this.onMouseOut.bind(this));
+    this.updateView();
   }
 
   // 按钮点击时通过 Presenter 更新 Model 数据并刷新视图
@@ -64,6 +108,7 @@ class Presenter {
 
   // 由 Presenter 调用更新 View，传递数据，而不是Model
   updateView() {
+    console.log(`<div><b>${this.model.getName()}</b><em>${this.model.getNum()}</em></div>`);
     this.view.updateView(this.model.getName(), this.model.getNum());
   }
 }
