@@ -6,15 +6,16 @@ MVX 是一类用于软件架构设计的模式，包括 MVC（Model-View-Control
 
 ### MVC（Model-View-Controller）
 ```
+// https://developer.mozilla.org/en-US/docs/Glossary/MVC
                    User Input  
-                       |  从Controller起发起，建立View与Model联系
+                       |  从Controller起发起，建立View与Model的联系
                        v
 +---------+       +-----------+      +-----------+
-|  View   | <---  | Controller| ---> |   Model   |
+|  View   | <---> | Controller| ---> |   Model   |
 +---------+       +-----------+      +-----------+
     ^                                      v
     |            Model数据映射到View         |
-    ----------------------------------------
+    ****--------------------------------****
 ```
 **特点**：
 - Model 负责数据处理和业务逻辑。

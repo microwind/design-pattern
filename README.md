@@ -64,24 +64,25 @@
 
 | **编程范式** | **描述** | **应用场景** |
 | --- | --- | --- |
-| **[面向过程编程 (Procedural Programming, PP)](./programming-paradigm/pp)** | 强调按步骤执行程序，关注程序流程和每个操作步骤，通常通过函数或过程来实现。 | 适用于小型项目或功能明确的任务，常见于脚本编程或系统工具开发。 |
-| **[面向对象编程 (Object-Oriented Programming, OOP)](./programming-paradigm/oop)** | 通过类和对象来组织程序，强调封装、继承、组合和多态性，关注“谁来做”而非“怎么做”。 | 适用于大型复杂项目，特别是需要良好的模块化和可扩展性时。 |
-| **[封装 (Encapsulation)](./programming-paradigm/oop/encapsulation/)** | 将数据和操作数据的函数包装在一起，控制外部访问方式，保障数据安全。 | 用于保证数据的完整性和安全性，通常在复杂对象建模时使用。 |
-| **[继承 (Inheritance)](./programming-paradigm/oop/inheritance/)** | 通过父类与子类关系，子类继承父类的属性和方法，从而实现代码复用。 | 用于需要构建共享代码和功能层次结构的应用，如继承多个不同类型的动物类。 |
-| **[组合 (Composition)](./programming-paradigm/oop/composition/)** | 使用对象之间的组合关系而不是继承来重用功能。 | 适用于灵活的模块化设计，尤其当继承关系过于复杂时，组合可以提供更高的灵活性。 |
-| **[多态 (Polymorphism)](./programming-paradigm/oop/polymorphism/)** | 允许使用相同的接口调用不同的对象，实现方法的动态绑定。 | 常用于处理多种类型对象的统一接口，特别是在事件处理和策略模式中。 |
-| **[函数式编程 (Functional Programming, FP)](./programming-paradigm/fp)** | 通过纯函数和不可变数据来描述程序，强调“做什么”，而非“怎么做”。 | 适用于需要高并发、高可维护性的场景，常见于数据处理和流处理系统。 |
-| **[面向切面编程 (Aspect-Oriented Programming, AOP)](./programming-paradigm/aop)** | 通过预编译和动态插入，在不修改核心业务代码的情况下，将代码挂载到指定位置。 | 适用于解耦关注点（如日志、事务管理等）的场景，通常用于企业级应用。 |
+| **[面向过程编程 (Procedural Programming, PP)](./programming-paradigm/procedural-programming)** | 强调按步骤执行程序，关注程序流程和每个操作步骤，通常通过函数或过程来实现。 | 适用于小型项目或功能明确的任务，常见于脚本编程或系统工具开发。 |
+| **[面向对象编程 (Object-Oriented Programming, OOP)](./programming-paradigm/object-oriented-programming)** | 通过类和对象来组织程序，强调封装、继承、组合和多态性，关注“谁来做”而非“怎么做”。 | 适用于大型复杂项目，特别是需要良好的模块化和可扩展性时。 |
+| **[封装 (Encapsulation)](./programming-paradigm/object-oriented-programming/encapsulation/)** | 将数据和操作数据的函数包装在一起，控制外部访问方式，保障数据安全。 | 用于保证数据的完整性和安全性，通常在复杂对象建模时使用。 |
+| **[继承 (Inheritance)](./programming-paradigm/object-oriented-programming/inheritance/)** | 通过父类与子类关系，子类继承父类的属性和方法，从而实现代码复用。 | 用于需要构建共享代码和功能层次结构的应用，如继承多个不同类型的动物类。 |
+| **[组合 (Composition)](./programming-paradigm/object-oriented-programming/composition/)** | 使用对象之间的组合关系而不是继承来重用功能。 | 适用于灵活的模块化设计，尤其当继承关系过于复杂时，组合可以提供更高的灵活性。 |
+| **[多态 (Polymorphism)](./programming-paradigm/object-oriented-programming/polymorphism/)** | 允许使用相同的接口调用不同的对象，实现方法的动态绑定。 | 常用于处理多种类型对象的统一接口，特别是在事件处理和策略模式中。 |
+| **[函数式编程 (Functional Programming, FP)](./programming-paradigm/functional-programming)** | 通过纯函数和不可变数据来描述程序，强调“做什么”，而非“怎么做”。 | 适用于需要高并发、高可维护性的场景，常见于数据处理和流处理系统。 |
+| **[面向切面编程 (Aspect-Oriented Programming, AOP)](./programming-paradigm/aspect-oriented-programming)** | 通过预编译和动态插入，在不修改核心业务代码的情况下，将代码挂载到指定位置。 | 适用于解耦关注点（如日志、事务管理等）的场景，通常用于企业级应用。 |
 | **[事件驱动编程 (Event-Driven Programming, EDP)](./programming-paradigm/edp)** | 程序的执行流程由事件驱动，通过监听和响应事件来触发操作。 | 常见于GUI开发、服务器端开发和实时应用程序（如WebSocket、UI响应等）。 |
-| **[响应式编程 (Reactive Programming, RP)](./programming-paradigm/rp)** | 以数据流和变化传播为核心，通过异步数据流实现响应式操作，自动响应数据变化。 | 用于处理实时数据流、UI更新和异步操作，常见于实时监控系统和流式数据处理应用。 |
+| **[响应式编程 (Reactive Programming, RP)](./programming-paradigm/reactive-programming)** | 以数据流和变化传播为核心，通过异步数据流实现响应式操作，自动响应数据变化。 | 用于处理实时数据流、UI更新和异步操作，常见于实时监控系统和流式数据处理应用。 |
 
 
 ## 设计思想与分层架构设计
 | **设计思想** | **描述** | **应用场景** | **示例代码** |
 | --- | --- | --- | --- |
-| **[MVC (Model-View-Controller)](./mvx/mvc)** | MVC是一种常见的设计模式，旨在将应用程序分为三个部分：模型（Model）处理数据、视图（View）展示用户界面、控制器（Controller）处理用户输入并更新模型和视图。 | 适用于需要分离表示层和业务逻辑的应用，例如Web开发、桌面应用等。通过分离关注点，提高系统的可维护性和可扩展性。 | [演示例子](./mvx/mvc) |Update 2019-05-23-programming-paradigm.md---
-| **[MVP (Model-View-Presenter)](./mvx/mvp)** | MVP模式是MVC的变种，其中控制器（Controller）被替换为展示者（Presenter）。Presenter负责将数据从模型传递给视图，视图只负责显示内容，不直接与模型交互。 | 适用于需要更精细控制视图展示和与用户交互的应用，特别是当视图需要大量更新或变化时。 | [演示例子](./mvx/mvp) |
-| **[MVVM (Model-View-ViewModel)](./mvx/mvvm)** | MVVM是一种设计模式，它将视图与视图的状态和业务逻辑分开。通过引入视图模型（ViewModel），将视图的显示逻辑与业务逻辑分离，ViewModel负责为视图提供数据并响应用户操作。 | 适用于需要响应式数据绑定的应用，例如现代的前端开发框架（如Angular、Vue.js）和桌面应用程序（如WPF）。 | [演示例子](./mvx/mvvm) |
+| **[MVC (Model-View-Controller)](./mvx/mvc)** | MVC是一种常见的设计模式，旨在将应用程序分为三个部分：`模型（Model）`处理数据、`视图（View）`展示用户界面、`控制器（Controller）`处理用户输入并更新模型和视图。 | 适用于需要分离表示层和业务逻辑的应用，例如Web开发、桌面应用等。通过分离关注点，提高系统的可维护性和可扩展性。 | [演示例子](./mvx/mvc) |Update 2019-05-23-programming-paradigm.md---
+| **[MVP (Model-View-Presenter)](./mvx/mvp)** | MVP模式是MVC的变种，其中`控制器（Controller）`被替换为`展示者（Presenter）`。Presenter负责将数据从模型传递给视图，视图只负责显示内容，不直接与模型交互。 | 适用于需要更精细控制视图展示和与用户交互的应用，特别是当视图需要大量更新或变化时。 | [演示例子](./mvx/mvp) |
+| **[MVVM (Model-View-ViewModel)](./mvx/mvvm)** | MVVM是一种设计模式，它将视图与视图的状态和业务逻辑分开。通过引入`视图模型（ViewModel）`，将视图的显示逻辑与业务逻辑分离，ViewModel负责为视图提供数据并响应用户操作。 | 适用于需要响应式数据绑定的应用，例如现代的前端开发框架（如Angular、Vue.js）和桌面应用程序（如WPF）。 | [演示例子](./mvx/mvvm) |
+| **[DDD (Domain-Driven Design)](./domain-driven-design/)** | 领域驱动设计是一种软件设计方法，旨在通过将业务逻辑与实现细节分离，提高代码的可维护性和可扩展性。`DDD`将系统划分为多个层次，每个层次都有明确的职责和边界。| 适用于复杂业务逻辑和高度演化的业务需求，适用于大型企业级应用，如金融系统、供应链管理、医疗管理等。 | [演示例子](./domain-driven-design/) |
 
 
 ## 设计模式、分层架构、编程范式区别

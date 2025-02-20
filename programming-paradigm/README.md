@@ -2,7 +2,7 @@
 编程范式是指编程中的基本风格或模式，它定义了如何组织和表达计算过程。不同的编程范式具有不同的理念和特点，不同的语言有适合自己风格的方式，在面对不同场景时也可以选择不同的编程范式。
 
 # 编程范式分类
-- [面向过程编程(Procedural Programming, PP)](./pp)
+- [面向过程编程(Procedural Programming, PP)](./procedural-programming)
   是一种基于过程（也称为函数、子程序或方法）的编程范式。在面向过程编程中，程序被分解为一系列的过程，每个过程执行特定的任务。这些过程通常按照顺序执行，直接操作程序的状态和数据。
   ```text
   +-------------------+
@@ -21,7 +21,7 @@
   ```
 
 
-- [面向对象编程(Object-Oriented Programming, OOP)](./oop)
+- [面向对象编程(Object-Oriented Programming, OOP)](./object-oriented-programming)
   将程序中的各种功能和数据封装成对象，通过类与对象之间的关系来组织和管理代码。OOP 提倡使用封装、继承和多态等特性，以提高代码的重用性和可维护性。
 
   ```text
@@ -38,9 +38,9 @@
   +-------------------+
   ```
 
-  包括：[接口](./oop/interface/) [抽象](./oop/abstraction/) [封装](./oop/encapsulation/) [继承](./oop/inheritance/) [多态](./oop/polymorphism/) [组合](./oop/composition/) [聚合](./oop/aggregation/)
+  包括：[接口](./object-oriented-programming/interface/) [抽象](./object-oriented-programming/abstraction/) [封装](./object-oriented-programming/encapsulation/) [继承](./object-oriented-programming/inheritance/) [多态](./object-oriented-programming/polymorphism/) [组合](./object-oriented-programming/composition/) [聚合](./object-oriented-programming/aggregation/)
 
-- [函数式编程(Functional programming, FP)](./fp)
+- [函数式编程(Functional programming, FP)](./functional-programming)
   将计算视为数学函数的求值过程，避免使用状态和可变数据，强调函数的纯粹性和不可变性。函数式编程语言通常支持高阶函数、匿名函数和不可变数据结构等特性，比如Erlang、clojure、Scala、F#，以及流行的Python、Ruby、Javascript等。
   ```text
   +-------------------+
@@ -56,7 +56,7 @@
   +-------------------+
   ```
 
-- [面向切面编程(Aspect-Oriented Programming, AOP)](./aop)
+- [面向切面编程(Aspect-Oriented Programming, AOP)](./aspect-oriented-programming)
   AOP 的核心思想是将横切关注点（Cross-Cutting Concerns）从核心业务逻辑中分离出来，动态地将代码切入到类的指定方法、指定位置上，以便统一管理和处理，旨在提高软件系统的模块化和可维护性。
   ```text
   +-------------------+
@@ -72,7 +72,7 @@
   +-------------------+
   ```
 
-- [事件驱动编程(Event-Driven Programming, EDP)](./edp)
+- [事件驱动编程(Event-Driven Programming, EDP)](./event-driven-programming)
   基于事件的发生和处理来组织程序逻辑，程序的执行流程是由事件的发生和相应的处理程序来驱动的。事件驱动编程的核心是事件循环。
   ```text
   +-------------------+
@@ -88,7 +88,7 @@
   +-------------------+
   ```
 
-- [响应式编程(Reactive Programming, RP)](./rp)
+- [响应式编程(Reactive Programming, RP)](./reactive-programming)
   通过使用异步数据流和函数式编程的思想，以响应事件和数据变化为中心，构建具有高度交互性和实时性的应用程序。响应式编程关注数据流的变化和处理方式，以提高代码的灵活性和响应性。
   ```text
   +-------------------+
@@ -114,3 +114,5 @@
 | **缺点**       | - 类的层次结构可能复杂，导致代码理解和维护难度增加。<br>- 过度设计可能带来性能开销。                                                                                                                               | - 学习曲线较陡，对于习惯命令式编程的开发者较难理解。<br>- 某些复杂计算可能需要更多代码实现。                                                                                                                   | - 引入额外复杂性，影响代码可读性，织入过程可能有性能开销。<br>- 调试时需同时考虑核心业务和切面逻辑。                                                                                                               | - 代码复用性差，可维护性和扩展性低，大型程序难管理。<br>- 缺乏数据和操作的封装，安全性和可维护性受影响。                                                                                                             | - 学习曲线陡，理解和调试异步数据流困难。<br>- 引入一定性能开销。                                                                                                                                                     | - 事件处理逻辑分散，代码可读性和可维护性可能降低。<br>- 调试复杂，尤其是多个事件相互影响时。                                                                                                                         |
 | **应用场景**   | - 游戏开发、图形界面设计、大型软件系统等，模拟现实世界对象关系。                                                                                                                                                   | - 数据处理、并发编程、人工智能等，处理大量数据和并行计算。                                                                                                                                                   | - 日志记录、事务管理、安全性检查等，处理跨越多个模块的横切关注点。                                                                                                                                                 | - 小型程序、脚本、嵌入式系统等，处理简单顺序任务。                                                                                                                                                                   | - 实时数据处理、用户界面更新、异步任务处理等，处理异步数据流。                                                                                                                                                       | - 图形用户界面（GUI）、游戏开发、网络服务器等，处理用户交互和事件驱动任务。|
 
+# 本文链接
+https://github.com/microwind/design-patterns/tree/main/programming-paradigm
