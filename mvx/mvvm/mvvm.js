@@ -96,8 +96,9 @@ MVVM的三大组件
       this.view = view
       this.model = model
 
-      // 使用代理监听数据变化，绑定model.data
+      // 使用代理监听数据变化，关联model与view
       this.data = new Agent(model.data, (obj, prop, value) => {
+        // 数据变化时可以获得数据以及具体变化的属性和值
         this.view.render(this.data) // 数据变化时更新视图
       })
       // init可以放在构造器或外层
