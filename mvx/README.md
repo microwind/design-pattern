@@ -261,6 +261,6 @@ viewModel.model.data = 'new Data.';
 - **MVVM 适用于数据驱动的现代前端开发。**
 
 ## 更多例子与源码
-[https://github.com/microwind/design-patterns/tree/main/mvx](https://github.com/microwind/design-patterns/tree/main/mvx)
-[https://microwind.github.io/design-patterns/](https://microwind.github.io/design-patterns/)
-[mvc_mvp_mvvm例子详解](https://microwind.github.io/design-patterns/mvc_mvp_mvvm.html)
+- [https://github.com/microwind/design-patterns/tree/main/mvx](https://github.com/microwind/design-patterns/tree/main/mvx)
+- [https://microwind.github.io/design-patterns/](https://microwind.github.io/design-patterns/)
+- [mvc_mvp_mvvm例子详解](https://microwind.github.io/design-patterns/mvc_mvp_mvvm.html)
